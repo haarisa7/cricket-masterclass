@@ -1,4 +1,4 @@
-import { useId } from "react";
+import { useId, type CSSProperties } from "react";
 
 import { cn } from "@/lib/utils";
 import {
@@ -75,6 +75,7 @@ function Ball({ idPrefix }: { idPrefix: string }) {
 
 interface LogoProps {
   className?: string;
+  style?: CSSProperties;
   tone?: BrandTone;
   title?: string;
   /** decorative marks skip the accessible name */
@@ -93,12 +94,14 @@ export function LogoMark({
   tone = "auto",
   title = "Masterclass Cricket",
   decorative,
+  style,
 }: LogoProps) {
   const id = useId().replace(/:/g, "");
   return (
     <svg
       viewBox="0 0 200 200"
       className={cn("brand h-8 w-8", TONE_CLASS[tone], className)}
+      style={style}
       {...a11y(title, decorative)}
     >
       <Ball idPrefix={id} />
@@ -112,11 +115,13 @@ export function LogoWordmark({
   tone = "auto",
   title = "Masterclass Cricket",
   decorative,
+  style,
 }: LogoProps) {
   return (
     <svg
       viewBox={`0 0 ${WORD_WIDTH} ${WORD_HEIGHT}`}
       className={cn("brand h-6 w-auto", TONE_CLASS[tone], className)}
+      style={style}
       {...a11y(title, decorative)}
     >
       <path d={WORD_MASTERCLASS} fill={W1} />
@@ -133,6 +138,7 @@ export function LogoHorizontal({
   tone = "auto",
   title = "Masterclass Cricket",
   decorative,
+  style,
 }: LogoProps) {
   const id = useId().replace(/:/g, "");
   const total = 218 + GAP + WORD_WIDTH;
@@ -140,6 +146,7 @@ export function LogoHorizontal({
     <svg
       viewBox={`0 0 ${total} 218`}
       className={cn("brand h-7 w-auto", TONE_CLASS[tone], className)}
+      style={style}
       {...a11y(title, decorative)}
     >
       <g transform="translate(9 9)">
@@ -159,6 +166,7 @@ export function LogoStacked({
   tone = "auto",
   title = "Masterclass Cricket",
   decorative,
+  style,
 }: LogoProps) {
   const id = useId().replace(/:/g, "");
   const ball = 300;
@@ -168,6 +176,7 @@ export function LogoStacked({
     <svg
       viewBox={`0 0 ${WORD_WIDTH} ${total}`}
       className={cn("brand h-24 w-auto", TONE_CLASS[tone], className)}
+      style={style}
       {...a11y(title, decorative)}
     >
       <g transform={`translate(${(WORD_WIDTH - ball) / 2} 0) scale(${ball / 200})`}>
