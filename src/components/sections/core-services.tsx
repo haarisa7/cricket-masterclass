@@ -26,11 +26,11 @@ export function CoreServices() {
           >
             <div
               className={cn(
-                "shell grid items-center gap-8 py-16 lg:min-h-[60vh] lg:grid-cols-2 lg:gap-16",
+                "shell grid items-center gap-8 py-16 lg:grid-cols-2 lg:gap-16 lg:py-24",
                 i % 2 === 1 && "lg:[&>figure]:order-last",
               )}
             >
-              <figure className="relative aspect-[4/3] overflow-hidden lg:aspect-[5/4]">
+              <figure className="relative aspect-[4/3] overflow-hidden lg:aspect-[4/5]">
                 <RevealImage
                   src={service.image}
                   alt={service.imageAlt}

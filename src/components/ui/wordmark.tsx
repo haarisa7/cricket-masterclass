@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 export function Wordmark({ className }: { className?: string }) {
   return (
     <svg
-      viewBox="0 0 208 26"
+      viewBox="0 0 246 26"
       role="img"
       aria-label="Masterclass Cricket"
       className={cn("h-5 w-auto", className)}
@@ -26,7 +26,7 @@ export function Wordmark({ className }: { className?: string }) {
         MASTERCLASS
       </text>
       <text
-        x="152"
+        x="164"
         y="18.5"
         fill="currentColor"
         style={{

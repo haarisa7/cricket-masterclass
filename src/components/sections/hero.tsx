@@ -17,7 +17,8 @@ export function Hero() {
           preload="none"
           aria-hidden="true"
         >
-          <source src="/media/hero-coaching-loop.mp4" type="video/mp4" />
+          {/* Drop the supplied coaching loop at /media/hero-coaching-loop.mp4
+              and add it back as a <source>. The poster below is the fallback. */}
         </video>
         <img
           src={heroImage}
