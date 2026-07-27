@@ -1,3 +1,5 @@
+import { useId } from "react";
+
 import { cn } from "@/lib/utils";
 import {
   WORD_CRICKET,
@@ -80,12 +82,6 @@ function a11y(title: string, decorative?: boolean) {
     : ({ role: "img", "aria-label": title } as const);
 }
 
-let uid = 0;
-function nextId() {
-  uid += 1;
-  return `mc${uid}`;
-}
-
 /** Ball only. Favicon, avatars, collapsed rail, app icon. */
 export function LogoMark({
   className,
@@ -93,7 +89,7 @@ export function LogoMark({
   title = "Masterclass Cricket",
   decorative,
 }: LogoProps) {
-  const id = nextId();
+  const id = useId().replace(/:/g, "");
   return (
     <svg
       viewBox="0 0 200 200"
@@ -133,7 +129,7 @@ export function LogoHorizontal({
   title = "Masterclass Cricket",
   decorative,
 }: LogoProps) {
-  const id = nextId();
+  const id = useId().replace(/:/g, "");
   const total = 218 + GAP + WORD_WIDTH;
   return (
     <svg
@@ -159,7 +155,7 @@ export function LogoStacked({
   title = "Masterclass Cricket",
   decorative,
 }: LogoProps) {
-  const id = nextId();
+  const id = useId().replace(/:/g, "");
   const ball = 300;
   const gap = 100;
   const total = WORD_HEIGHT + gap + ball;
