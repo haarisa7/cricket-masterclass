@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 
-import portrait from "@/assets/portrait-uzi-arif.jpg";
+import portraitAsset from "@/assets/coach-uzi.jpg.asset.json";
 import { Reveal, RevealHeading, RevealImage } from "@/components/ui/reveal";
 import { manifesto } from "@/data/content";
 
