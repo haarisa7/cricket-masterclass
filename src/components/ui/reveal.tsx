@@ -24,16 +24,21 @@ export function Reveal({
   if (reduced) return <div className={className}>{children}</div>;
 
   return (
-    <motion.div
-      ref={ref}
-      className={className}
-      initial={{ y: "18%", opacity: 0, clipPath: "inset(0 0 100% 0)" }}
-      animate={inView ? { y: "0%", opacity: 1, clipPath: "inset(0 0 -10% 0)" } : undefined}
-      transition={{ duration: 0.7, delay, ease: EASE }}
-    >
-      {children}
-    </motion.div>
+    <div ref={ref} className={className}>
+      <motion.div
+        initial={{ y: "18%", opacity: 0, clipPath: "inset(0 0 100% 0)" }}
+        animate={{
+          y: inView ? "0%" : "18%",
+          opacity: inView ? 1 : 0,
+          clipPath: inView ? "inset(0 0 -10% 0)" : "inset(0 0 100% 0)",
+        }}
+        transition={{ duration: 0.7, delay, ease: EASE }}
+      >
+        {children}
+      </motion.div>
+    </div>
   );
+
 
 }
 
