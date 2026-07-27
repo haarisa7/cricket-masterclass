@@ -32,17 +32,21 @@ const SEAM = "var(--brand-seam)";
 const W1 = "var(--brand-word-1)";
 const W2 = "var(--brand-word-2)";
 
-/** Ball geometry: r=100 @ (100,100). Seams sweep upper-left → lower-right. */
-const SEAM_A = "M20 5C60 80 120 140 195 175";
-const SEAM_B = "M5 20C80 60 140 120 175 195";
+/** Ball geometry: r=100 @ (100,100). Parallel seam pair, upper-left → lower-right. */
+const SEAM_A = "M-30 -10Q100 70 230 150";
+const SEAM_B = "M-30 50Q100 130 230 210";
 
 function Ball({ idPrefix }: { idPrefix: string }) {
   const maskId = `${idPrefix}-ball-mask`;
+  const clipId = `${idPrefix}-ball-clip`;
   return (
     <>
+      <clipPath id={clipId}>
+        <circle cx="100" cy="100" r="100" />
+      </clipPath>
       <mask id={maskId} maskUnits="userSpaceOnUse" x="0" y="0" width="200" height="200">
         <circle cx="100" cy="100" r="100" fill="#fff" />
-        <g stroke="#000" strokeWidth="15" strokeLinecap="round" fill="none">
+        <g stroke="#000" strokeWidth="14" fill="none">
           <path d={SEAM_A} />
           <path d={SEAM_B} />
         </g>
@@ -50,7 +54,7 @@ function Ball({ idPrefix }: { idPrefix: string }) {
       {/* colour build: solid ball + seams painted on top */}
       <g className="brand-color">
         <circle cx="100" cy="100" r="100" fill={BALL} />
-        <g stroke={SEAM} strokeWidth="15" strokeLinecap="round" fill="none">
+        <g stroke={SEAM} strokeWidth="14" fill="none" clipPath={`url(#${clipId})`}>
           <path d={SEAM_A} />
           <path d={SEAM_B} />
         </g>
@@ -67,6 +71,7 @@ function Ball({ idPrefix }: { idPrefix: string }) {
     </>
   );
 }
+
 
 interface LogoProps {
   className?: string;
