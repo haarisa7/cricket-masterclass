@@ -53,9 +53,11 @@ export function RevealHeading({
   id?: string;
 }) {
   const reduced = usePrefersReducedMotion();
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-8% 0px" });
 
   return (
-    <Tag className={className} id={id}>
+    <Tag className={className} id={id} ref={ref}>
       {lines.map((line, i) => (
         <span key={i} className="block overflow-hidden pb-[0.08em]">
           {reduced ? (
@@ -64,8 +66,7 @@ export function RevealHeading({
             <motion.span
               className={cn("block", lineClassName)}
               initial={{ y: "110%" }}
-              whileInView={{ y: "0%" }}
-              viewport={{ once: true, margin: "-10% 0px" }}
+              animate={inView ? { y: "0%" } : { y: "110%" }}
               transition={{ duration: 0.7, delay: delay + i * 0.06, ease: EASE }}
             >
               {line}
@@ -76,6 +77,7 @@ export function RevealHeading({
     </Tag>
   );
 }
+
 
 /** Image revealed with a clip-path wipe plus a 1.08 → 1 scale. */
 export function RevealImage({
