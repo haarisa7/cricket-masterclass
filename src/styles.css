@@ -34,6 +34,10 @@
   --color-red-500: #d7263d;
   --color-red-600: #b81d30;
 
+  /* brand gold — dark canvas only, never on light */
+  --color-gold-400: #f0b323;
+
+
   /* ---- type ---- */
   --font-display: "Archivo", "Archivo Fallback", system-ui, sans-serif;
   --font-body: "Inter Tight", "Inter Tight Fallback", system-ui, sans-serif;
