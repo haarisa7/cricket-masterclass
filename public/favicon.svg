@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <style>
+    :root { --ball: #d7263d; --seam: #fbfaf7; }
+    @media (prefers-color-scheme: light) { :root { --seam: #ffffff; } }
+  </style>
+  <circle cx="100" cy="100" r="100" fill="var(--ball, #d7263d)" />
+  <g stroke="var(--seam, #fbfaf7)" stroke-width="15" stroke-linecap="round" fill="none">
+    <path d="M20 5C60 80 120 140 195 175" />
+    <path d="M5 20C80 60 140 120 175 195" />
+  </g>
+</svg>
