@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <style>
+    :root { --ball: #d7263d; --seam: #fbfaf7; }
+    @media (prefers-color-scheme: light) { :root { --seam: #ffffff; } }
+  </style>
+  <clipPath id="c"><circle cx="100" cy="100" r="100"/></clipPath>
+  <circle cx="100" cy="100" r="100" fill="var(--ball, #d7263d)" />
+  <g stroke="var(--seam, #fbfaf7)" stroke-width="14" fill="none" clip-path="url(#c)">
+    <path d="M-30 -10Q100 70 230 150" />
+    <path d="M-30 50Q100 130 230 210" />
+  </g>
+</svg>

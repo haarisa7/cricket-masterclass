@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 
 import { ActionAnchor } from "@/components/ui/action";
-import { Wordmark } from "@/components/ui/wordmark";
+import { LogoHorizontal } from "@/components/brand/logo";
 import { BOOKING, navLinks, site } from "@/data/site";
 import { cn } from "@/lib/utils";
 
@@ -38,7 +38,7 @@ export function Navigation() {
     >
       <div className="shell grid grid-cols-[auto_1fr_auto] items-center gap-6 py-4">
         <Link to="/" aria-label="Masterclass Cricket — home" className="text-bone-100">
-          <Wordmark />
+          <LogoHorizontal className="h-7" />
         </Link>
 
         <nav aria-label="Primary" className="hidden justify-center gap-8 lg:flex">
