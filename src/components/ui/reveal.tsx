@@ -19,7 +19,7 @@ export function Reveal({
 }) {
   const reduced = usePrefersReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-10% 0px" });
+  const inView = useInView(ref, { once: true, amount: 0.05 });
 
   if (reduced) return <div className={className}>{children}</div>;
 
@@ -58,7 +58,7 @@ export function RevealHeading({
 }) {
   const reduced = usePrefersReducedMotion();
   const ref = useRef<HTMLElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-8% 0px" });
+  const inView = useInView(ref, { once: true, amount: 0.05 });
 
   return (
     <Tag className={className} id={id} ref={ref}>
@@ -103,7 +103,7 @@ export function RevealImage({
 }) {
   const reduced = usePrefersReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-8% 0px" });
+  const inView = useInView(ref, { once: true, amount: 0.05 });
 
   const image = (
     <img
