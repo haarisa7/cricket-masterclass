@@ -102,6 +102,8 @@ export function RevealImage({
   priority?: boolean;
 }) {
   const reduced = usePrefersReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-8% 0px" });
 
   const image = (
     <img
@@ -119,21 +121,21 @@ export function RevealImage({
 
   return (
     <motion.div
+      ref={ref}
       className={cn("overflow-hidden", className)}
       initial={{ clipPath: "inset(0 0 100% 0)" }}
-      whileInView={{ clipPath: "inset(0 0 0% 0)" }}
-      viewport={{ once: true, margin: "-8% 0px" }}
+      animate={inView ? { clipPath: "inset(0 0 0% 0)" } : undefined}
       transition={{ duration: 0.9, ease: EASE }}
     >
       <motion.div
         className="size-full"
         initial={{ scale: 1.08 }}
-        whileInView={{ scale: 1 }}
-        viewport={{ once: true, margin: "-8% 0px" }}
+        animate={inView ? { scale: 1 } : undefined}
         transition={{ duration: 1.1, ease: EASE }}
       >
         {image}
       </motion.div>
     </motion.div>
   );
+
 }
