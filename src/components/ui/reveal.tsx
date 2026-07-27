@@ -122,20 +122,25 @@ export function RevealImage({
   return (
     <motion.div
       ref={ref}
+      data-inview={inView ? "true" : "false"}
       className={cn("overflow-hidden", className)}
-      initial={{ clipPath: "inset(0 0 100% 0)" }}
-      animate={inView ? { clipPath: "inset(0 0 0% 0)" } : undefined}
+      initial={{ clipPath: "inset(0 0 100% 0)", opacity: 0 }}
+      animate={{
+        clipPath: inView ? "inset(0 0 0% 0)" : "inset(0 0 100% 0)",
+        opacity: inView ? 1 : 0,
+      }}
       transition={{ duration: 0.9, ease: EASE }}
     >
       <motion.div
         className="size-full"
         initial={{ scale: 1.08 }}
-        animate={inView ? { scale: 1 } : undefined}
+        animate={{ scale: inView ? 1 : 1.08 }}
         transition={{ duration: 1.1, ease: EASE }}
       >
         {image}
       </motion.div>
     </motion.div>
   );
+
 
 }
