@@ -85,55 +85,7 @@
   --gutter: clamp(1.25rem, 4vw, 4rem);
   --section-y: clamp(6rem, 12vw, 12rem);
   color-scheme: dark;
-
-  /* ---- brand mark tokens (dark surfaces are the default canvas) ---- */
-  --brand-ball: var(--color-red-500);
-  --brand-seam: var(--color-bone-50);
-  --brand-word-1: #fad800; /* badge-locked gold — dark surfaces only, 14:1 */
-  --brand-word-2: var(--color-bone-100);
 }
-
-/* Explicit theme scopes for the brand marks. */
-.brand-dark {
-  --brand-ball: var(--color-red-500);
-  --brand-seam: var(--color-bone-50);
-  --brand-word-1: #fad800;
-  --brand-word-2: var(--color-bone-100);
-}
-
-.brand-light {
-  --brand-ball: var(--color-red-500);
-  --brand-seam: #ffffff;
-  --brand-word-1: var(--color-ink-950);
-  --brand-word-2: var(--color-ink-950);
-}
-
-.brand-ink {
-  --brand-ball: var(--color-ink-950);
-  --brand-word-1: var(--color-ink-950);
-  --brand-word-2: var(--color-ink-950);
-}
-
-.brand-white {
-  --brand-ball: var(--color-bone-50);
-  --brand-word-1: var(--color-bone-50);
-  --brand-word-2: var(--color-bone-50);
-}
-
-.brand .brand-mono {
-  display: none;
-}
-
-.brand-ink .brand-color,
-.brand-white .brand-color {
-  display: none;
-}
-
-.brand-ink .brand-mono,
-.brand-white .brand-mono {
-  display: block;
-}
-
 
 @layer base {
   * {

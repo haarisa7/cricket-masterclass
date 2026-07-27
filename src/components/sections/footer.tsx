@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 
-import { LogoStacked } from "@/components/brand/logo";
+import { Wordmark } from "@/components/ui/wordmark";
 import { navLinks, site, socials } from "@/data/site";
 
 export function Footer() {
@@ -8,7 +8,7 @@ export function Footer() {
     <footer className="border-t border-line bg-ink-950">
       <div className="shell grid gap-12 py-24 md:grid-cols-2 lg:grid-cols-4">
         <div className="flex flex-col gap-6">
-          <LogoStacked className="h-20" />
+          <Wordmark className="h-6 text-bone-100" />
           <p className="text-body text-bone-400">{site.positioning}</p>
         </div>
 
