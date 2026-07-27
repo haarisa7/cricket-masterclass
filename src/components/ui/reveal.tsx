@@ -18,20 +18,23 @@ export function Reveal({
   className?: string;
 }) {
   const reduced = usePrefersReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-10% 0px" });
 
   if (reduced) return <div className={className}>{children}</div>;
 
   return (
     <motion.div
+      ref={ref}
       className={className}
       initial={{ y: "18%", opacity: 0, clipPath: "inset(0 0 100% 0)" }}
-      whileInView={{ y: "0%", opacity: 1, clipPath: "inset(0 0 -10% 0)" }}
-      viewport={{ once: true, margin: "-10% 0px" }}
+      animate={inView ? { y: "0%", opacity: 1, clipPath: "inset(0 0 -10% 0)" } : undefined}
       transition={{ duration: 0.7, delay, ease: EASE }}
     >
       {children}
     </motion.div>
   );
+
 }
 
 /**
