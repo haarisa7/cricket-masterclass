@@ -38,7 +38,7 @@ export function Navigation() {
     >
       <div className="shell grid grid-cols-[auto_1fr_auto] items-center gap-6 py-4">
         <Link to="/" aria-label="Masterclass Cricket — home" className="text-bone-100">
-          <Wordmark />
+          <Logo className="text-[15px]" />
         </Link>
 
         <nav aria-label="Primary" className="hidden justify-center gap-8 lg:flex">
