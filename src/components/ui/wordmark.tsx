@@ -44,17 +44,18 @@ export function LogoMark({ className }: { className?: string }) {
           transform="rotate(-24 24 17)"
           fill="url(#mc-gloss)"
         />
-        {/* seam: two swept stitch lines converging low-left, as in the mark */}
+        {/* seam: two swept stitch lines traced from the mark — parallel
+            curves entering top-right, sweeping down-left off the edge */}
         <path
-          d="M46 6C36 18 26.5 34 21.5 56"
+          d="M47.2 6.8C40.8 10.2 34.2 14.6 28.4 20.8C23.2 26.6 17.2 34.8 13.6 43C11.6 47.6 10.6 50 10.6 53.2"
           stroke="#F7F5F2"
-          strokeWidth="3.6"
+          strokeWidth="3"
           strokeLinecap="round"
         />
         <path
-          d="M55 15C45.5 25 34.5 39.5 29.5 60"
+          d="M56.8 16.4C50.9 19.9 45.2 23.9 40.2 28.6C35.4 33.2 30.9 38.9 27.6 45.6C25.4 50.4 23.2 54.4 22.2 60.4"
           stroke="#F7F5F2"
-          strokeWidth="3.6"
+          strokeWidth="3"
           strokeLinecap="round"
         />
       </g>
