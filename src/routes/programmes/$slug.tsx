@@ -88,7 +88,7 @@ function ProgrammePage() {
             </h2>
 
             <ul className="mt-8 border-t border-line">
-              {programme.includes.map((item) => (
+              {programme.includes.map((item: string) => (
                 <li
                   key={item}
                   className="text-body flex items-baseline gap-4 border-b border-line py-5 text-bone-100"
@@ -113,7 +113,7 @@ function ProgrammePage() {
             </h2>
 
             <dl className="mt-8 border-t border-line">
-              {programme.format.map((row) => (
+              {programme.format.map((row: { label: string; value: string }) => (
                 <div
                   key={row.label}
                   className="grid grid-cols-[minmax(0,auto)_minmax(0,1fr)] items-baseline gap-4 border-b border-line py-5"
