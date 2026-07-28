@@ -9,7 +9,7 @@ import { _ as tickerItems, a as FieldDecor, c as Reveal, d as SmoothScroll, f as
 import { n as secondaryServices, t as coreServices } from "./services-C5fQ_dqp.mjs";
 import { t as elite_academy_default } from "./elite-academy-f4fMDupx.mjs";
 import { a as stats, i as reels, n as manifesto, r as methodSteps, t as eliteAcademy } from "./content-PHJcfwq-.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-BW5mKb-b.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-BaAogley.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var routes = [
@@ -300,10 +300,10 @@ function Manifesto() {
 		"aria-labelledby": "approach-heading",
 		className: "section-y",
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "shell grid-12 gap-y-12",
+			className: "shell grid-12 items-start gap-y-12",
 			children: [
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-					className: "text-label col-span-12 text-bone-400 lg:col-span-3",
+					className: "text-label col-span-12 text-bone-400",
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 							className: "text-red-400",
@@ -314,7 +314,7 @@ function Manifesto() {
 					]
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "col-span-12 lg:col-span-8 lg:col-start-5",
+					className: "col-span-12 lg:col-span-7 lg:col-start-6 lg:row-start-2",
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(RevealHeading, {
 							as: "blockquote",
@@ -366,9 +366,9 @@ function Manifesto() {
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(RevealImage, {
 					src: coach_uzi_default,
 					alt: "Head coach Uzi Arif in Masterclass Cricket coaching jacket",
-					width: 666,
-					height: 1110,
-					className: "col-span-12 mt-16 aspect-[4/5] lg:col-span-3 lg:col-start-1 lg:row-start-2 lg:-mt-64",
+					width: 768,
+					height: 1180,
+					className: "col-span-12 aspect-[4/5] sm:col-span-8 lg:col-span-4 lg:col-start-1 lg:row-start-2 lg:aspect-[2/3]",
 					imgClassName: "object-top"
 				})
 			]
@@ -408,7 +408,7 @@ function Method() {
 		"aria-labelledby": "method-heading",
 		className: "border-t border-line bg-ink-900",
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "shell pt-24",
+			className: "shell pt-16",
 			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
 				id: "method-heading",
 				className: "text-label text-bone-400",

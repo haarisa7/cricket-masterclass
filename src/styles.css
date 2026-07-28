@@ -208,6 +208,16 @@
   padding-block: var(--section-y);
 }
 
+/*
+ * Two stacked section-y siblings each contribute a full --section-y, so the
+ * visible gutter between them was double the intended rhythm (~300px at
+ * 1280px, and over 500px where the neighbouring section also had its own
+ * inner padding). One section owns the gap, not both.
+ */
+.section-y + .section-y {
+  padding-block-start: 0;
+}
+
 @utility grid-12 {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));

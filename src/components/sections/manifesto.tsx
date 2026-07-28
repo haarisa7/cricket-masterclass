@@ -49,12 +49,14 @@ export function Manifesto() {
           </Reveal>
         </div>
 
+        {/* 2/3 on lg is the portrait's native 768x1180 ratio, so it fills more
+            of the column beside the quote and crops essentially nothing. */}
         <RevealImage
           src={portrait}
           alt="Head coach Uzi Arif in Masterclass Cricket coaching jacket"
-          width={666}
-          height={1110}
-          className="col-span-12 aspect-[4/5] sm:col-span-8 lg:col-span-4 lg:col-start-1 lg:row-start-2"
+          width={768}
+          height={1180}
+          className="col-span-12 aspect-[4/5] sm:col-span-8 lg:col-span-4 lg:col-start-1 lg:row-start-2 lg:aspect-[2/3]"
           imgClassName="object-top"
         />
       </div>

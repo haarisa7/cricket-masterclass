@@ -1,4 +1,4 @@
-//#region node_modules/.nitro/vite/services/ssr/assets/_tanstack-start-manifest_v-DYi0LMZM.js
+//#region node_modules/.nitro/vite/services/ssr/assets/_tanstack-start-manifest_v-D_blwMDQ.js
 var tsrStartManifest = () => ({ routes: {
 	__root__: {
 		filePath: "C:/Users/haari/Desktop/MASTERCLCASS/masterclass-website/src/routes/__root.tsx",
@@ -13,19 +13,19 @@ var tsrStartManifest = () => ({ routes: {
 			"/sitemap.xml",
 			"/programmes/$slug"
 		],
-		preloads: ["/assets/index-C_Be5AQi.js"],
+		preloads: ["/assets/index-DIhaJpt7.js"],
 		scripts: [{ attrs: {
 			type: "module",
 			async: !0,
-			src: "/assets/index-C_Be5AQi.js"
+			src: "/assets/index-DIhaJpt7.js"
 		} }]
 	},
 	"/": {
 		filePath: "C:/Users/haari/Desktop/MASTERCLCASS/masterclass-website/src/routes/index.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/routes-BlnFiQTh.js",
-			"/assets/whatsapp-float-UoEravmw.js",
+			"/assets/routes-B3QuZonS.js",
+			"/assets/whatsapp-float-CmyNNl7K.js",
 			"/assets/elite-academy-jD_J9Yh_.js",
 			"/assets/content-BYKm_UQN.js",
 			"/assets/services-C3xfqxye.js"
@@ -35,9 +35,9 @@ var tsrStartManifest = () => ({ routes: {
 		filePath: "C:/Users/haari/Desktop/MASTERCLCASS/masterclass-website/src/routes/about.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/about-yT4av96A.js",
-			"/assets/whatsapp-float-UoEravmw.js",
-			"/assets/page-shell-TuP10-2o.js",
+			"/assets/about-9iDl253w.js",
+			"/assets/whatsapp-float-CmyNNl7K.js",
+			"/assets/page-shell-CI3JyUea.js",
 			"/assets/elite-academy-jD_J9Yh_.js",
 			"/assets/content-BYKm_UQN.js"
 		]
@@ -46,27 +46,27 @@ var tsrStartManifest = () => ({ routes: {
 		filePath: "C:/Users/haari/Desktop/MASTERCLCASS/masterclass-website/src/routes/coaches.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/coaches-D13wPzke.js",
-			"/assets/whatsapp-float-UoEravmw.js",
-			"/assets/page-shell-TuP10-2o.js"
+			"/assets/coaches-BxftO2Rd.js",
+			"/assets/whatsapp-float-CmyNNl7K.js",
+			"/assets/page-shell-CI3JyUea.js"
 		]
 	},
 	"/contact": {
 		filePath: "C:/Users/haari/Desktop/MASTERCLCASS/masterclass-website/src/routes/contact.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/contact-BrGP44kr.js",
-			"/assets/whatsapp-float-UoEravmw.js",
-			"/assets/page-shell-TuP10-2o.js"
+			"/assets/contact-Bp2slo4Y.js",
+			"/assets/whatsapp-float-CmyNNl7K.js",
+			"/assets/page-shell-CI3JyUea.js"
 		]
 	},
 	"/elite-academy": {
 		filePath: "C:/Users/haari/Desktop/MASTERCLCASS/masterclass-website/src/routes/elite-academy.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/elite-academy-DP2mTDFA.js",
-			"/assets/whatsapp-float-UoEravmw.js",
-			"/assets/page-shell-TuP10-2o.js",
+			"/assets/elite-academy-DTf4g9gd.js",
+			"/assets/whatsapp-float-CmyNNl7K.js",
+			"/assets/page-shell-CI3JyUea.js",
 			"/assets/elite-academy-jD_J9Yh_.js"
 		]
 	},
@@ -74,27 +74,27 @@ var tsrStartManifest = () => ({ routes: {
 		filePath: "C:/Users/haari/Desktop/MASTERCLCASS/masterclass-website/src/routes/founder.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/founder-C4hRFt1a.js",
-			"/assets/whatsapp-float-UoEravmw.js",
-			"/assets/page-shell-TuP10-2o.js"
+			"/assets/founder-B0SLojAt.js",
+			"/assets/whatsapp-float-CmyNNl7K.js",
+			"/assets/page-shell-CI3JyUea.js"
 		]
 	},
 	"/safeguarding": {
 		filePath: "C:/Users/haari/Desktop/MASTERCLCASS/masterclass-website/src/routes/safeguarding.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/safeguarding-DAVqkawc.js",
-			"/assets/whatsapp-float-UoEravmw.js",
-			"/assets/page-shell-TuP10-2o.js"
+			"/assets/safeguarding-DUBygFc_.js",
+			"/assets/whatsapp-float-CmyNNl7K.js",
+			"/assets/page-shell-CI3JyUea.js"
 		]
 	},
 	"/programmes/$slug": {
 		filePath: "C:/Users/haari/Desktop/MASTERCLCASS/masterclass-website/src/routes/programmes/$slug.tsx",
 		children: void 0,
 		preloads: [
-			"/assets/_slug-MG3gmia4.js",
-			"/assets/whatsapp-float-UoEravmw.js",
-			"/assets/page-shell-TuP10-2o.js",
+			"/assets/_slug-Cp7WnSOU.js",
+			"/assets/whatsapp-float-CmyNNl7K.js",
+			"/assets/page-shell-CI3JyUea.js",
 			"/assets/services-C3xfqxye.js"
 		]
 	}

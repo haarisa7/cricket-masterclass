@@ -39,7 +39,10 @@ export function Method() {
       aria-labelledby="method-heading"
       className="border-t border-line bg-ink-900"
     >
-      <div className="shell pt-24">
+      {/* pt-16, not pt-24: this section already separates itself with a top
+          border and a lighter background, so it needs less breathing room
+          above the heading than an unbordered section would. */}
+      <div className="shell pt-16">
         <h2 id="method-heading" className="text-label text-bone-400">
           <span className="text-red-400">03</span> / The Method
         </h2>

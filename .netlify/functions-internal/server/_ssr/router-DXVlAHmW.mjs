@@ -4,10 +4,10 @@ import { c as HeadContent, d as Outlet, f as lazyRouteComponent, g as useRouter,
 import { t as Route$9 } from "../_slug-qiLgkn4m.mjs";
 import { n as LogoMark } from "./wordmark-Ahjf1Xxm.mjs";
 import { t as QueryClient } from "../_libs/tanstack__query-core.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-CW1RDZSZ.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-DXVlAHmW.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
-var styles_default = "/assets/styles-CeQ5j2Cr.css";
+var styles_default = "/assets/styles-BfSvDwpc.css";
 function reportLovableError(error, context = {}) {
 	if (typeof window === "undefined") return;
 	window.__lovableEvents?.captureException?.(error, {
@@ -178,7 +178,7 @@ function RootComponent() {
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Outlet, {})
 	});
 }
-var $$splitComponentImporter$6 = () => import("./routes-BW5mKb-b.mjs");
+var $$splitComponentImporter$6 = () => import("./routes-BaAogley.mjs");
 var title$6 = "Masterclass Cricket — Professional Coaching in Chiswick";
 var description$6 = "Elite cricket coaching in West London. 1-2-1 sessions, small groups and performance camps for players from first net to international honours.";
 var Route$7 = createFileRoute("/")({
