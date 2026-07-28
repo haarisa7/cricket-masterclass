@@ -67,7 +67,7 @@ export function Navigation() {
             href={whatsappFor("cricket coaching")}
             target="_blank"
             rel="noreferrer"
-            className="h-11! px-5! text-sm! md:h-11!"
+            className="h-11! whitespace-nowrap px-4! text-sm! md:h-11! md:px-5!"
           >
             Book Now
           </ActionAnchor>
