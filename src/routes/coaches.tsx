@@ -45,7 +45,6 @@ function Coaches() {
   return (
     <PageShell>
       <PageHero
-        index="01"
         label="Coaches"
         lines={["The people", "on the grass"]}
         intro="Professional playing experience, ECB qualifications and a decade of working together. Every coach here is DBS-checked and safeguarding trained."
@@ -54,7 +53,7 @@ function Coaches() {
       <section aria-labelledby="team-heading" className="section-y">
         <div className="shell">
           <h2 id="team-heading" className="text-label text-bone-400">
-            <span className="text-red-400">02</span> / The Team
+            <span className="text-red-400">01</span> / The Team
           </h2>
 
           <ul className="mt-12 grid gap-x-6 gap-y-16 sm:grid-cols-2 lg:grid-cols-4">

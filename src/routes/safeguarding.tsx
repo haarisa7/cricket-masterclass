@@ -28,7 +28,6 @@ function Safeguarding() {
   return (
     <PageShell>
       <PageHero
-        index="01"
         label="Policy"
         lines={["Safeguarding", "Policy"]}
         intro={safeguarding.intro}

@@ -31,7 +31,6 @@ function About() {
   return (
     <PageShell>
       <PageHero
-        index="01"
         label="About"
         lines={["Ten years of", "coaching in Chiswick"]}
         intro={about.intro}
@@ -41,7 +40,7 @@ function About() {
       <section aria-labelledby="specialise-heading" className="section-y">
         <div className="shell">
           <h2 id="specialise-heading" className="text-label text-bone-400">
-            <span className="text-red-400">02</span> / What We Specialise In
+            <span className="text-red-400">01</span> / What We Specialise In
           </h2>
 
           <div className="mt-12 border-t border-line">
@@ -70,7 +69,7 @@ function About() {
 
         <div className="shell relative z-10 section-y">
           <h2 id="record-heading" className="text-label text-bone-400">
-            <span className="text-red-400">03</span> / The Record
+            <span className="text-red-400">02</span> / The Record
           </h2>
 
           <dl className="mt-12 grid grid-cols-2 border-t border-line lg:grid-cols-4">
@@ -100,7 +99,7 @@ function About() {
         />
 
         <div className="flex flex-col justify-center gap-8 px-[var(--gutter)] py-24 lg:py-32">
-          <p className="text-label text-red-400">04 / The System</p>
+          <p className="text-label text-red-400">03 / The System</p>
 
           <RevealHeading
             as="h2"
