@@ -46,7 +46,7 @@ export function Manifesto() {
         </div>
 
         <RevealImage
-          src={portraitAsset.url}
+          src={portrait}
           alt="Head coach Uzi Arif in Masterclass Cricket coaching jacket"
           width={666}
           height={1110}
