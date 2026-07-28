@@ -1,10 +1,10 @@
 import { o as __toESM } from "../_runtime.mjs";
 import { n as require_jsx_runtime, r as require_react, t as QueryClientProvider } from "../_libs/react+tanstack__react-query.mjs";
 import { c as HeadContent, d as Outlet, f as lazyRouteComponent, g as useRouter, h as Link, m as createRootRouteWithContext, p as createFileRoute, s as Scripts, u as createRouter } from "../_libs/@tanstack/react-router+[...].mjs";
-import { t as Route$9 } from "../_slug-qiLgkn4m.mjs";
+import { t as Route$9 } from "../_slug-BjynLLss.mjs";
 import { n as LogoMark } from "./wordmark-Ahjf1Xxm.mjs";
 import { t as QueryClient } from "../_libs/tanstack__query-core.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-DXVlAHmW.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-D2RF5u3U.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var styles_default = "/assets/styles-BfSvDwpc.css";
@@ -178,7 +178,7 @@ function RootComponent() {
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Outlet, {})
 	});
 }
-var $$splitComponentImporter$6 = () => import("./routes-BaAogley.mjs");
+var $$splitComponentImporter$6 = () => import("./routes-DITHvXA2.mjs");
 var title$6 = "Masterclass Cricket — Professional Coaching in Chiswick";
 var description$6 = "Elite cricket coaching in West London. 1-2-1 sessions, small groups and performance camps for players from first net to international honours.";
 var Route$7 = createFileRoute("/")({
@@ -207,7 +207,7 @@ var Route$7 = createFileRoute("/")({
 	] }),
 	component: lazyRouteComponent($$splitComponentImporter$6, "component")
 });
-var $$splitComponentImporter$5 = () => import("./about-DxmzWoPF.mjs");
+var $$splitComponentImporter$5 = () => import("./about-CRyLT3Tg.mjs");
 var title$5 = "About — Ten years of coaching in Chiswick | Masterclass Cricket";
 var description$5 = "Masterclass Cricket combines advanced biomechanics with professional playing experience to develop elite cricketers in Chiswick, West London.";
 var Route$6 = createFileRoute("/about")({
@@ -236,7 +236,7 @@ var Route$6 = createFileRoute("/about")({
 	] }),
 	component: lazyRouteComponent($$splitComponentImporter$5, "component")
 });
-var $$splitComponentImporter$4 = () => import("./coaches-B6FNSA9N.mjs");
+var $$splitComponentImporter$4 = () => import("./coaches-es77P_QZ.mjs");
 var title$4 = "Meet the Coaches — Masterclass Cricket";
 var description$4 = "The coaching team at Masterclass Cricket: Uzi Arif, Anirudh Reddy, Ollie Sheen and Patrick Littlemore. Chiswick, West London.";
 var Route$5 = createFileRoute("/coaches")({
@@ -266,7 +266,7 @@ var Route$5 = createFileRoute("/coaches")({
 	component: lazyRouteComponent($$splitComponentImporter$4, "component")
 });
 /** Fallback for coaches without a portrait — initials on the ink canvas. */
-var $$splitComponentImporter$3 = () => import("./contact-vo6KD00f.mjs");
+var $$splitComponentImporter$3 = () => import("./contact-B9IkxC8O.mjs");
 var title$3 = "Contact — Kings House Sports Grounds, Chiswick | Masterclass Cricket";
 var description$3 = "Message Masterclass Cricket on WhatsApp, call +44 7961 692226, or find us at Kings House Sports Grounds, Riverside Dr, Chiswick, London W4 2SH.";
 var Route$4 = createFileRoute("/contact")({
@@ -295,7 +295,7 @@ var Route$4 = createFileRoute("/contact")({
 	] }),
 	component: lazyRouteComponent($$splitComponentImporter$3, "component")
 });
-var $$splitComponentImporter$2 = () => import("./elite-academy-Bg0FuK7o.mjs");
+var $$splitComponentImporter$2 = () => import("./elite-academy-uA0QJDOb.mjs");
 var title$2 = "Masterclass Elite Cricket Academy — 2026 Intake";
 var description$2 = "The pathway squad for players chasing county, regional or professional selection. Assessed entry, year-round training and match exposure. Chiswick, West London.";
 var Route$3 = createFileRoute("/elite-academy")({
@@ -324,7 +324,7 @@ var Route$3 = createFileRoute("/elite-academy")({
 	] }),
 	component: lazyRouteComponent($$splitComponentImporter$2, "component")
 });
-var $$splitComponentImporter$1 = () => import("./founder-BGssrl0e.mjs");
+var $$splitComponentImporter$1 = () => import("./founder-hpJmyCT1.mjs");
 var title$1 = "Uzi Arif — Founder & Head Coach | Masterclass Cricket";
 var description$1 = "Uzi Arif, 'The Rocketman' — a decade of county cricket, 92.4mph, and the coaching method behind Masterclass Cricket in Chiswick, West London.";
 var Route$2 = createFileRoute("/founder")({
@@ -353,7 +353,7 @@ var Route$2 = createFileRoute("/founder")({
 	] }),
 	component: lazyRouteComponent($$splitComponentImporter$1, "component")
 });
-var $$splitComponentImporter = () => import("./safeguarding-DlaGbYOD.mjs");
+var $$splitComponentImporter = () => import("./safeguarding-DtJnzQB5.mjs");
 var title = "Safeguarding Policy — Masterclass Cricket";
 var description = "How Masterclass Cricket keeps children and adults at risk safe: vetting, codes of conduct, photography consent and how to report a concern.";
 var Route$1 = createFileRoute("/safeguarding")({

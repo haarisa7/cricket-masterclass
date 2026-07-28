@@ -1,10 +1,10 @@
 import { t as coach_uzi_default } from "./coach-uzi-CHxlO4i2.mjs";
-import { i as founder } from "./pages-DXtNne_f.mjs";
+import { i as founder } from "./pages-xiZvhNjg.mjs";
 import { n as require_jsx_runtime } from "../_libs/react+tanstack__react-query.mjs";
 import { h as Link } from "../_libs/@tanstack/react-router+[...].mjs";
-import { a as FieldDecor, c as Reveal, l as RevealHeading, t as ActionAnchor, u as RevealImage, y as whatsappFor } from "./whatsapp-float-CCew7q8s.mjs";
-import { n as PageShell } from "./page-shell-BXfE-1IR.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/founder-BGssrl0e.js
+import { a as FieldDecor, c as Reveal, l as RevealHeading, t as ActionAnchor, u as RevealImage, y as whatsappFor } from "./whatsapp-float-O1FmHRNT.mjs";
+import { n as PageShell } from "./page-shell-59S2oWGJ.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/founder-hpJmyCT1.js
 var import_jsx_runtime = require_jsx_runtime();
 function Founder() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(PageShell, { children: [

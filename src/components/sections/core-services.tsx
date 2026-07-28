@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 
 import { ActionAnchor } from "@/components/ui/action";
 import { Reveal, RevealImage } from "@/components/ui/reveal";
+import { sectionNumber } from "@/data/sections";
 import { coreServices } from "@/data/services";
 import { BOOKING, whatsappFor } from "@/data/site";
 import { cn } from "@/lib/utils";
@@ -15,7 +16,7 @@ export function CoreServices() {
     >
       <div className="shell">
         <h2 id="coaching-heading" className="text-label text-bone-400">
-          <span className="text-red-400">02</span> / Start Here
+          <span className="text-red-400">{sectionNumber("coaching")}</span> / Start Here
         </h2>
       </div>
 

@@ -1,11 +1,11 @@
-import { t as about } from "./pages-DXtNne_f.mjs";
+import { t as about } from "./pages-xiZvhNjg.mjs";
 import { n as require_jsx_runtime } from "../_libs/react+tanstack__react-query.mjs";
 import { h as Link } from "../_libs/@tanstack/react-router+[...].mjs";
-import { a as FieldDecor, c as Reveal, l as RevealHeading, t as ActionAnchor, u as RevealImage, y as whatsappFor } from "./whatsapp-float-CCew7q8s.mjs";
-import { n as PageShell, t as PageHero } from "./page-shell-BXfE-1IR.mjs";
+import { a as FieldDecor, c as Reveal, l as RevealHeading, t as ActionAnchor, u as RevealImage, y as whatsappFor } from "./whatsapp-float-O1FmHRNT.mjs";
+import { n as PageShell, t as PageHero } from "./page-shell-59S2oWGJ.mjs";
 import { t as elite_academy_default } from "./elite-academy-f4fMDupx.mjs";
 import { a as stats } from "./content-PHJcfwq-.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/about-DxmzWoPF.js
+//#region node_modules/.nitro/vite/services/ssr/assets/about-CRyLT3Tg.js
 var import_jsx_runtime = require_jsx_runtime();
 function About() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(PageShell, { children: [

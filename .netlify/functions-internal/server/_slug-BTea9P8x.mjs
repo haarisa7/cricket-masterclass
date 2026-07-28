@@ -1,11 +1,11 @@
-import { a as programmes } from "./_ssr/pages-DXtNne_f.mjs";
+import { a as programmes } from "./_ssr/pages-xiZvhNjg.mjs";
 import { n as require_jsx_runtime } from "./_libs/react+tanstack__react-query.mjs";
 import { h as Link } from "./_libs/@tanstack/react-router+[...].mjs";
-import { t as Route } from "./_slug-qiLgkn4m.mjs";
-import { a as FieldDecor, c as Reveal, l as RevealHeading, r as BOOKING, t as ActionAnchor, u as RevealImage, y as whatsappFor } from "./_ssr/whatsapp-float-CCew7q8s.mjs";
-import { n as PageShell } from "./_ssr/page-shell-BXfE-1IR.mjs";
+import { t as Route } from "./_slug-BjynLLss.mjs";
+import { a as FieldDecor, c as Reveal, l as RevealHeading, r as BOOKING, t as ActionAnchor, u as RevealImage, y as whatsappFor } from "./_ssr/whatsapp-float-O1FmHRNT.mjs";
+import { n as PageShell } from "./_ssr/page-shell-59S2oWGJ.mjs";
 import { t as coreServices } from "./_ssr/services-C5fQ_dqp.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/_slug-ift2D-rq.js
+//#region node_modules/.nitro/vite/services/ssr/assets/_slug-BTea9P8x.js
 var import_jsx_runtime = require_jsx_runtime();
 /** Camps have a real checkout; every other programme opens WhatsApp. */
 function bookingHref(programme) {

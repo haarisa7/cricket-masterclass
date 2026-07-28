@@ -5,7 +5,7 @@ import { t as cva } from "../_libs/class-variance-authority+clsx.mjs";
 import { r as cn, t as Logo } from "./wordmark-Ahjf1Xxm.mjs";
 import { a as AnimatePresence, t as useInView } from "../_libs/framer-motion.mjs";
 import { t as motion } from "../_libs/motion.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/whatsapp-float-CCew7q8s.js
+//#region node_modules/.nitro/vite/services/ssr/assets/whatsapp-float-O1FmHRNT.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 /**
@@ -205,13 +205,13 @@ function Footer() {
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
 							className: "text-label text-bone-400",
-							children: "Watch"
+							children: "Follow"
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 							className: "text-sm text-bone-100",
-							children: "New drills every week on YouTube and Instagram."
+							children: "New drills every week across every channel."
 						}),
-						socials.slice(0, 3).map((social) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
+						socials.map((social) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
 							href: social.href,
 							target: "_blank",
 							rel: "noreferrer",
@@ -399,9 +399,20 @@ function Navigation() {
 						className: "text-label text-bone-400",
 						children: site.email
 					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-						className: "text-label text-bone-400",
-						children: "Instagram · TikTok · YouTube"
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
+						className: "mt-4 flex flex-wrap gap-3",
+						children: socials.map((social) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
+							href: social.href,
+							target: "_blank",
+							rel: "noreferrer",
+							onClick: () => setOpen(false),
+							"aria-label": `${site.name} on ${social.platform}`,
+							className: "flex size-11 items-center justify-center border border-line text-bone-400 transition-colors duration-200 ease-brand hover:border-red-500 hover:text-bone-100",
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SocialIcon, {
+								platform: social.platform,
+								className: "size-4"
+							})
+						}) }, social.platform))
 					})
 				]
 			})]

@@ -1,6 +1,7 @@
 import { FieldDecor } from "@/components/ui/field-decor";
 import { ReelCard } from "@/components/ui/reel-card";
 import { reels } from "@/data/content";
+import { sectionNumber } from "@/data/sections";
 import { socials } from "@/data/site";
 
 export function SocialProof() {
@@ -13,7 +14,7 @@ export function SocialProof() {
         <div className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-6 sm:flex sm:justify-between">
           <div className="min-w-0">
             <p className="text-label text-bone-400">
-              <span className="text-red-400">05</span> / Reels
+              <span className="text-red-400">{sectionNumber("reels")}</span> / Reels
             </p>
             <h2 id="social-heading" className="text-display-md mt-6 text-bone-100">
               Check out our social media

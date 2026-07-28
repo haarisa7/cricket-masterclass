@@ -1,5 +1,5 @@
 import { t as coach_uzi_default } from "./coach-uzi-CHxlO4i2.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/pages-DXtNne_f.js
+//#region node_modules/.nitro/vite/services/ssr/assets/pages-xiZvhNjg.js
 var coaches = [
 	{
 		name: "Uzi Arif",
@@ -14,7 +14,7 @@ var coaches = [
 		role: "Assistant Head Coach",
 		experience: "6+ years",
 		bio: "ECB Level 2 coach who has worked under Uzi for more than five years. Specialises in refining technique, building mental toughness, and preparing players for the demands of county cricket.",
-		image: "/assets/coach-anirudh-DmQNQsNX.png",
+		image: "/assets/coach-anirudh-BUDw3quH.png",
 		imageAlt: "Anirudh Reddy, assistant head coach at Masterclass Cricket"
 	},
 	{
@@ -22,7 +22,7 @@ var coaches = [
 		role: "Masterclass Coach",
 		experience: "5+ years",
 		bio: "A product of the academy — trained under Uzi from the age of 13. Has represented Surrey, the ECB Young Lions Super 4s and Durham University UCCE, with playing experience in Australia, Sri Lanka, South Africa and India.",
-		image: "/assets/coach-ollie-BdRDnAwF.png",
+		image: "/assets/coach-ollie-BgtLMoY1.png",
 		imageAlt: "Ollie Sheen, coach at Masterclass Cricket"
 	},
 	{
@@ -30,7 +30,7 @@ var coaches = [
 		role: "Masterclass Mentor",
 		experience: "15+ years",
 		bio: "Australian, and a career spent building high-performing teams in the business world and in sports organisations. Provides the operational guidance that keeps the academy true to its coaching mission as it grows.",
-		image: "/assets/coach-patrick-CqZVk9wP.png",
+		image: "/assets/coach-patrick-De0oOUKR.png",
 		imageAlt: "Patrick Littlemore, mentor at Masterclass Cricket"
 	}
 ];

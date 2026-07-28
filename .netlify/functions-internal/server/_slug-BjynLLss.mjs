@@ -1,7 +1,7 @@
-import { o as programmesBySlug } from "./_ssr/pages-DXtNne_f.mjs";
+import { o as programmesBySlug } from "./_ssr/pages-xiZvhNjg.mjs";
 import { A as notFound, f as lazyRouteComponent, p as createFileRoute } from "./_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/_slug-qiLgkn4m.js
-var $$splitComponentImporter = () => import("./_slug-ift2D-rq.mjs");
+//#region node_modules/.nitro/vite/services/ssr/assets/_slug-BjynLLss.js
+var $$splitComponentImporter = () => import("./_slug-BTea9P8x.mjs");
 var Route = createFileRoute("/programmes/$slug")({
 	loader: ({ params }) => {
 		const programme = programmesBySlug.get(params.slug);

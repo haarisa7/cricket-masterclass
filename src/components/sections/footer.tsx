@@ -51,9 +51,9 @@ export function Footer() {
         </address>
 
         <div className="flex flex-col gap-3">
-          <h2 className="text-label text-bone-400">Watch</h2>
-          <p className="text-sm text-bone-100">New drills every week on YouTube and Instagram.</p>
-          {socials.slice(0, 3).map((social) => (
+          <h2 className="text-label text-bone-400">Follow</h2>
+          <p className="text-sm text-bone-100">New drills every week across every channel.</p>
+          {socials.map((social) => (
             <a
               key={social.platform}
               href={social.href}

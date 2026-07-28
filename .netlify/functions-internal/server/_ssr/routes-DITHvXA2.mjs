@@ -5,11 +5,11 @@ import { h as Link } from "../_libs/@tanstack/react-router+[...].mjs";
 import { r as cn } from "./wordmark-Ahjf1Xxm.mjs";
 import { n as useTransform, r as useScroll } from "../_libs/framer-motion.mjs";
 import { t as motion } from "../_libs/motion.mjs";
-import { _ as tickerItems, a as FieldDecor, c as Reveal, d as SmoothScroll, f as WhatsAppFloat, g as socials, i as CustomCursor, l as RevealHeading, m as partners, n as ActionLink, o as Footer, r as BOOKING, s as Navigation, t as ActionAnchor, u as RevealImage, v as usePrefersReducedMotion, y as whatsappFor } from "./whatsapp-float-CCew7q8s.mjs";
+import { _ as tickerItems, a as FieldDecor, c as Reveal, d as SmoothScroll, f as WhatsAppFloat, g as socials, i as CustomCursor, l as RevealHeading, m as partners, n as ActionLink, o as Footer, r as BOOKING, s as Navigation, t as ActionAnchor, u as RevealImage, v as usePrefersReducedMotion, y as whatsappFor } from "./whatsapp-float-O1FmHRNT.mjs";
 import { n as secondaryServices, t as coreServices } from "./services-C5fQ_dqp.mjs";
 import { t as elite_academy_default } from "./elite-academy-f4fMDupx.mjs";
 import { a as stats, i as reels, n as manifesto, r as methodSteps, t as eliteAcademy } from "./content-PHJcfwq-.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-BaAogley.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-DITHvXA2.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var routes = [

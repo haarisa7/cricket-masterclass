@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import portrait from "@/assets/coach-uzi.jpg";
 import { Reveal, RevealHeading, RevealImage } from "@/components/ui/reveal";
 import { manifesto } from "@/data/content";
+import { sectionNumber } from "@/data/sections";
 
 export function Manifesto() {
   return (
@@ -13,7 +14,7 @@ export function Manifesto() {
           placement flips the portrait to the left from lg up. */}
       <div className="shell grid-12 items-start gap-y-12">
         <p className="text-label col-span-12 text-bone-400">
-          <span className="text-red-400">{manifesto.index}</span> / {manifesto.label}
+          <span className="text-red-400">{sectionNumber("approach")}</span> / {manifesto.label}
         </p>
 
         <div className="col-span-12 lg:col-span-7 lg:col-start-6 lg:row-start-2">

@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 
 import { methodSteps } from "@/data/content";
+import { sectionNumber } from "@/data/sections";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
 /**
@@ -44,7 +45,7 @@ export function Method() {
           above the heading than an unbordered section would. */}
       <div className="shell pt-16">
         <h2 id="method-heading" className="text-label text-bone-400">
-          <span className="text-red-400">03</span> / The Method
+          <span className="text-red-400">{sectionNumber("method")}</span> / The Method
         </h2>
         <p className="text-body-lg mt-6 text-bone-100">
           Four steps, every 1-2-1 session, every player.

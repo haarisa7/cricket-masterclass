@@ -1,9 +1,9 @@
-import { r as elite } from "./pages-DXtNne_f.mjs";
+import { r as elite } from "./pages-xiZvhNjg.mjs";
 import { n as require_jsx_runtime } from "../_libs/react+tanstack__react-query.mjs";
-import { a as FieldDecor, c as Reveal, l as RevealHeading, t as ActionAnchor, u as RevealImage, y as whatsappFor } from "./whatsapp-float-CCew7q8s.mjs";
-import { n as PageShell } from "./page-shell-BXfE-1IR.mjs";
+import { a as FieldDecor, c as Reveal, l as RevealHeading, t as ActionAnchor, u as RevealImage, y as whatsappFor } from "./whatsapp-float-O1FmHRNT.mjs";
+import { n as PageShell } from "./page-shell-59S2oWGJ.mjs";
 import { t as elite_academy_default } from "./elite-academy-f4fMDupx.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/elite-academy-Bg0FuK7o.js
+//#region node_modules/.nitro/vite/services/ssr/assets/elite-academy-uA0QJDOb.js
 var import_jsx_runtime = require_jsx_runtime();
 function EliteAcademyPage() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(PageShell, { children: [

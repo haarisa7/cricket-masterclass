@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 
 import { ActionAnchor } from "@/components/ui/action";
 import { Logo } from "@/components/ui/wordmark";
-import { navLinks, site, whatsappFor } from "@/data/site";
+import { SocialIcon } from "@/components/ui/social-icons";
+import { navLinks, site, socials, whatsappFor } from "@/data/site";
 import { cn } from "@/lib/utils";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -128,7 +129,22 @@ export function Navigation() {
               <a href={`mailto:${site.email}`} className="text-label text-bone-400">
                 {site.email}
               </a>
-              <p className="text-label text-bone-400">Instagram · TikTok · YouTube</p>
+              <ul className="mt-4 flex flex-wrap gap-3">
+                {socials.map((social) => (
+                  <li key={social.platform}>
+                    <a
+                      href={social.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={() => setOpen(false)}
+                      aria-label={`${site.name} on ${social.platform}`}
+                      className="flex size-11 items-center justify-center border border-line text-bone-400 transition-colors duration-200 ease-brand hover:border-red-500 hover:text-bone-100"
+                    >
+                      <SocialIcon platform={social.platform} className="size-4" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </motion.div>
         )}
