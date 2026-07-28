@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 
-import portraitAsset from "@/assets/coach-uzi.jpg.asset.json";
+import portrait from "@/assets/coach-uzi.jpg";
 import { Reveal, RevealHeading, RevealImage } from "@/components/ui/reveal";
 import { manifesto } from "@/data/content";
 
@@ -46,7 +46,7 @@ export function Manifesto() {
         </div>
 
         <RevealImage
-          src={portraitAsset.url}
+          src={portrait}
           alt="Head coach Uzi Arif in Masterclass Cricket coaching jacket"
           width={666}
           height={1110}
