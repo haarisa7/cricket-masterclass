@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 
-import { Wordmark } from "@/components/ui/wordmark";
+import { Logo } from "@/components/ui/wordmark";
 import { navLinks, site, socials } from "@/data/site";
 
 export function Footer() {

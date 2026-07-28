@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 
 import { ActionAnchor } from "@/components/ui/action";
-import { Wordmark } from "@/components/ui/wordmark";
+import { Logo } from "@/components/ui/wordmark";
 import { BOOKING, navLinks, site } from "@/data/site";
 import { cn } from "@/lib/utils";
 
