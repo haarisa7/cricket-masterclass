@@ -1,8 +1,12 @@
 import { RevealHeading } from "@/components/ui/reveal";
-import { BOOKING } from "@/data/site";
+import { BOOKING, whatsappFor } from "@/data/site";
 
 const routes = [
-  { label: "Book a Session", note: "1-2-1 and small groups", href: BOOKING.session },
+  {
+    label: "Book a Session",
+    note: "1-2-1 and small groups",
+    href: whatsappFor("a 1-2-1 or small group session"),
+  },
   { label: "Register for Camps", note: "Holiday camps via ClassForKids", href: BOOKING.camps },
   { label: "Message on WhatsApp", note: "Questions answered same day", href: BOOKING.whatsapp },
 ];

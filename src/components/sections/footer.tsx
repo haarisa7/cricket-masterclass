@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 
+import { SocialIcon } from "@/components/ui/social-icons";
 import { Logo } from "@/components/ui/wordmark";
 import { navLinks, site, socials } from "@/data/site";
 
@@ -10,6 +11,22 @@ export function Footer() {
         <div className="flex flex-col gap-6">
           <Logo className="text-[17px]" />
           <p className="text-body text-bone-400">{site.positioning}</p>
+
+          <ul className="flex flex-wrap gap-3">
+            {socials.map((social) => (
+              <li key={social.platform}>
+                <a
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`${site.name} on ${social.platform}`}
+                  className="flex size-10 items-center justify-center border border-line text-bone-400 transition-colors duration-200 ease-brand hover:border-red-500 hover:text-bone-100"
+                >
+                  <SocialIcon platform={social.platform} className="size-4" />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <nav aria-label="Footer" className="flex flex-col gap-3">
@@ -35,9 +52,7 @@ export function Footer() {
 
         <div className="flex flex-col gap-3">
           <h2 className="text-label text-bone-400">Watch</h2>
-          <p className="text-sm text-bone-100">
-            New drills every week on YouTube and Instagram.
-          </p>
+          <p className="text-sm text-bone-100">New drills every week on YouTube and Instagram.</p>
           {socials.slice(0, 3).map((social) => (
             <a
               key={social.platform}

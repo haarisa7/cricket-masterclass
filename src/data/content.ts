@@ -15,6 +15,9 @@ export interface Reel {
   views: string;
   caption: string;
   href: string;
+  /** Served from /public — never bundled, so the JS payload stays flat. */
+  src: string;
+  poster: string;
 }
 
 export const stats: Stat[] = [
@@ -47,8 +50,7 @@ export const methodSteps: MethodStep[] = [
 export const eliteAcademy = {
   eyebrow: "2026 Intake",
   title: "Masterclass Elite Cricket Academy",
-  copy:
-    "The pathway squad for players chasing county, regional or professional selection — assessed entry, year-round training, and match exposure against stronger opposition.",
+  copy: "The pathway squad for players chasing county, regional or professional selection — assessed entry, year-round training, and match exposure against stronger opposition.",
   points: [
     { label: "Expert Coaching", detail: "Professional and county-level staff" },
     { label: "Match Practice", detail: "Fixtures across three grounds" },
@@ -58,9 +60,35 @@ export const eliteAcademy = {
   cta: { label: "Apply for a Trial", href: "/elite-academy" },
 } as const;
 
+const INSTAGRAM = "https://www.instagram.com/masterclasscricket?igsh=MWJ4eDJqaHhkN2x3NQ%3D%3D";
+
 export const reels: Reel[] = [
-  { views: "1M", caption: "Front-foot drive, slowed", href: "https://instagram.com/masterclasscricket" },
-  { views: "717K", caption: "Seam position drill", href: "https://instagram.com/masterclasscricket" },
-  { views: "1M", caption: "Trigger movement fix", href: "https://instagram.com/masterclasscricket" },
-  { views: "92.7K", caption: "Junior camp highlights", href: "https://instagram.com/masterclasscricket" },
+  {
+    views: "1M",
+    caption: "Front-foot drive, slowed",
+    href: INSTAGRAM,
+    src: "/reels/reel-1.mp4",
+    poster: "/reels/reel-1.jpg",
+  },
+  {
+    views: "717K",
+    caption: "Seam position drill",
+    href: INSTAGRAM,
+    src: "/reels/reel-2.mp4",
+    poster: "/reels/reel-2.jpg",
+  },
+  {
+    views: "1M",
+    caption: "Trigger movement fix",
+    href: INSTAGRAM,
+    src: "/reels/reel-3.mp4",
+    poster: "/reels/reel-3.jpg",
+  },
+  {
+    views: "92.7K",
+    caption: "Junior camp highlights",
+    href: INSTAGRAM,
+    src: "/reels/reel-4.mp4",
+    poster: "/reels/reel-4.jpg",
+  },
 ];

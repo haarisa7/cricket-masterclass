@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
 
-import { BOOKING } from "@/data/site";
+import { WhatsAppIcon } from "@/components/ui/whatsapp-float";
+import { whatsappFor } from "@/data/site";
 import { cn } from "@/lib/utils";
 
 /**
  * Mobile-only persistent booking. Appears once the hero has scrolled out and
  * hides again over the footer so it never covers the footer's own content.
+ *
+ * Deliberately the ONLY sticky element on mobile — the WhatsApp float hides
+ * below `lg` so the thumb zone never holds two competing fixed actions. Since
+ * booking already opens WhatsApp, a separate float here was pure duplication.
+ * The inline glyph tells you where the button lands before you tap it.
  */
 export function MobileBookingBar() {
   const [visible, setVisible] = useState(false);
@@ -31,25 +37,14 @@ export function MobileBookingBar() {
       aria-hidden={!visible}
     >
       <a
-        href={BOOKING.session}
+        href={whatsappFor("cricket coaching")}
         target="_blank"
         rel="noreferrer"
         tabIndex={visible ? 0 : -1}
-        className="flex h-14 flex-1 items-center justify-center bg-red-600 text-base font-medium text-bone-50"
+        className="flex h-14 flex-1 items-center justify-center gap-3 bg-red-600 text-base font-medium text-bone-50"
       >
+        <WhatsAppIcon className="size-5" />
         Book a Session
-      </a>
-      <a
-        href={BOOKING.whatsapp}
-        target="_blank"
-        rel="noreferrer"
-        tabIndex={visible ? 0 : -1}
-        aria-label="Message Masterclass Cricket on WhatsApp"
-        className="flex h-14 w-14 items-center justify-center bg-red-600 text-bone-50"
-      >
-        <svg viewBox="0 0 24 24" className="size-5" fill="currentColor" aria-hidden="true">
-          <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.2 14.1c-.2.6-1.2 1.2-1.7 1.2-.4 0-1 .1-3.1-.8-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6s.6-1.8.9-2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1.9 1.9 1.2 2.2 1.3.2.1.4.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.2.1.7-.1 1.3Z" />
-        </svg>
       </a>
     </div>
   );

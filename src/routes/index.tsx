@@ -15,6 +15,7 @@ import { SecondaryIndex } from "@/components/sections/secondary-index";
 import { SocialProof } from "@/components/sections/social-proof";
 import { CustomCursor } from "@/components/ui/cursor";
 import { SmoothScroll } from "@/components/ui/smooth-scroll";
+import { WhatsAppFloat } from "@/components/ui/whatsapp-float";
 
 const title = "Masterclass Cricket — Professional Coaching in Chiswick";
 const description =
@@ -54,6 +55,7 @@ function Home() {
       </main>
       <Footer />
       <MobileBookingBar />
+      <WhatsAppFloat />
     </>
   );
 }

@@ -1,10 +1,15 @@
+import { FieldDecor } from "@/components/ui/field-decor";
+import { ReelCard } from "@/components/ui/reel-card";
 import { reels } from "@/data/content";
 import { socials } from "@/data/site";
 
 export function SocialProof() {
   return (
-    <section aria-labelledby="social-heading" className="section-y">
-      <div className="shell">
+    <section aria-labelledby="social-heading" className="section-y relative overflow-hidden">
+      {/* Same drifting bats and balls the original site ran behind this section. */}
+      <FieldDecor preset="field" />
+
+      <div className="shell relative z-10">
         <div className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-6 sm:flex sm:justify-between">
           <div className="min-w-0">
             <p className="text-label text-bone-400">
@@ -25,24 +30,9 @@ export function SocialProof() {
         </div>
 
         <ul className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4">
-          {reels.map((reel) => (
+          {reels.map((reel, i) => (
             <li key={reel.caption}>
-              <a
-                href={reel.href}
-                target="_blank"
-                rel="noreferrer"
-                className="group relative block aspect-[9/16] overflow-hidden bg-ink-800"
-              >
-                <span className="text-label absolute left-4 top-4 z-10 text-bone-400">
-                  [ Reel — {reel.caption} ]
-                </span>
-                <span className="absolute inset-0 flex items-end p-4">
-                  <span className="font-display text-[clamp(2rem,4vw,3.5rem)] leading-none text-bone-100 tnum">
-                    {reel.views}
-                  </span>
-                </span>
-                <span className="absolute inset-0 bg-red-600/0 transition-colors duration-400 ease-brand group-hover:bg-red-600/20" />
-              </a>
+              <ReelCard reel={reel} index={i} />
             </li>
           ))}
         </ul>

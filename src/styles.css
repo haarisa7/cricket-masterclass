@@ -258,6 +258,64 @@
   }
 }
 
+/* ---------- decorative field (floating bats & balls) ----------
+ * Ported from the original site's `.igDecorativeBat` / `.igDecorativeBall`.
+ * Every keyframe is transform-only so the compositor owns them — no layout,
+ * no paint, no main-thread work per frame. `--decor-tilt` lets a single
+ * animation serve elements sitting at different resting angles.
+ */
+
+@keyframes decor-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(var(--decor-tilt, 0deg));
+  }
+  50% {
+    transform: translate3d(0, -22px, 0) rotate(calc(var(--decor-tilt, 0deg) + 2.5deg));
+  }
+}
+
+@keyframes decor-bounce {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(var(--decor-tilt, 0deg));
+  }
+  50% {
+    transform: translate3d(0, -14px, 0) rotate(calc(var(--decor-tilt, 0deg) + 20deg));
+  }
+}
+
+@utility decor-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  /* isolate repaints from the section's real content */
+  contain: layout paint style;
+}
+
+@utility decor-item {
+  position: absolute;
+  color: var(--color-bone-600);
+  will-change: transform;
+  animation: decor-float 9s var(--ease-brand) infinite;
+  animation-delay: var(--decor-delay, 0s);
+}
+
+@utility decor-item-bounce {
+  animation-name: decor-bounce;
+  animation-duration: 7s;
+}
+
+/* Coarse pointers get the decor at reduced strength — it is atmosphere, not
+   content, and on a 390px viewport it otherwise crowds the copy. */
+@media (max-width: 767px) {
+  .decor-layer {
+    opacity: 0.55;
+  }
+}
+
 @keyframes scroll-line {
   0% {
     transform: scaleY(0);

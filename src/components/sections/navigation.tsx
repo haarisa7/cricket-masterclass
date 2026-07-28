@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import { ActionAnchor } from "@/components/ui/action";
 import { Logo } from "@/components/ui/wordmark";
-import { BOOKING, navLinks, site } from "@/data/site";
+import { navLinks, site, whatsappFor } from "@/data/site";
 import { cn } from "@/lib/utils";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -55,10 +55,13 @@ export function Navigation() {
         </nav>
 
         <div className="flex items-center gap-3 justify-self-end">
+          {/* Ghost, not filled: the design system allows exactly one primary
+              per viewport, and that belongs to the page's own booking CTA. */}
           <ActionAnchor
-            href={BOOKING.session}
+            href={whatsappFor("cricket coaching")}
             target="_blank"
             rel="noreferrer"
+            variant="secondary"
             className="h-11! px-5! text-sm! md:h-11!"
           >
             Book Now

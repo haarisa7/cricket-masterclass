@@ -10,18 +10,34 @@ export interface SocialAccount {
   href: string;
 }
 
+/** Live WhatsApp business line. Digits only — wa.me rejects spaces and `+`. */
+const WHATSAPP_NUMBER = "447961692226";
+
+/**
+ * Booking routes.
+ *  camps    — the only third-party checkout (ClassForKids handles holiday camps)
+ *  whatsapp — every other enquiry goes straight to the coaching line
+ */
 export const BOOKING = {
-  session: "https://masterclass-cricket-booking.vercel.app/",
-  camps: "https://classforkids.co.uk/",
-  whatsapp: "https://wa.me/447951753003",
+  camps: "https://masterclass-cricket.classforkids.io/",
+  whatsapp: `https://wa.me/${WHATSAPP_NUMBER}`,
 } as const;
+
+/**
+ * WhatsApp deep link with the enquiry pre-typed, so Uzi opens a chat that
+ * already says which programme the player came from.
+ */
+export function whatsappFor(topic: string): string {
+  const text = `Hi Masterclass Cricket — I'd like to enquire about ${topic}.`;
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+}
 
 export const site = {
   name: "Masterclass Cricket",
   tagline: "For every skill, we've got the drill.",
   positioning: "Professional cricket coaching. Chiswick, West London.",
   address: "Kings House Sports Grounds, Riverside Dr, Chiswick, London W4 2SH",
-  phone: "+44 7951 753003",
+  phone: "+44 7961 692226",
   email: "info@masterclasscricket.co.uk",
   hours: "Mon–Sun, 8am–8pm",
   founded: "2015",
@@ -44,11 +60,36 @@ export const tickerItems: string[] = [
 ];
 
 export const socials: SocialAccount[] = [
-  { platform: "Instagram", handle: "@masterclasscricket", followers: "34.2K", href: "https://instagram.com/masterclasscricket" },
-  { platform: "TikTok", handle: "@masterclasscricket", followers: "18.6K", href: "https://tiktok.com/@masterclasscricket" },
-  { platform: "YouTube", handle: "Masterclass Cricket", followers: "9.1K", href: "https://youtube.com/@masterclasscricket" },
-  { platform: "Facebook", handle: "Masterclass Cricket", followers: "4.8K", href: "https://facebook.com/masterclasscricket" },
-  { platform: "LinkedIn", handle: "Masterclass Cricket", followers: "1.2K", href: "https://linkedin.com/company/masterclasscricket" },
+  {
+    platform: "Instagram",
+    handle: "@masterclasscricket",
+    followers: "34.2K",
+    href: "https://www.instagram.com/masterclasscricket?igsh=MWJ4eDJqaHhkN2x3NQ%3D%3D",
+  },
+  {
+    platform: "TikTok",
+    handle: "@masterclasscricket",
+    followers: "18.6K",
+    href: "https://www.tiktok.com/@masterclasscricket?_t=8lxebZRkhxA&_r=1",
+  },
+  {
+    platform: "YouTube",
+    handle: "Masterclass Cricket Coaching",
+    followers: "9.1K",
+    href: "https://youtube.com/@masterclasscricketcoaching.?si=BJ3Nya11Em2ZIgBE",
+  },
+  {
+    platform: "Facebook",
+    handle: "Masterclass Cricket",
+    followers: "4.8K",
+    href: "https://www.facebook.com/masterclasscricket",
+  },
+  {
+    platform: "LinkedIn",
+    handle: "Uzi Arif",
+    followers: "1.2K",
+    href: "https://www.linkedin.com/in/uzi-arif-946674203/",
+  },
 ];
 
 export const partners: string[] = [

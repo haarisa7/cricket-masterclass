@@ -1,7 +1,7 @@
 import heroImage from "@/assets/hero-nets-batsman.jpg";
 import { ActionAnchor, ActionLink } from "@/components/ui/action";
 import { RevealHeading } from "@/components/ui/reveal";
-import { BOOKING, tickerItems } from "@/data/site";
+import { tickerItems, whatsappFor } from "@/data/site";
 
 export function Hero() {
   return (
@@ -53,7 +53,7 @@ export function Hero() {
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <ActionAnchor href={BOOKING.session} target="_blank" rel="noreferrer">
+            <ActionAnchor href={whatsappFor("cricket coaching")} target="_blank" rel="noreferrer">
               Book a Session
             </ActionAnchor>
             <ActionLink to="/programmes/one-to-one" variant="secondary">

@@ -3,12 +3,16 @@ import { Link } from "@tanstack/react-router";
 import { ActionAnchor } from "@/components/ui/action";
 import { Reveal, RevealImage } from "@/components/ui/reveal";
 import { coreServices } from "@/data/services";
-import { BOOKING } from "@/data/site";
+import { BOOKING, whatsappFor } from "@/data/site";
 import { cn } from "@/lib/utils";
 
 export function CoreServices() {
   return (
-    <section id="coaching" aria-labelledby="coaching-heading" className="section-y border-t border-line">
+    <section
+      id="coaching"
+      aria-labelledby="coaching-heading"
+      className="section-y border-t border-line"
+    >
       <div className="shell">
         <h2 id="coaching-heading" className="text-label text-bone-400">
           <span className="text-red-400">02</span> / Start Here
@@ -52,10 +56,7 @@ export function CoreServices() {
 
                 <ul className="mt-8 border-t border-line">
                   {service.bullets.map((bullet) => (
-                    <li
-                      key={bullet}
-                      className="text-label border-b border-line py-4 text-bone-100"
-                    >
+                    <li key={bullet} className="text-label border-b border-line py-4 text-bone-100">
                       {bullet}
                     </li>
                   ))}
@@ -70,7 +71,7 @@ export function CoreServices() {
                 <Reveal delay={0.05}>
                   <div className="mt-10 flex flex-wrap items-center gap-8">
                     <ActionAnchor
-                      href={i === 2 ? BOOKING.camps : BOOKING.session}
+                      href={i === 2 ? BOOKING.camps : whatsappFor(service.name)}
                       target="_blank"
                       rel="noreferrer"
                     >
