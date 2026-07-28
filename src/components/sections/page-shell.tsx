@@ -38,7 +38,7 @@ export function PageHero({
   intro,
   children,
 }: {
-  index: string;
+  index?: string;
   label: string;
   lines: ReactNode[];
   intro?: string;
