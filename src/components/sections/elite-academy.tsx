@@ -34,7 +34,7 @@ export function EliteAcademy() {
           {eliteAcademy.points.map((point) => (
             <div
               key={point.label}
-              className="grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-4 border-b border-line py-4"
+              className="grid grid-cols-1 gap-1 border-b border-line py-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-baseline sm:gap-4"
             >
               <dt className="text-label text-bone-100">{point.label}</dt>
               <dd className="text-label text-bone-400">{point.detail}</dd>
