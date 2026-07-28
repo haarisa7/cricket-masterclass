@@ -22,9 +22,13 @@ export function Navigation() {
   }, []);
 
   useEffect(() => {
+    const lenis = (window as unknown as { lenis?: { stop: () => void; start: () => void } }).lenis;
     document.body.style.overflow = open ? "hidden" : "";
+    if (open) lenis?.stop();
+    else lenis?.start();
     return () => {
       document.body.style.overflow = "";
+      lenis?.start();
     };
   }, [open]);
 
@@ -37,7 +41,7 @@ export function Navigation() {
           : "border-b border-transparent bg-transparent",
       )}
     >
-      <div className="shell grid grid-cols-[auto_1fr_auto] items-center gap-6 py-4">
+      <div className="shell relative z-50 grid grid-cols-[auto_1fr_auto] items-center gap-6 py-4">
         <Link to="/" aria-label="Masterclass Cricket — home" className="text-bone-100">
           <Logo className="text-[15px]" />
         </Link>
@@ -101,7 +105,7 @@ export function Navigation() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: EASE }}
-            className="fixed inset-0 top-0 z-40 flex h-[100svh] flex-col justify-between bg-ink-950 pb-24 pt-28 lg:hidden"
+            className="fixed inset-0 top-0 z-40 flex h-[100svh] flex-col justify-between overflow-y-auto overscroll-contain bg-ink-950 pb-24 pt-28 lg:hidden"
           >
             <nav aria-label="Mobile" className="shell flex flex-col gap-4">
               {navLinks.map((link, i) => (
