@@ -80,10 +80,10 @@ function Founder() {
             {founder.facts.map((fact) => (
               <div
                 key={fact.label}
-                className="grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-4 border-b border-line py-4"
+                className="grid grid-cols-1 gap-1 border-b border-line py-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-baseline sm:gap-4"
               >
                 <dt className="text-label text-bone-400">{fact.label}</dt>
-                <dd className="text-label text-right text-bone-100 tnum">{fact.value}</dd>
+                <dd className="text-label text-bone-100 tnum sm:text-right">{fact.value}</dd>
               </div>
             ))}
           </dl>

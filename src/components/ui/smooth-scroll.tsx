@@ -13,6 +13,7 @@ export function SmoothScroll() {
 
     void import("lenis").then(({ default: Lenis }) => {
       lenis = new Lenis({ lerp: 0.09 });
+      (window as unknown as { lenis?: unknown }).lenis = lenis;
       const tick = (time: number) => {
         lenis?.raf(time);
         raf = requestAnimationFrame(tick);
@@ -23,6 +24,7 @@ export function SmoothScroll() {
     return () => {
       cancelAnimationFrame(raf);
       lenis?.destroy();
+      delete (window as unknown as { lenis?: unknown }).lenis;
     };
   }, [reduced]);
 
