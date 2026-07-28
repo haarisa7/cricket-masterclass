@@ -7,12 +7,16 @@ import { manifesto } from "@/data/content";
 export function Manifesto() {
   return (
     <section id="approach" aria-labelledby="approach-heading" className="section-y">
-      <div className="shell grid-12 gap-y-12">
-        <p className="text-label col-span-12 text-bone-400 lg:col-span-3">
+      {/* items-start so the portrait and the quote share row 2 and both hang
+          from the same top edge. DOM order is quote-then-portrait, which is the
+          right reading order stacked on mobile; the explicit column/row
+          placement flips the portrait to the left from lg up. */}
+      <div className="shell grid-12 items-start gap-y-12">
+        <p className="text-label col-span-12 text-bone-400">
           <span className="text-red-400">{manifesto.index}</span> / {manifesto.label}
         </p>
 
-        <div className="col-span-12 lg:col-span-8 lg:col-start-5">
+        <div className="col-span-12 lg:col-span-7 lg:col-start-6 lg:row-start-2">
           <RevealHeading
             as="blockquote"
             id="approach-heading"
@@ -50,7 +54,7 @@ export function Manifesto() {
           alt="Head coach Uzi Arif in Masterclass Cricket coaching jacket"
           width={666}
           height={1110}
-          className="col-span-12 mt-16 aspect-[4/5] lg:col-span-3 lg:col-start-1 lg:row-start-2 lg:-mt-64"
+          className="col-span-12 aspect-[4/5] sm:col-span-8 lg:col-span-4 lg:col-start-1 lg:row-start-2"
           imgClassName="object-top"
         />
       </div>

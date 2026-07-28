@@ -55,13 +55,13 @@ export function Navigation() {
         </nav>
 
         <div className="flex items-center gap-3 justify-self-end">
-          {/* Ghost, not filled: the design system allows exactly one primary
-              per viewport, and that belongs to the page's own booking CTA. */}
+          {/* The persistent booking CTA. Filled red so it reads as THE action
+              from any scroll position — the WhatsApp float is green and the
+              only other fixed control, so nothing competes with it. */}
           <ActionAnchor
             href={whatsappFor("cricket coaching")}
             target="_blank"
             rel="noreferrer"
-            variant="secondary"
             className="h-11! px-5! text-sm! md:h-11!"
           >
             Book Now

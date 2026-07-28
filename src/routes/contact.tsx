@@ -41,7 +41,7 @@ function Contact() {
 
           <RevealHeading
             as="h1"
-            className="text-display-lg mt-8 max-w-[15ch] text-bone-100"
+            className="text-display-xl mt-8 max-w-[13ch] text-bone-100"
             lines={["Message us.", "We answer fast."]}
           />
 

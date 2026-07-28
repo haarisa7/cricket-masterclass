@@ -113,7 +113,7 @@ function EliteAcademyPage() {
           <div className="mt-12 border-t border-line">
             {elite.pillars.map((pillar) => (
               <Reveal key={pillar.index}>
-                <article className="grid items-start gap-6 border-b border-line py-10 md:grid-cols-[6rem_minmax(0,24ch)_minmax(0,1fr)] md:gap-10 md:py-14">
+                <article className="grid items-start gap-6 border-b border-line py-10 md:grid-cols-[4rem_minmax(0,1fr)_minmax(0,1.15fr)] md:gap-10 md:py-14">
                   <p className="text-label text-red-400 tnum">{pillar.index}</p>
                   <h3 className="text-display-md text-bone-100">{pillar.name}</h3>
                   <p className="text-body text-bone-400">{pillar.detail}</p>

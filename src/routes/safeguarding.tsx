@@ -45,7 +45,7 @@ function Safeguarding() {
           <div className="border-t border-line">
             {safeguarding.sections.map((section) => (
               <Reveal key={section.index}>
-                <article className="grid items-start gap-6 border-b border-line py-10 md:grid-cols-[6rem_minmax(0,22ch)_minmax(0,1fr)] md:gap-10 md:py-12">
+                <article className="grid items-start gap-6 border-b border-line py-10 md:grid-cols-[4rem_minmax(0,1fr)_minmax(0,1.3fr)] md:gap-10 md:py-12">
                   <p className="text-label text-red-400 tnum">{section.index}</p>
                   <h3 className="font-display text-[clamp(1.25rem,2vw,1.625rem)] font-bold leading-tight text-bone-100">
                     {section.name}

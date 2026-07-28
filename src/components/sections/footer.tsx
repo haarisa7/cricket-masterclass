@@ -67,7 +67,9 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="shell flex flex-wrap items-center justify-between gap-4 border-t border-line py-6 pb-24 lg:pb-6">
+      {/* Extra bottom room on small screens so the WhatsApp float never covers
+          the copyright and policy links. */}
+      <div className="shell flex flex-wrap items-center justify-between gap-4 border-t border-line py-6 pb-24 lg:pb-8">
         <p className="text-label text-bone-400">
           © {new Date().getFullYear()} {site.name}
         </p>

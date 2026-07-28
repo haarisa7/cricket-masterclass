@@ -1,4 +1,6 @@
 import anirudhImage from "@/assets/coach-anirudh.png";
+import ollieImage from "@/assets/coach-ollie.png";
+import patrickImage from "@/assets/coach-patrick.png";
 import uziImage from "@/assets/coach-uzi.jpg";
 
 /* ------------------------------------------------------------------ people */
@@ -34,12 +36,16 @@ export const coaches: Coach[] = [
     role: "Masterclass Coach",
     experience: "5+ years",
     bio: "A product of the academy — trained under Uzi from the age of 13. Has represented Surrey, the ECB Young Lions Super 4s and Durham University UCCE, with playing experience in Australia, Sri Lanka, South Africa and India.",
+    image: ollieImage,
+    imageAlt: "Ollie Sheen, coach at Masterclass Cricket",
   },
   {
     name: "Patrick Littlemore",
     role: "Masterclass Mentor",
     experience: "15+ years",
     bio: "Australian, and a career spent building high-performing teams in the business world and in sports organisations. Provides the operational guidance that keeps the academy true to its coaching mission as it grows.",
+    image: patrickImage,
+    imageAlt: "Patrick Littlemore, mentor at Masterclass Cricket",
   },
 ];
 

@@ -1,7 +1,6 @@
 import { motion, useInView } from "motion/react";
 import { useRef, type ElementType, type ReactNode } from "react";
 
-
 import { cn } from "@/lib/utils";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
@@ -38,8 +37,6 @@ export function Reveal({
       </motion.div>
     </div>
   );
-
-
 }
 
 /**
@@ -86,7 +83,6 @@ export function RevealHeading({
     </Tag>
   );
 }
-
 
 /** Image revealed with a clip-path wipe plus a 1.08 → 1 scale. */
 export function RevealImage({
@@ -147,7 +143,4 @@ export function RevealImage({
       </motion.div>
     </div>
   );
-
-
-
 }

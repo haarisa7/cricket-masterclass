@@ -59,13 +59,49 @@ export const coreServices: CoreService[] = [
 ];
 
 export const secondaryServices: SecondaryService[] = [
-  { name: "Masterclass Academy Sessions", descriptor: "Term-time squad training at Kings House", href: "/programmes/academy-sessions" },
-  { name: "Elite Performance Clinics", descriptor: "Single-discipline clinics for advanced players", href: "/programmes/performance-clinics" },
-  { name: "School Coaching Programmes", descriptor: "Curriculum delivery and teacher training", href: "/programmes/schools" },
-  { name: "Tours for Clubs & Members", descriptor: "Overseas and UK cricket tours, fully managed", href: "/programmes/tours" },
-  { name: "Corporate Team-Building", descriptor: "Half-day cricket sessions for company teams", href: "/programmes/corporate" },
-  { name: "Online Batting Assessments", descriptor: "Upload footage, get a frame-by-frame report", href: "/programmes/online-batting" },
-  { name: "Online Bowling Assessments", descriptor: "Action analysis and a corrective drill plan", href: "/programmes/online-bowling" },
-  { name: "Mental Mind Mapping", descriptor: "Decision-making and pressure work for players", href: "/programmes/mind-mapping" },
-  { name: "Masterclass Approved Coach Programme", descriptor: "Certification for practising cricket coaches", href: "/programmes/approved-coach" },
+  {
+    name: "Masterclass Academy Sessions",
+    descriptor: "Term-time squad training at Kings House",
+    href: "/programmes/academy-sessions",
+  },
+  {
+    name: "Elite Performance Clinics",
+    descriptor: "Single-discipline clinics for advanced players",
+    href: "/programmes/performance-clinics",
+  },
+  {
+    name: "School Coaching Programmes",
+    descriptor: "Curriculum delivery and teacher training",
+    href: "/programmes/schools",
+  },
+  {
+    name: "Tours for Clubs & Members",
+    descriptor: "Overseas and UK cricket tours, fully managed",
+    href: "/programmes/tours",
+  },
+  {
+    name: "Corporate Team-Building",
+    descriptor: "Half-day cricket sessions for company teams",
+    href: "/programmes/corporate",
+  },
+  {
+    name: "Online Batting Assessments",
+    descriptor: "Upload footage, get a frame-by-frame report",
+    href: "/programmes/online-batting",
+  },
+  {
+    name: "Online Bowling Assessments",
+    descriptor: "Action analysis and a corrective drill plan",
+    href: "/programmes/online-bowling",
+  },
+  {
+    name: "Mental Mind Mapping",
+    descriptor: "Decision-making and pressure work for players",
+    href: "/programmes/mind-mapping",
+  },
+  {
+    name: "Masterclass Approved Coach Programme",
+    descriptor: "Certification for practising cricket coaches",
+    href: "/programmes/approved-coach",
+  },
 ];

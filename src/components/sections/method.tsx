@@ -34,7 +34,11 @@ export function Method() {
   );
 
   return (
-    <section id="method" aria-labelledby="method-heading" className="border-t border-line bg-ink-900">
+    <section
+      id="method"
+      aria-labelledby="method-heading"
+      className="border-t border-line bg-ink-900"
+    >
       <div className="shell pt-24">
         <h2 id="method-heading" className="text-label text-bone-400">
           <span className="text-red-400">03</span> / The Method
@@ -45,7 +49,9 @@ export function Method() {
       </div>
 
       {reduced ? (
-        <div className="shell flex flex-col gap-0 py-16 md:flex-row md:overflow-x-auto">{steps}</div>
+        <div className="shell flex flex-col gap-0 py-16 md:flex-row md:overflow-x-auto">
+          {steps}
+        </div>
       ) : (
         <>
           <div className="page-x flex overflow-x-auto pb-16 pt-12 md:hidden">{steps}</div>

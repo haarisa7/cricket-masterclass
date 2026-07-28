@@ -70,7 +70,7 @@ function Coaches() {
                           width={800}
                           height={1000}
                           className="size-full"
-                          imgClassName="transition-transform duration-700 ease-brand group-hover:scale-[1.04]"
+                          imgClassName="object-top transition-transform duration-700 ease-brand group-hover:scale-[1.04]"
                         />
                       ) : (
                         <InitialsPlate name={coach.name} />

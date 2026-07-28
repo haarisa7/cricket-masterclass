@@ -4,8 +4,11 @@ import { RevealHeading } from "@/components/ui/reveal";
 import { tickerItems, whatsappFor } from "@/data/site";
 
 export function Hero() {
+  // min-h, not h: with a fixed height plus justify-end, any content taller than
+  // the viewport overflows upward and overflow-hidden clips the first heading
+  // line. min-h lets the section grow instead.
   return (
-    <section className="relative flex h-[100svh] min-h-[620px] flex-col justify-end overflow-hidden">
+    <section className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden">
       <div className="absolute inset-0">
         <video
           className="size-full object-cover"
@@ -32,7 +35,8 @@ export function Hero() {
         <div className="scrim absolute inset-x-0 bottom-0 h-2/3" />
       </div>
 
-      <div className="relative z-10 pb-24 md:pb-32">
+      {/* pt clears the fixed header so the first line can never tuck under it. */}
+      <div className="relative z-10 pb-24 pt-32 md:pb-32 md:pt-40">
         <div className="shell">
           <p className="text-label mb-6 text-bone-400">West London · Est. 2015</p>
 

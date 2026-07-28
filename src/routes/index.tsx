@@ -7,7 +7,6 @@ import { Footer } from "@/components/sections/footer";
 import { Hero } from "@/components/sections/hero";
 import { Manifesto } from "@/components/sections/manifesto";
 import { Method } from "@/components/sections/method";
-import { MobileBookingBar } from "@/components/sections/mobile-booking-bar";
 import { Navigation } from "@/components/sections/navigation";
 import { Partners } from "@/components/sections/partners";
 import { ProofBar } from "@/components/sections/proof-bar";
@@ -54,7 +53,6 @@ function Home() {
         <BookingBand />
       </main>
       <Footer />
-      <MobileBookingBar />
       <WhatsAppFloat />
     </>
   );

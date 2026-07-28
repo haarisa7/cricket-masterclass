@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 
 import { Footer } from "@/components/sections/footer";
-import { MobileBookingBar } from "@/components/sections/mobile-booking-bar";
 import { Navigation } from "@/components/sections/navigation";
 import { CustomCursor } from "@/components/ui/cursor";
 import { FieldDecor } from "@/components/ui/field-decor";
@@ -22,7 +21,6 @@ export function PageShell({ children }: { children: ReactNode }) {
       <Navigation />
       <main>{children}</main>
       <Footer />
-      <MobileBookingBar />
       <WhatsAppFloat />
     </>
   );
@@ -57,7 +55,7 @@ export function PageHero({
 
         <RevealHeading
           as="h1"
-          className="text-display-lg mt-8 max-w-[16ch] text-bone-100"
+          className="text-display-xl mt-8 max-w-[14ch] text-bone-100"
           lines={lines}
         />
 

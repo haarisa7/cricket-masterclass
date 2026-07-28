@@ -37,7 +37,6 @@
   /* brand gold — dark canvas only, never on light */
   --color-gold-400: #f0b323;
 
-
   /* ---- type ---- */
   --font-display: "Archivo", "Archivo Fallback", system-ui, sans-serif;
   --font-body: "Inter Tight", "Inter Tight Fallback", system-ui, sans-serif;
@@ -134,10 +133,18 @@
 
 /* ---------- type scale ---------- */
 
+/*
+ * Masthead scale. The cap is not arbitrary: the longest hero line,
+ * "WE'VE GOT THE DRILL.", measures 12.46em at this weight and stretch. The
+ * widest content column is the 1440px shell minus its 64px gutters = 1312px,
+ * so anything above 1312 / 12.46 ≈ 105px wraps. The previous 11rem (176px)
+ * silently wrapped the hero to four lines on any laptop and pushed the CTAs
+ * below the fold. 6.5rem = 104px is the largest size that holds two lines.
+ */
 @utility text-display-xl {
   font-family: var(--font-display);
-  font-size: clamp(3.25rem, 11vw, 11rem);
-  line-height: 0.86;
+  font-size: clamp(2.5rem, 7.2vw, 6.5rem);
+  line-height: 0.88;
   letter-spacing: -0.035em;
   font-weight: 800;
   font-stretch: 112%;

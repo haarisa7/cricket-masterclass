@@ -13,14 +13,12 @@ export function WhatsAppIcon({ className }: { className?: string }) {
 /**
  * Persistent WhatsApp entry point, as on the original site.
  *
- * DESKTOP ONLY (`hidden lg:flex`). Below `lg` the sticky booking bar already
- * opens WhatsApp, so a float there would be a second fixed element competing
- * for the same thumb zone and the same destination — the clutter pattern the
- * sticky-CTA research warns against. Desktop has no bar, so this is the only
- * persistent action and nothing competes with it.
+ * Shown at every breakpoint. It is the only fixed control besides the header,
+ * so there is no thumb-zone collision to design around — the sticky booking
+ * bar that used to sit here has been removed.
  *
  * Stays WhatsApp green (#25D366): recolouring the mark breaks WhatsApp's brand
- * rules, and a red float would fight the red primary CTA for attention.
+ * rules, and a red float would fight the red "Book Now" in the header.
  */
 export function WhatsAppFloat({ className }: { className?: string }) {
   return (
@@ -30,7 +28,8 @@ export function WhatsAppFloat({ className }: { className?: string }) {
       rel="noreferrer"
       aria-label="Chat to Masterclass Cricket on WhatsApp"
       className={cn(
-        "group fixed bottom-8 right-[var(--gutter)] z-40 hidden size-14 items-center justify-center rounded-full lg:flex",
+        "group fixed right-[var(--gutter)] z-40 flex size-14 items-center justify-center rounded-full",
+        "bottom-[calc(1.5rem+env(safe-area-inset-bottom))] lg:bottom-8",
         "bg-[#25D366] text-ink-950 shadow-[0_8px_30px_rgba(0,0,0,0.45)]",
         "transition-transform duration-300 ease-brand hover:scale-110 focus-visible:scale-110",
         className,

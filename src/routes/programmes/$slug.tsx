@@ -61,7 +61,7 @@ function ProgrammePage() {
 
           <RevealHeading
             as="h1"
-            className="text-display-lg mt-8 max-w-[16ch] text-bone-100"
+            className="text-display-lg mt-8 max-w-[14ch] text-bone-100"
             lines={[programme.name]}
           />
 

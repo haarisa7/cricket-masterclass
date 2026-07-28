@@ -61,9 +61,10 @@ function Founder() {
         <RevealImage
           src={uziImage}
           alt="Uzi Arif, founder and head coach of Masterclass Cricket"
-          width={1200}
-          height={1500}
+          width={768}
+          height={1180}
           className="min-h-[60svh] lg:min-h-[80svh]"
+          imgClassName="object-top"
         />
 
         <div className="flex flex-col justify-center gap-8 px-[var(--gutter)] py-24 lg:py-32">

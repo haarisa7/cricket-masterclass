@@ -63,7 +63,6 @@ export function LogoMark({ className }: { className?: string }) {
   );
 }
 
-
 /** Horizontal lockup: ball left, MASTERCLASS / CRICKET right. */
 export function Logo({
   className,
@@ -98,4 +97,3 @@ export function Logo({
     </span>
   );
 }
-
