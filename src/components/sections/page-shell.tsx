@@ -50,7 +50,8 @@ export function PageHero({
 
       <div className="shell relative z-10">
         <p className="text-label text-bone-400">
-          <span className="text-red-400">{index}</span> / {label}
+          {index && <span className="text-red-400">{index} / </span>}
+          {label}
         </p>
 
         <RevealHeading
