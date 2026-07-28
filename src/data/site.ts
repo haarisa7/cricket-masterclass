@@ -1,3 +1,6 @@
+import partnerMre from "@/assets/partner-mre.png";
+import partnerSsdev from "@/assets/partner-ssdev.png";
+
 export interface NavLink {
   label: string;
   href: string;
@@ -92,10 +95,37 @@ export const socials: SocialAccount[] = [
   },
 ];
 
-export const partners: string[] = [
-  "Kings House Sports Grounds",
-  "Chiswick & Whitton CC",
-  "Middlesex Cricket",
-  "Ealing CC",
-  "Gunn & Moore",
+export type PartnerTier = "Gold Partner" | "Silver Partner";
+
+export type Partner = {
+  name: string;
+  descriptor: string;
+  tier: PartnerTier;
+  logo?: string;
+  href?: string;
+};
+
+/** Mirrors the partner wall on masterclasscricket.co.uk. */
+export const partnersIntro =
+  "We build long partnerships with businesses that share our standards. They give our players top-tier equipment, world-class facilities and opportunities that coaching alone cannot buy.";
+
+export const partners: Partner[] = [
+  {
+    name: "SSDEV",
+    descriptor: "Technology & Digital",
+    tier: "Gold Partner",
+    logo: partnerSsdev,
+    href: "https://www.ssdev.tech/",
+  },
+  {
+    name: "Marshall Real Estate",
+    descriptor: "Property",
+    tier: "Gold Partner",
+    logo: partnerMre,
+  },
+  {
+    name: "Partner slot open",
+    descriptor: "Coming soon",
+    tier: "Silver Partner",
+  },
 ];
