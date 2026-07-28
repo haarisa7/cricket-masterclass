@@ -28,8 +28,8 @@ export function WhatsAppFloat({ className }: { className?: string }) {
       rel="noreferrer"
       aria-label="Chat to Masterclass Cricket on WhatsApp"
       className={cn(
-        "group fixed right-[var(--gutter)] z-40 flex size-14 items-center justify-center rounded-full",
-        "bottom-[calc(1.5rem+env(safe-area-inset-bottom))] lg:bottom-8",
+        "group fixed right-4 z-40 flex size-14 items-center justify-center rounded-full sm:right-6",
+        "bottom-[calc(2rem+env(safe-area-inset-bottom))] lg:bottom-8",
         "bg-[#25D366] text-ink-950 shadow-[0_8px_30px_rgba(0,0,0,0.45)]",
         "transition-transform duration-300 ease-brand hover:scale-110 focus-visible:scale-110",
         className,
