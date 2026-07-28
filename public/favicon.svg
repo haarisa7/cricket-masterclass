@@ -1,15 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
   <defs>
-    <radialGradient id="b" cx="36%" cy="30%" r="78%">
+    <radialGradient id="ball" cx="36%" cy="30%" r="78%">
       <stop offset="0%" stop-color="#e8455c"/>
       <stop offset="52%" stop-color="#d7263d"/>
       <stop offset="100%" stop-color="#8e1524"/>
     </radialGradient>
-    <clipPath id="c"><circle cx="32" cy="32" r="30"/></clipPath>
+    <linearGradient id="gloss" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.34"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="clip"><circle cx="32" cy="32" r="30"/></clipPath>
   </defs>
-  <circle cx="32" cy="32" r="30" fill="url(#b)"/>
-  <g clip-path="url(#c)" fill="none" stroke="#F7F5F2" stroke-width="3.8" stroke-linecap="round">
-    <path d="M46 6C36 18 26.5 34 21.5 56"/>
-    <path d="M55 15C45.5 25 34.5 39.5 29.5 60"/>
+  <circle cx="32" cy="32" r="30" fill="url(#ball)"/>
+  <g clip-path="url(#clip)">
+    <ellipse cx="24" cy="17" rx="19" ry="11" transform="rotate(-24 24 17)" fill="url(#gloss)"/>
+    <g stroke="#F7F5F2" stroke-width="3.6" stroke-linecap="round">
+      <path d="M46 6C36 18 26.5 34 21.5 56"/>
+      <path d="M55 15C45.5 25 34.5 39.5 29.5 60"/>
+    </g>
   </g>
 </svg>
