@@ -98,7 +98,3 @@ export function Logo({
   );
 }
 
-/** Back-compat alias used by the nav and footer. */
-export function Wordmark({ className }: { className?: string }) {
-  return <Logo className={cn("text-[15px]", className)} />;
-}
