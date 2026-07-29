@@ -47,9 +47,10 @@ export function CoreServices() {
               </figure>
 
               <div className="max-w-xl">
-                <p className="text-label text-bone-400">
-                  <span className="text-red-400">{service.index}</span> · {service.tier}
-                </p>
+                {/* Tier only, no number: these three are parallel options, not
+                    ordered steps, and "02 · Group" sitting under "02 / Start
+                    Here" read as the same level. */}
+                <p className="text-label text-red-400">{service.tier}</p>
 
                 <h3 className="text-display-md mt-6 text-bone-100">{service.name}</h3>
 

@@ -4,10 +4,20 @@ import { Reveal } from "@/components/ui/reveal";
 import { partners, partnersIntro } from "@/data/site";
 
 /**
- * Partner wall, carried over from the live site: a short statement of intent
- * plus tiered partner tiles. Logos are dark-on-transparent artwork, so each
- * one sits on a bone tile rather than the ink canvas — inverting third-party
- * marks would break their brand rules.
+ * PART-01 / PART-02 — the commercial partner wall.
+ *
+ * Sponsors only. The grounds and clubs the brief originally listed here live in
+ * the venues section instead: a venue and a paying sponsor are different kinds
+ * of relationship, and a "Gold Partner" badge against a cricket ground says
+ * nothing. Rocket Bats belongs here because it genuinely is a sponsor.
+ *
+ * Four across on desktop, not three. With four tiles, lg:grid-cols-3 dropped the
+ * fourth onto its own row where it read as an afterthought.
+ *
+ * Logos are dark-on-transparent artwork, so each sits on a bone tile rather than
+ * the ink canvas — inverting third-party marks would break their brand rules.
+ * Tiles without artwork fall back to the partner name set in the display face,
+ * which is presentable but is not the intended finish.
  */
 export function Partners() {
   return (
@@ -23,11 +33,11 @@ export function Partners() {
           <p className="text-body text-bone-400">{partnersIntro}</p>
         </div>
 
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {partners.map((partner) => {
             const inner = (
               <div className="flex h-full flex-col gap-6 border border-line bg-ink-900 p-6 transition-colors duration-200 ease-brand group-hover:border-red-500">
-                <div className="flex h-32 items-center justify-center bg-bone-100 px-8">
+                <div className="flex h-32 items-center justify-center bg-bone-100 px-6">
                   {partner.logo ? (
                     <img
                       src={partner.logo}
@@ -36,20 +46,24 @@ export function Partners() {
                       className="max-h-20 w-auto max-w-full object-contain"
                     />
                   ) : (
-                    <span className="text-label text-ink-950">Your logo here</span>
+                    <span className="text-center font-display text-lg leading-tight text-ink-950">
+                      {partner.name}
+                    </span>
                   )}
                 </div>
 
-                <div className="mt-auto grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-4">
-                  <div className="min-w-0">
-                    <p className="truncate text-sm text-bone-100">{partner.name}</p>
-                    <p className="text-label mt-1 text-bone-600">{partner.descriptor}</p>
-                  </div>
+                {/* Stacked, not the old name-left / tier-right row. At four
+                    columns each tile is ~270px, and "Official Partner" beside
+                    "Marshall Real Estate" left roughly 90px for the name, which
+                    truncated it mid-word. No truncate either — the names wrap. */}
+                <div className="mt-auto">
+                  <p className="text-sm leading-snug text-bone-100">{partner.name}</p>
+                  <p className="text-label mt-2 text-bone-600">{partner.descriptor}</p>
                   <p
                     className={
-                      partner.tier === "Gold Partner"
-                        ? "text-label shrink-0 text-gold-400"
-                        : "text-label shrink-0 text-bone-400"
+                      partner.tier === "Silver Partner"
+                        ? "text-label mt-3 text-bone-400"
+                        : "text-label mt-3 text-gold-400"
                     }
                   >
                     {partner.tier}

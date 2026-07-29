@@ -2,9 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { BookingBand } from "@/components/sections/booking-band";
 import { CoreServices } from "@/components/sections/core-services";
-import { EliteAcademy } from "@/components/sections/elite-academy";
 import { Footer } from "@/components/sections/footer";
 import { Hero } from "@/components/sections/hero";
+import { IndoorProgramme } from "@/components/sections/indoor-programme";
+import { IndoorPromo } from "@/components/sections/indoor-promo";
+import { Journey } from "@/components/sections/journey";
+import { LiveEvents } from "@/components/sections/live-events";
 import { Manifesto } from "@/components/sections/manifesto";
 import { Method } from "@/components/sections/method";
 import { Navigation } from "@/components/sections/navigation";
@@ -16,9 +19,10 @@ import { CustomCursor } from "@/components/ui/cursor";
 import { SmoothScroll } from "@/components/ui/smooth-scroll";
 import { WhatsAppFloat } from "@/components/ui/whatsapp-float";
 
-const title = "Masterclass Cricket — Professional Coaching in Chiswick";
+const title = "Masterclass Cricket — Professional Cricket Coaching, West London";
+// FOOT-01: the five-area wording, kept under 155 characters.
 const description =
-  "Elite cricket coaching in West London. 1-2-1 sessions, small groups and performance camps for players from first net to international honours.";
+  "Professional cricket coaching across Chiswick, Richmond, West London, Berkshire and Buckinghamshire. One-to-one, group sessions and holiday camps, ages 4+.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -40,14 +44,24 @@ function Home() {
       <SmoothScroll />
       <CustomCursor />
       <Navigation />
+      {/*
+        Order matters here. BAN-02 requires the live events block to be "the
+        first place parents look for current bookings", so LiveEvents sits
+        directly under the stats bar — before the philosophy, the programmes and
+        everything else. IndoorProgramme (the form) follows IndoorPromo so the
+        promo's CTA scrolls a short distance rather than the length of the page.
+      */}
       <main>
         <Hero />
         <ProofBar />
+        <LiveEvents />
         <Manifesto />
         <CoreServices />
         <SecondaryIndex />
         <Method />
-        <EliteAcademy />
+        <Journey />
+        <IndoorPromo />
+        <IndoorProgramme />
         <SocialProof />
         <Partners />
         <BookingBand />

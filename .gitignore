@@ -30,3 +30,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local secrets. .env.example is the committed template.
+.env
+.env.local
+
+# Stale build output from a previous host. This project deploys to Cloudflare
+# Workers (see .output/server/wrangler.json).
+.netlify

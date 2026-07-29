@@ -3,7 +3,6 @@ import groupImage from "@/assets/service-group.jpg";
 import campsImage from "@/assets/service-camps.jpg";
 
 export interface CoreService {
-  index: string;
   tier: string;
   name: string;
   promise: string;
@@ -21,87 +20,99 @@ export interface SecondaryService {
   href: string;
 }
 
+/**
+ * PROG-01: three core programmes, nothing else.
+ *
+ * Elite Performance Clinics, Masterclass Academy Sessions and Masterclass
+ * Performance Camps are gone — the last of those was a rename rather than a
+ * deletion (Performance Camps -> Cricket Camps), so its slug is redirected in
+ * public/_redirects rather than dropped.
+ *
+ * `bullets` is capped at four on purpose. The full lists from 1TO1-02 and
+ * GRP-03 run to eight items each, and eight rows in this card's bordered list
+ * make one card roughly 320px taller than the two beside it. The complete
+ * lists live on the programme pages, where there is room for them.
+ */
 export const coreServices: CoreService[] = [
   {
-    index: "01",
     tier: "Private",
-    name: "1-2-1 Coaching",
-    promise: "Private sessions built around one player.",
-    bullets: ["Video capture every session", "Written plan afterwards", "Indoor and outdoor nets"],
+    name: "Masterclass One-to-One Coaching",
+    promise: "Every session is built entirely around one player.",
+    bullets: [
+      "Initial technical assessment and video analysis",
+      "Individual coaching programme",
+      "WhatsApp support group with player, parents and coaches",
+      "Session reports after every lesson",
+    ],
     cta: { label: "Book a Session", href: "/programmes/one-to-one" },
     detailsHref: "/programmes/one-to-one",
     image: oneToOneImage,
     imageAlt: "Young cricketer crouched with a bat inside a floodlit indoor net",
   },
   {
-    index: "02",
     tier: "Group",
-    name: "Small Group Sessions",
-    promise: "Train with peers, compete every session.",
-    bullets: ["Six players maximum", "Ability-matched groups", "Weekly progress markers"],
-    cta: { label: "Join a Group", href: "/programmes/small-group" },
-    detailsHref: "/programmes/small-group",
+    name: "Masterclass Group Sessions",
+    promise: "The same coaching philosophy, delivered in a group.",
+    bullets: [
+      "Ability-based coaching groups",
+      "Bespoke coaching plans",
+      "Tactical match awareness",
+      "Confidence and mindset coaching",
+    ],
+    cta: { label: "Join a Group", href: "/programmes/group-sessions" },
+    detailsHref: "/programmes/group-sessions",
     image: groupImage,
     imageAlt: "Three teenage cricketers waiting to bat in a dark indoor net",
   },
   {
-    index: "03",
     tier: "Holiday",
-    name: "Masterclass Performance Camps",
-    promise: "Holiday intensives across three cricket grounds.",
-    bullets: ["Full match play daily", "Coach-to-player ratio 1:8", "Ages 7 to 16"],
-    cta: { label: "Reserve a Place", href: "/programmes/performance-camps" },
-    detailsHref: "/programmes/performance-camps",
+    name: "Masterclass Cricket Camps",
+    promise: "Professional coaching, outstanding facilities, genuine enjoyment.",
+    bullets: [
+      "Professional cricket facilities",
+      "Structured batting, bowling and fielding",
+      "Competitive challenges and match scenarios",
+      "Parent feedback at the end of every day",
+    ],
+    cta: { label: "Reserve a Place", href: "/programmes/cricket-camps" },
+    detailsHref: "/programmes/cricket-camps",
     image: campsImage,
     imageAlt: "Cricket ground under a single floodlight with players training at dusk",
-    note: "Invest in proper coaching, not babysitting.",
   },
 ];
 
+/**
+ * OTH-01: the five remaining services, with the client's wording.
+ *
+ * `descriptor` is the short form used in the index — the brief's descriptions
+ * run to 15-20 words, and the index hides the descriptor entirely below md, so
+ * the long versions would be invisible to every mobile visitor. `detail` keeps
+ * the client's full sentence for the programme pages.
+ */
 export const secondaryServices: SecondaryService[] = [
   {
-    name: "Masterclass Academy Sessions",
-    descriptor: "Term-time squad training at Kings House",
-    href: "/programmes/academy-sessions",
-  },
-  {
-    name: "Elite Performance Clinics",
-    descriptor: "Single-discipline clinics for advanced players",
-    href: "/programmes/performance-clinics",
-  },
-  {
-    name: "School Coaching Programmes",
-    descriptor: "Curriculum delivery and teacher training",
+    name: "School Teacher Cricket Coaching Programmes",
+    descriptor: "Training teachers to coach cricket with confidence",
     href: "/programmes/schools",
   },
   {
-    name: "Tours for Clubs & Members",
-    descriptor: "Overseas and UK cricket tours, fully managed",
+    name: "Tours for Clubs and Members",
+    descriptor: "Tailored tours for teams, clubs and members",
     href: "/programmes/tours",
   },
   {
-    name: "Corporate Team-Building",
-    descriptor: "Half-day cricket sessions for company teams",
+    name: "Corporate Cricket and Team Building",
+    descriptor: "Inclusive cricket for teamwork and engagement",
     href: "/programmes/corporate",
   },
   {
     name: "Online Batting Assessments",
-    descriptor: "Upload footage, get a frame-by-frame report",
+    descriptor: "Send footage, receive professional analysis",
     href: "/programmes/online-batting",
   },
   {
     name: "Online Bowling Assessments",
-    descriptor: "Action analysis and a corrective drill plan",
+    descriptor: "Detailed analysis of your bowling action",
     href: "/programmes/online-bowling",
-  },
-  {
-    name: "Mental Mind Mapping",
-    descriptor: "Decision-making and pressure work for players",
-    href: "/programmes/mind-mapping",
-  },
-  {
-    name: "Masterclass Approved Coach Programme",
-    descriptor: "Certification for practising cricket coaches",
-    href: "/programmes/approved-coach",
   },
 ];

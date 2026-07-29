@@ -19,7 +19,22 @@
  * sequence is visible at a glance.
  */
 
-const HOMEPAGE_ORDER = ["approach", "coaching", "method", "reels"] as const;
+/**
+ * Homepage section order. Numbers are derived from position, so adding or
+ * reordering a section here renumbers the page and nothing has to be edited in
+ * the components — which is exactly the drift this file exists to prevent.
+ *
+ * "whats-on", "journey" and "indoor" were added by BAN-02, JRN-01 and IND-01.
+ */
+const HOMEPAGE_ORDER = [
+  "whats-on",
+  "approach",
+  "coaching",
+  "method",
+  "journey",
+  "indoor",
+  "reels",
+] as const;
 
 export type HomepageSection = (typeof HOMEPAGE_ORDER)[number];
 

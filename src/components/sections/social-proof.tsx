@@ -2,7 +2,7 @@ import { FieldDecor } from "@/components/ui/field-decor";
 import { ReelCard } from "@/components/ui/reel-card";
 import { reels } from "@/data/content";
 import { sectionNumber } from "@/data/sections";
-import { socials } from "@/data/site";
+import { socialMetrics, socials } from "@/data/site";
 
 export function SocialProof() {
   return (
@@ -11,13 +11,16 @@ export function SocialProof() {
       <FieldDecor preset="field" />
 
       <div className="shell relative z-10">
-        <div className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-6 sm:flex sm:justify-between">
+        {/* SOC-01: stacked below sm. The new heading is 40 characters, and
+            beside a right-aligned link on a 375px screen it was squeezing to
+            two words per line. */}
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div className="min-w-0">
             <p className="text-label text-bone-400">
               <span className="text-red-400">{sectionNumber("reels")}</span> / Reels
             </p>
-            <h2 id="social-heading" className="text-display-md mt-6 text-bone-100">
-              Check out our social media
+            <h2 id="social-heading" className="text-display-md mt-6 max-w-[18ch] text-bone-100">
+              Join the Masterclass Cricket Community
             </h2>
           </div>
           <a
@@ -30,6 +33,11 @@ export function SocialProof() {
           </a>
         </div>
 
+        <p className="text-body mt-8 max-w-[62ch] text-bone-400">
+          Follow Masterclass Cricket for professional coaching insights, technical breakdowns,
+          player transformations and practical drills viewed by cricketers around the world.
+        </p>
+
         <ul className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4">
           {reels.map((reel, i) => (
             <li key={reel.caption}>
@@ -38,11 +46,15 @@ export function SocialProof() {
           ))}
         </ul>
 
-        <dl className="mt-12 grid grid-cols-2 border-t border-line sm:grid-cols-3 lg:grid-cols-5">
-          {socials.map((social) => (
-            <div key={social.platform} className="border-b border-line py-5 pr-6">
-              <dt className="text-label text-bone-400">{social.platform}</dt>
-              <dd className="mt-2 font-mono text-lg text-bone-100 tnum">{social.followers}</dd>
+        {/* SOC-02: three headline metrics, not five per-platform counts. As
+            well as being the figures the client asked for, three divides
+            cleanly at every breakpoint — the old five-column grid wrapped to
+            an awkward 2 + 2 + 1 on tablet. */}
+        <dl className="mt-12 grid grid-cols-1 border-t border-line sm:grid-cols-3">
+          {socialMetrics.map((metric) => (
+            <div key={metric.label} className="border-b border-line py-5 pr-6">
+              <dd className="font-mono text-2xl text-bone-100 tnum">{metric.value}</dd>
+              <dt className="text-label mt-2 text-bone-400">{metric.label}</dt>
             </div>
           ))}
         </dl>

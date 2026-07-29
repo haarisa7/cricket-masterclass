@@ -9,19 +9,25 @@ interface SitemapEntry {
   priority?: string;
 }
 
+/**
+ * PROG-01 / OTH-01 / GRP-01: eight programmes, down from twelve.
+ *
+ * Removed: academy-sessions, performance-clinics, mind-mapping, approved-coach.
+ * Renamed: small-group -> group-sessions, performance-camps -> cricket-camps.
+ *
+ * Every one of those six URLs was in this sitemap and is therefore indexed, so
+ * all six are 301'd in public/_redirects. Do not simply drop a slug from this
+ * list without adding the redirect.
+ */
 const PROGRAMME_SLUGS = [
   "one-to-one",
-  "small-group",
-  "performance-camps",
-  "academy-sessions",
-  "performance-clinics",
+  "group-sessions",
+  "cricket-camps",
   "schools",
   "tours",
   "corporate",
   "online-batting",
   "online-bowling",
-  "mind-mapping",
-  "approved-coach",
 ];
 
 export const Route = createFileRoute("/sitemap.xml")({
@@ -32,8 +38,9 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/about", changefreq: "monthly", priority: "0.7" },
           { path: "/founder", changefreq: "monthly", priority: "0.7" },
-          { path: "/elite-academy", changefreq: "monthly", priority: "0.8" },
           { path: "/coaches", changefreq: "monthly", priority: "0.6" },
+          { path: "/strength-conditioning", changefreq: "monthly", priority: "0.8" },
+          { path: "/international", changefreq: "monthly", priority: "0.8" },
           { path: "/contact", changefreq: "monthly", priority: "0.6" },
           { path: "/safeguarding", changefreq: "yearly", priority: "0.3" },
           ...PROGRAMME_SLUGS.map((slug) => ({

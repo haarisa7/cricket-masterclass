@@ -1,7 +1,7 @@
 import heroImage from "@/assets/hero-nets-batsman.jpg";
 import { ActionAnchor, ActionLink } from "@/components/ui/action";
 import { RevealHeading } from "@/components/ui/reveal";
-import { tickerItems, whatsappFor } from "@/data/site";
+import { serviceAreas, site, tickerItems, whatsappFor } from "@/data/site";
 
 export function Hero() {
   // min-h, not h: with a fixed height plus justify-end, any content taller than
@@ -36,27 +36,74 @@ export function Hero() {
       </div>
 
       {/* pt clears the fixed header so the first line can never tuck under it. */}
-      <div className="relative z-10 pb-24 pt-32 md:pb-32 md:pt-40">
+      <div className="relative z-10 pb-20 pt-28 md:pb-24 md:pt-32">
         <div className="shell">
-          <p className="text-label mb-6 text-bone-400">West London · Est. 2015</p>
+          {/* HERO-01. All five areas plus the est. date is six items of
+              uppercase tracked type, which wraps to three lines at 375px and
+              pushes the H1 down. Below sm it shows the three London areas that
+              matter to a local parent; the full five-county list appears from
+              sm up, and lives in full in the footer regardless (FOOT-01). */}
+          <p className="text-label mb-6 text-bone-400">
+            <span className="sm:hidden">
+              {serviceAreas.slice(0, 3).join(" · ")} · Est. {site.founded}
+            </span>
+            <span className="hidden sm:inline">
+              {serviceAreas.join(" · ")} · Est. {site.founded}
+            </span>
+          </p>
 
           <RevealHeading
             as="h1"
             className="text-display-xl text-bone-100"
             lines={[
-              "FOR EVERY SKILL,",
+              "Professional Cricket",
+              "Coaching for Players",
               <>
-                WE'VE GOT THE <span className="text-red-500">DRILL.</span>
+                of Every <span className="text-red-500">Ability</span>
               </>,
             ]}
           />
 
-          <p className="text-body-lg mt-8 text-bone-400">
-            Professional cricket coaching for players at every level — from first-ever net to
-            international honours.
-          </p>
+          {/* HERO-03. The client's paragraph is 74 words and must appear
+              verbatim, but at body-lg on a 375x812 phone it runs to roughly
+              fifteen lines. In a min-h-100svh hero with justify-end that
+              pushed BOTH calls to action and the ticker below the fold — the
+              single worst layout problem on the page.
 
-          <div className="mt-10 flex flex-wrap items-center gap-4">
+              Nothing is cut. The first two sentences carry the promise and
+              show immediately; the third is disclosed behind a native
+              <details> on small screens only. Every word is still in the DOM
+              on every breakpoint, so SEO and screen readers are unaffected,
+              and from sm up the full paragraph renders as one block exactly as
+              written.
+
+              Wider than the default 62ch measure: this is fixed copy, and at
+              62ch it ran long on desktop too. */}
+          <div className="text-body-lg mt-6 max-w-[88ch] text-bone-400">
+            <p>
+              Masterclass Cricket is a professional cricket coaching academy helping players of all
+              abilities, from complete beginners to international performers. Every player receives
+              a bespoke coaching programme built around their individual strengths, weaknesses,
+              learning style and long-term goals.
+            </p>
+
+            <details className="group mt-2 sm:hidden">
+              <summary className="text-label cursor-pointer list-none text-bone-100 underline underline-offset-4 group-open:hidden">
+                Read more
+              </summary>
+              <p className="mt-2">
+                We combine elite playing experience with biomechanics, technical coaching and
+                tactical understanding to help players improve faster.
+              </p>
+            </details>
+
+            <p className="mt-2 hidden sm:block">
+              We combine elite playing experience with biomechanics, technical coaching and tactical
+              understanding to help players improve faster.
+            </p>
+          </div>
+
+          <div className="mt-8 flex flex-wrap items-center gap-4">
             <ActionAnchor href={whatsappFor("cricket coaching")} target="_blank" rel="noreferrer">
               Book a Session
             </ActionAnchor>

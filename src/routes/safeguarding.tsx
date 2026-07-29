@@ -27,11 +27,7 @@ export const Route = createFileRoute("/safeguarding")({
 function Safeguarding() {
   return (
     <PageShell>
-      <PageHero
-        label="Policy"
-        lines={["Safeguarding", "Policy"]}
-        intro={safeguarding.intro}
-      >
+      <PageHero label="Policy" lines={["Safeguarding", "Policy"]} intro={safeguarding.intro}>
         <p className="text-label text-bone-600">Last reviewed {safeguarding.updated}</p>
       </PageHero>
 

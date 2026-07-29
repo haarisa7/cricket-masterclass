@@ -15,8 +15,11 @@ import { Route as CoachesRouteImport } from './routes/coaches'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as EliteAcademyRouteImport } from './routes/elite-academy'
 import { Route as FounderRouteImport } from './routes/founder'
+import { Route as InternationalRouteImport } from './routes/international'
 import { Route as SafeguardingRouteImport } from './routes/safeguarding'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as StrengthConditioningRouteImport } from './routes/strength-conditioning'
+import { Route as ApiIndoorInterestRouteImport } from './routes/api/indoor-interest'
 import { Route as ProgrammesSlugRouteImport } from './routes/programmes/$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -49,6 +52,11 @@ const FounderRoute = FounderRouteImport.update({
   path: '/founder',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InternationalRoute = InternationalRouteImport.update({
+  id: '/international',
+  path: '/international',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SafeguardingRoute = SafeguardingRouteImport.update({
   id: '/safeguarding',
   path: '/safeguarding',
@@ -57,6 +65,16 @@ const SafeguardingRoute = SafeguardingRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StrengthConditioningRoute = StrengthConditioningRouteImport.update({
+  id: '/strength-conditioning',
+  path: '/strength-conditioning',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiIndoorInterestRoute = ApiIndoorInterestRouteImport.update({
+  id: '/api/indoor-interest',
+  path: '/api/indoor-interest',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProgrammesSlugRoute = ProgrammesSlugRouteImport.update({
@@ -72,8 +90,11 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/elite-academy': typeof EliteAcademyRoute
   '/founder': typeof FounderRoute
+  '/international': typeof InternationalRoute
   '/safeguarding': typeof SafeguardingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/strength-conditioning': typeof StrengthConditioningRoute
+  '/api/indoor-interest': typeof ApiIndoorInterestRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
 }
 export interface FileRoutesByTo {
@@ -83,8 +104,11 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/elite-academy': typeof EliteAcademyRoute
   '/founder': typeof FounderRoute
+  '/international': typeof InternationalRoute
   '/safeguarding': typeof SafeguardingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/strength-conditioning': typeof StrengthConditioningRoute
+  '/api/indoor-interest': typeof ApiIndoorInterestRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
 }
 export interface FileRoutesById {
@@ -95,8 +119,11 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/elite-academy': typeof EliteAcademyRoute
   '/founder': typeof FounderRoute
+  '/international': typeof InternationalRoute
   '/safeguarding': typeof SafeguardingRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/strength-conditioning': typeof StrengthConditioningRoute
+  '/api/indoor-interest': typeof ApiIndoorInterestRoute
   '/programmes/$slug': typeof ProgrammesSlugRoute
 }
 export interface FileRouteTypes {
@@ -108,8 +135,11 @@ export interface FileRouteTypes {
     | '/contact'
     | '/elite-academy'
     | '/founder'
+    | '/international'
     | '/safeguarding'
     | '/sitemap.xml'
+    | '/strength-conditioning'
+    | '/api/indoor-interest'
     | '/programmes/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -119,8 +149,11 @@ export interface FileRouteTypes {
     | '/contact'
     | '/elite-academy'
     | '/founder'
+    | '/international'
     | '/safeguarding'
     | '/sitemap.xml'
+    | '/strength-conditioning'
+    | '/api/indoor-interest'
     | '/programmes/$slug'
   id:
     | '__root__'
@@ -130,8 +163,11 @@ export interface FileRouteTypes {
     | '/contact'
     | '/elite-academy'
     | '/founder'
+    | '/international'
     | '/safeguarding'
     | '/sitemap.xml'
+    | '/strength-conditioning'
+    | '/api/indoor-interest'
     | '/programmes/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -142,8 +178,11 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   EliteAcademyRoute: typeof EliteAcademyRoute
   FounderRoute: typeof FounderRoute
+  InternationalRoute: typeof InternationalRoute
   SafeguardingRoute: typeof SafeguardingRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  StrengthConditioningRoute: typeof StrengthConditioningRoute
+  ApiIndoorInterestRoute: typeof ApiIndoorInterestRoute
   ProgrammesSlugRoute: typeof ProgrammesSlugRoute
 }
 
@@ -191,6 +230,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FounderRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/international': {
+      id: '/international'
+      path: '/international'
+      fullPath: '/international'
+      preLoaderRoute: typeof InternationalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/safeguarding': {
       id: '/safeguarding'
       path: '/safeguarding'
@@ -203,6 +249,20 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/strength-conditioning': {
+      id: '/strength-conditioning'
+      path: '/strength-conditioning'
+      fullPath: '/strength-conditioning'
+      preLoaderRoute: typeof StrengthConditioningRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/indoor-interest': {
+      id: '/api/indoor-interest'
+      path: '/api/indoor-interest'
+      fullPath: '/api/indoor-interest'
+      preLoaderRoute: typeof ApiIndoorInterestRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/programmes/$slug': {
@@ -222,10 +282,23 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   EliteAcademyRoute: EliteAcademyRoute,
   FounderRoute: FounderRoute,
+  InternationalRoute: InternationalRoute,
   SafeguardingRoute: SafeguardingRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  StrengthConditioningRoute: StrengthConditioningRoute,
+  ApiIndoorInterestRoute: ApiIndoorInterestRoute,
   ProgrammesSlugRoute: ProgrammesSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
