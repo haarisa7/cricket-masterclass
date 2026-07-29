@@ -2,9 +2,18 @@ import { Link } from "@tanstack/react-router";
 
 import portrait from "@/assets/coach-uzi.jpg";
 import { Reveal, RevealHeading, RevealImage } from "@/components/ui/reveal";
-import { manifesto } from "@/data/content";
+import { philosophy } from "@/data/content";
 import { sectionNumber } from "@/data/sections";
 
+/**
+ * PHIL-01 — the coaching philosophy.
+ *
+ * The client's copy is two prose paragraphs with no pull-quote, but this
+ * section is built around a display-size statement and loses its anchor
+ * without one. The opening clause of the client's own first sentence is pulled
+ * up as the heading and the argument runs beneath it as body copy, so nothing
+ * is invented and nothing is dropped.
+ */
 export function Manifesto() {
   return (
     <section id="approach" aria-labelledby="approach-heading" className="section-y">
@@ -14,29 +23,32 @@ export function Manifesto() {
           placement flips the portrait to the left from lg up. */}
       <div className="shell grid-12 items-start gap-y-12">
         <p className="text-label col-span-12 text-bone-400">
-          <span className="text-red-400">{sectionNumber("approach")}</span> / {manifesto.label}
+          <span className="text-red-400">{sectionNumber("approach")}</span> / {philosophy.label}
         </p>
 
         <div className="col-span-12 lg:col-span-7 lg:col-start-6 lg:row-start-2">
           <RevealHeading
-            as="blockquote"
+            as="h2"
             id="approach-heading"
             className="text-display-lg text-bone-100"
             lines={[
-              "An accredited certificate",
-              "doesn't make a top-level coach.",
-              <>
-                <span className="text-red-500">Knowledge, experience</span> and insight do.
-              </>,
+              philosophy.headline[0],
+              philosophy.headline[1],
+              <span key="emphasis" className="text-red-500">
+                {philosophy.headline[2]}
+              </span>,
             ]}
           />
 
           <Reveal delay={0.1}>
-            <p className="text-label mt-8 text-bone-400">— {manifesto.attribution}</p>
+            <p className="text-label mt-8 text-bone-400">— {philosophy.attribution}</p>
           </Reveal>
 
-          <div className="mt-16 grid gap-8 md:grid-cols-2">
-            {manifesto.columns.map((column, i) => (
+          {/* Single column, not two: the second paragraph is nearly three times
+              the length of the first, so side by side one column ended level
+              with the fold and the other ran well past it. */}
+          <div className="mt-16 flex max-w-[62ch] flex-col gap-6">
+            {philosophy.columns.map((column, i) => (
               <Reveal key={column} delay={0.05 * i}>
                 <p className="text-body text-bone-400">{column}</p>
               </Reveal>
@@ -44,8 +56,8 @@ export function Manifesto() {
           </div>
 
           <Reveal delay={0.1}>
-            <Link to={manifesto.link.href} className="link-wipe mt-10 text-sm">
-              {manifesto.link.label} <span aria-hidden="true">→</span>
+            <Link to={philosophy.link.href} className="link-wipe mt-10 text-sm">
+              {philosophy.link.label} <span aria-hidden="true">→</span>
             </Link>
           </Reveal>
         </div>

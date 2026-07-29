@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 
 import { PageShell } from "@/components/sections/page-shell";
 import { ActionAnchor } from "@/components/ui/action";
@@ -8,8 +8,40 @@ import { programmes, programmesBySlug, type Programme } from "@/data/pages";
 import { coreServices } from "@/data/services";
 import { BOOKING, whatsappFor } from "@/data/site";
 
+/**
+ * PROG-01 / GRP-01 — permanent redirects for withdrawn and renamed programmes.
+ *
+ * Handled in the router, not a host redirects file. This app deploys to
+ * Cloudflare Workers via Nitro, where a static `_redirects` file is never read
+ * — it would have silently done nothing. Doing it here works on any host and,
+ * unlike a config file, is covered by the typecheck and testable locally.
+ *
+ * Every key below was a live, indexed URL before the client revision pass.
+ * Each points at the closest surviving programme so an old link still lands
+ * somewhere relevant.
+ */
+const RETIRED_SLUGS: Record<string, string> = {
+  // Renamed.
+  "small-group": "group-sessions",
+  "performance-camps": "cricket-camps",
+  // Withdrawn.
+  "academy-sessions": "group-sessions",
+  "performance-clinics": "one-to-one",
+  "mind-mapping": "one-to-one",
+  "approved-coach": "schools",
+};
+
 export const Route = createFileRoute("/programmes/$slug")({
   loader: ({ params }) => {
+    const retiredTo = RETIRED_SLUGS[params.slug];
+    if (retiredTo) {
+      throw redirect({
+        to: "/programmes/$slug",
+        params: { slug: retiredTo },
+        statusCode: 301,
+      });
+    }
+
     const programme = programmesBySlug.get(params.slug);
     if (!programme) throw notFound();
     return { programme };
@@ -18,7 +50,9 @@ export const Route = createFileRoute("/programmes/$slug")({
     const programme = loaderData?.programme;
     if (!programme) return {};
     const title = `${programme.name} — Masterclass Cricket`;
-    const description = `${programme.promise} ${programme.intro}`;
+    // First paragraph only: the full intro is now up to four paragraphs and a
+    // meta description is truncated by search engines around 155 characters.
+    const description = `${programme.promise} ${programme.intro[0]}`.slice(0, 300);
     return {
       meta: [
         { title },
@@ -61,11 +95,22 @@ function ProgrammePage() {
 
           <RevealHeading
             as="h1"
-            className="text-display-lg mt-8 max-w-[14ch] text-bone-100"
-            lines={[programme.name]}
+            className="text-display-lg mt-8 max-w-[18ch] text-bone-100"
+            lines={[programme.heading ?? programme.name]}
           />
 
-          <p className="text-body-lg mt-8 text-bone-400">{programme.intro}</p>
+          <p className="text-body-lg mt-8 max-w-[62ch] text-bone-100">{programme.promise}</p>
+
+          {/* Up to four paragraphs since 1TO1-01 / GRP-02 / CAMP-02. Capped at
+              a 62ch measure — at the section's full width the longer intros
+              ran to well over 100 characters a line on a desktop monitor. */}
+          <div className="mt-6 flex max-w-[62ch] flex-col gap-4">
+            {programme.intro.map((paragraph) => (
+              <p key={paragraph} className="text-body text-bone-400">
+                {paragraph}
+              </p>
+            ))}
+          </div>
 
           {/* The single filled CTA for this page. */}
           <div className="mt-10 flex flex-wrap items-center gap-8">
@@ -112,14 +157,34 @@ function ProgrammePage() {
               <span className="text-red-400">03</span> / Format
             </h2>
 
+            {/* 1TO1-04: a `value` may be a list, which renders as chips.
+                "1 Hour / 90 Minutes / 2 Hours / 3 Hours" as a single
+                right-aligned string wrapped to three ragged lines on a phone.
+                Chips wrap cleanly and read as four selectable options, which
+                is what they are. */}
             <dl className="mt-8 border-t border-line">
-              {programme.format.map((row: { label: string; value: string }) => (
+              {programme.format.map((row) => (
                 <div
                   key={row.label}
-                  className="grid grid-cols-[minmax(0,auto)_minmax(0,1fr)] items-baseline gap-4 border-b border-line py-5"
+                  className="grid gap-2 border-b border-line py-5 sm:grid-cols-[minmax(0,auto)_minmax(0,1fr)] sm:items-baseline sm:gap-4"
                 >
                   <dt className="text-label text-bone-400">{row.label}</dt>
-                  <dd className="text-right text-sm text-bone-100">{row.value}</dd>
+                  <dd className="text-sm text-bone-100 sm:text-right">
+                    {Array.isArray(row.value) ? (
+                      <span className="flex flex-wrap gap-2 sm:justify-end">
+                        {row.value.map((option) => (
+                          <span
+                            key={option}
+                            className="border border-line-str px-3 py-1 text-xs text-bone-100"
+                          >
+                            {option}
+                          </span>
+                        ))}
+                      </span>
+                    ) : (
+                      row.value
+                    )}
+                  </dd>
                 </div>
               ))}
             </dl>

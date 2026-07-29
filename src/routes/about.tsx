@@ -7,11 +7,11 @@ import { Reveal, RevealHeading, RevealImage } from "@/components/ui/reveal";
 import eliteImage from "@/assets/elite-academy.jpg";
 import { about } from "@/data/pages";
 import { stats } from "@/data/content";
-import { whatsappFor } from "@/data/site";
+import { site, whatsappFor } from "@/data/site";
 
-const title = "About — Ten years of coaching in Chiswick | Masterclass Cricket";
-const description =
-  "Masterclass Cricket combines advanced biomechanics with professional playing experience to develop elite cricketers in Chiswick, West London.";
+// ABT-01 / FOOT-01: the five-area wording, in the title and the description.
+const title = "About — Over 10 Years of Cricket Coaching | Masterclass Cricket";
+const description = site.positioningShort;
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -30,33 +30,49 @@ export const Route = createFileRoute("/about")({
 function About() {
   return (
     <PageShell>
-      <PageHero
-        label="About"
-        lines={["Ten years of", "coaching in Chiswick"]}
-        intro={about.intro}
-      />
+      {/* ABT-01. The client's heading is 76 characters and at display-xl runs
+          to four lines on a phone. The short form leads and the county list
+          sits beneath it as a sub-line — same words, readable at 375px. */}
+      <PageHero label="About" lines={[...about.headingLines]} intro={about.intro}>
+        <p className="text-body-lg max-w-[46ch] text-bone-400">{about.headingSub}</p>
+      </PageHero>
 
-      {/* ---- what we specialise in ---- */}
-      <section aria-labelledby="specialise-heading" className="section-y">
+      {/* ---- ABT-02: coaching philosophy ---- */}
+      <section aria-labelledby="philosophy-heading" className="section-y">
         <div className="shell">
-          <h2 id="specialise-heading" className="text-label text-bone-400">
-            <span className="text-red-400">01</span> / What We Specialise In
+          <h2 id="philosophy-heading" className="text-label text-bone-400">
+            <span className="text-red-400">01</span> / Our Coaching Philosophy
           </h2>
 
-          <div className="mt-12 border-t border-line">
-            {about.pillars.map((pillar) => (
-              <Reveal key={pillar.index}>
-                {/* Fractional columns, not `ch`: `ch` resolves against the
-                    container's 16px font, but the heading renders up to 52px,
-                    so a fixed ch width let long words spill into the copy. */}
-                <article className="grid items-start gap-6 border-b border-line py-10 md:grid-cols-[4rem_minmax(0,1fr)_minmax(0,1.15fr)] md:gap-10 md:py-14">
-                  <p className="text-label text-red-400 tnum">{pillar.index}</p>
-                  <h3 className="text-display-md text-bone-100">{pillar.name}</h3>
-                  <p className="text-body text-bone-400">{pillar.detail}</p>
-                </article>
-              </Reveal>
-            ))}
+          <div className="mt-12 grid gap-12 border-t border-line pt-12 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-16">
+            <div className="flex max-w-[62ch] flex-col gap-6">
+              {about.philosophy.map((paragraph) => (
+                <Reveal key={paragraph}>
+                  <p className="text-body text-bone-400">{paragraph}</p>
+                </Reveal>
+              ))}
+            </div>
+
+            {/* ABT-03 — highlight block, sitting alongside the philosophy from
+                lg up and beneath it on smaller screens. */}
+            <div>
+              <h3 className="text-label text-red-400">Why Families Choose Masterclass Cricket</h3>
+              <ul className="mt-6 border-t border-line">
+                {about.whyFamiliesChoose.map((item) => (
+                  <li key={item} className="text-body border-b border-line py-4 text-bone-100">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
+
+          {/* ABT-04 — credibility through player development. */}
+          <Reveal>
+            <p className="text-body-lg mt-16 max-w-[72ch] border-l-2 border-red-500 pl-6 text-bone-100">
+              {about.credibility}
+            </p>
+          </Reveal>
         </div>
       </section>
 

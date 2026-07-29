@@ -9,7 +9,7 @@ import { BOOKING, site, socials, whatsappFor } from "@/data/site";
 
 const title = "Contact — Kings House Sports Grounds, Chiswick | Masterclass Cricket";
 const description =
-  "Message Masterclass Cricket on WhatsApp, call +44 7961 692226, or find us at Kings House Sports Grounds, Riverside Dr, Chiswick, London W4 2SH.";
+  "Message Masterclass Cricket on WhatsApp, call +44 7961 692226, or find us at King's House Sports Ground, Riverside Drive, Chiswick, London W4 2SP.";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -26,6 +26,9 @@ export const Route = createFileRoute("/contact")({
 });
 
 const MAP_QUERY = encodeURIComponent(site.address);
+/** Pre-launch check 12: the address itself must link out to Google Maps, not
+ *  just sit above an embedded map. Same link is used in the footer. */
+const MAP_HREF = `https://www.google.com/maps/search/?api=1&query=${MAP_QUERY}`;
 
 function Contact() {
   return (
@@ -35,9 +38,7 @@ function Contact() {
         <FieldDecor preset="quiet" />
 
         <div className="shell relative z-10 pb-24 pt-40 md:pt-48">
-          <p className="text-label text-bone-400">
-            <span className="text-red-400">01</span> / Contact
-          </p>
+          <p className="text-label text-bone-400">Contact</p>
 
           <RevealHeading
             as="h1"
@@ -72,14 +73,22 @@ function Contact() {
       <section aria-labelledby="details-heading" className="section-y">
         <div className="shell">
           <h2 id="details-heading" className="text-label text-bone-400">
-            <span className="text-red-400">02</span> / Details
+            <span className="text-red-400">01</span> / Details
           </h2>
 
           <div className="mt-12 grid gap-12 border-t border-line pt-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-16">
             <address className="flex flex-col gap-8 not-italic">
               <div>
                 <p className="text-label text-red-400">Ground</p>
-                <p className="text-body-lg mt-3 text-bone-100">{site.address}</p>
+                <a
+                  href={MAP_HREF}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="link-wipe text-body-lg mt-3 block text-bone-100"
+                >
+                  {site.address}
+                  <span aria-hidden="true"> →</span>
+                </a>
               </div>
 
               <div>

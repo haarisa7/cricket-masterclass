@@ -34,9 +34,7 @@ function Founder() {
         <FieldDecor preset="quiet" />
 
         <div className="shell relative z-10 pb-24 pt-40 md:pt-48">
-          <p className="text-label text-bone-400">
-            <span className="text-red-400">01</span> / {founder.role}
-          </p>
+          <p className="text-label text-bone-400">{founder.role}</p>
 
           <RevealHeading
             as="h1"
@@ -69,40 +67,64 @@ function Founder() {
 
         <div className="flex flex-col justify-center gap-8 px-[var(--gutter)] py-24 lg:py-32">
           <h2 id="career-heading" className="text-label text-red-400">
-            02 / The Career
+            01 / Career Highlights
           </h2>
 
           <blockquote className="font-display text-[clamp(1.5rem,2.6vw,2.25rem)] font-bold leading-[1.15] text-bone-100">
             &ldquo;{founder.quote}&rdquo;
           </blockquote>
 
-          <dl className="border-t border-line">
-            {founder.facts.map((fact) => (
-              <div
-                key={fact.label}
-                className="grid grid-cols-1 gap-1 border-b border-line py-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-baseline sm:gap-4"
+          {/* UZI-02: eight highlights as a single-column list. The old
+              four-cell label/value grid could not carry items like "Assistant
+              Bowling and Fielding Coach in the Bangladesh Premier League" —
+              there is no label/value split in the client's list. */}
+          <ul className="border-t border-line">
+            {founder.highlights.map((item) => (
+              <li
+                key={item}
+                className="text-body flex items-baseline gap-4 border-b border-line py-4 text-bone-100"
               >
-                <dt className="text-label text-bone-400">{fact.label}</dt>
-                <dd className="text-label text-bone-100 tnum sm:text-right">{fact.value}</dd>
-              </div>
+                <span aria-hidden="true" className="shrink-0 text-red-400">
+                  —
+                </span>
+                {item}
+              </li>
             ))}
-          </dl>
+          </ul>
         </div>
       </section>
 
-      {/* ---- in his words ---- */}
+      {/* ---- UZI-01: the full biography ---- */}
       <section aria-labelledby="story-heading" className="section-y">
         <div className="shell">
+          {/* Renamed from "In His Words". The previous copy was first-person
+              ("I played over 200 county games"); the client's approved bio is
+              third-person ("Uzi Arif is a former county cricketer"), so the old
+              heading now described the wrong thing. */}
           <h2 id="story-heading" className="text-label text-bone-400">
-            <span className="text-red-400">03</span> / In His Words
+            <span className="text-red-400">02</span> / Background
           </h2>
 
-          <div className="mt-12 grid gap-10 border-t border-line pt-12 md:grid-cols-3">
-            {founder.story.map((paragraph, i) => (
-              <Reveal key={i} delay={i * 0.06}>
-                <p className="text-body-lg text-bone-400">{paragraph}</p>
-              </Reveal>
-            ))}
+          {/* Heading left, prose right — NOT a 3-column grid of paragraphs.
+              The old layout held three paragraphs; six paragraphs of varying
+              length across three columns left ragged gaps, and any multi-column
+              grid breaks continuous reading order (row-major flow means a
+              reader jumps 1,2 then 3,4 rather than following the biography
+              straight down). One measured column keeps the reading order
+              unambiguous, and pairing it with the heading fills the width
+              without stretching the line length. */}
+          <div className="mt-12 grid gap-8 border-t border-line pt-12 lg:grid-cols-[minmax(0,auto)_minmax(0,1fr)] lg:gap-16">
+            <p className="text-display-md max-w-[12ch] text-bone-100">
+              Ten years in the professional game.
+            </p>
+
+            <div className="flex max-w-[68ch] flex-col gap-6">
+              {founder.story.map((paragraph, i) => (
+                <Reveal key={paragraph} delay={i * 0.04}>
+                  <p className="text-body text-bone-400">{paragraph}</p>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -116,7 +138,7 @@ function Founder() {
 
         <div className="shell section-y relative z-10">
           <h2 id="mission-heading" className="text-label text-bone-400">
-            <span className="text-red-400">04</span> / Mission &amp; Vision
+            <span className="text-red-400">03</span> / Mission &amp; Vision
           </h2>
 
           <div className="mt-12 grid gap-px border border-line bg-line md:grid-cols-2">

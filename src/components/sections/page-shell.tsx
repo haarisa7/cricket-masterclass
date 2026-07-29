@@ -32,13 +32,11 @@ export function PageShell({ children }: { children: ReactNode }) {
  * weight.
  */
 export function PageHero({
-  index,
   label,
   lines,
   intro,
   children,
 }: {
-  index?: string;
   label: string;
   lines: ReactNode[];
   intro?: string;
@@ -49,10 +47,9 @@ export function PageHero({
       <FieldDecor preset="quiet" />
 
       <div className="shell relative z-10">
-        <p className="text-label text-bone-400">
-          {index && <span className="text-red-400">{index} / </span>}
-          {label}
-        </p>
+        {/* Label only. Numbers are reserved for body sections so a masthead can
+            never collide with the first numbered section beneath it. */}
+        <p className="text-label text-bone-400">{label}</p>
 
         <RevealHeading
           as="h1"
