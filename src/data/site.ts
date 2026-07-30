@@ -4,6 +4,14 @@ import partnerSsdev from "@/assets/partner-ssdev.png";
 export interface NavLink {
   label: string;
   href: string;
+  /** One line of context. Shown in the Programmes dropdown, not in the bar. */
+  note?: string;
+}
+
+/** A labelled cluster of links inside the Programmes dropdown. */
+export interface NavGroup {
+  label: string;
+  items: NavLink[];
 }
 
 export interface SocialAccount {
@@ -43,7 +51,7 @@ export function whatsappFor(topic: string): string {
  * with multi-line prefills, so this needs testing on all three (pre-launch
  * check 10) before launch.
  */
-export const COACH_MATCH_PREFILL = [
+const COACH_MATCH_PREFILL = [
   "Hi Masterclass Cricket, I would like some advice about the most suitable coaching programme.",
   "Player's name:",
   "Age:",
@@ -61,13 +69,7 @@ export const whatsappCoachMatch = `https://wa.me/${WHATSAPP_NUMBER}?text=${encod
  * The five service areas, in the agreed order. Single source so the hero strip
  * and the footer can never drift apart (HERO-01 / FOOT-01).
  */
-export const serviceAreas: string[] = [
-  "West London",
-  "Chiswick",
-  "Richmond",
-  "Berkshire",
-  "Buckinghamshire",
-];
+export const serviceAreas: string[] = ["Chiswick", "Richmond", "Berkshire", "Buckinghamshire"];
 
 export const site = {
   name: "Masterclass Cricket",
@@ -78,10 +80,10 @@ export const site = {
    * strip builds its own from `serviceAreas` above.
    */
   positioning:
-    "Professional Cricket Coaching Across Chiswick, Richmond, West London, Berkshire and Buckinghamshire",
+    "Professional Cricket Coaching Across Chiswick, Richmond, Berkshire and Buckinghamshire",
   /** Shorter form for meta descriptions, which cap out around 155 characters. */
   positioningShort:
-    "Professional cricket coaching across Chiswick, Richmond, West London, Berkshire and Buckinghamshire.",
+    "Professional cricket coaching across Chiswick, Richmond, Berkshire and Buckinghamshire.",
   /**
    * FOOT-03 — RESOLVED to W4 2SP on 29 July 2026.
    *
@@ -102,20 +104,89 @@ export const site = {
 /**
  * Primary navigation.
  *
- * Eight items is the ceiling this header can carry: the desktop row is centred
- * between the wordmark and the Book Now button, so anything longer collides
- * around 1100px. "S&C" and "International" are deliberately short labels for
- * that reason — the full names live on the pages themselves.
+ * WHY THIS IS NOW A DROPDOWN. A flat bar hit its ceiling at seven items: at
+ * 1024px the row fitted with exactly 24px of clearance each side, and only
+ * because "Strength & Conditioning" and "International Cricket Coaching
+ * Programme" had been cut to "S&C" and "International". Adding Consultancy
+ * (§31) as an eighth would have collided with the wordmark.
+ *
+ * Every programme now sits behind one "Programmes" entry, which takes the bar
+ * back to five top-level items with room to grow, and lets the services use
+ * their real names instead of abbreviations. The eleven programme pages were
+ * also unreachable from the header before this — only three of them had a nav
+ * entry at all, and the rest were findable only via the homepage.
  */
 export const navLinks: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "The Founder", href: "/founder" },
   { label: "Coaches", href: "/coaches" },
-  { label: "S&C", href: "/strength-conditioning" },
-  { label: "International", href: "/international" },
   { label: "Contact", href: "/contact" },
 ];
+
+/**
+ * The Programmes dropdown, grouped by who each service is for.
+ *
+ * Grouping matters more than it looks: eleven links in one flat column is a
+ * scan problem, and these split cleanly by audience — a parent wants the first
+ * group, a travelling player the second, a club or school the third. "The
+ * Founder" moved in under About-adjacent links rather than keeping a top-level
+ * slot of its own.
+ */
+export const navGroups: NavGroup[] = [
+  {
+    label: "Coaching",
+    items: [
+      {
+        label: "One-to-One Coaching",
+        href: "/programmes/one-to-one",
+        note: "Ages 4 to adult, built around one player",
+      },
+      {
+        label: "Group Sessions",
+        href: "/programmes/group-sessions",
+        note: "Ability-based groups, progressive blocks",
+      },
+      {
+        label: "Cricket Camps",
+        href: "/programmes/cricket-camps",
+        note: "School holidays at King's House",
+      },
+    ],
+  },
+  {
+    label: "Performance",
+    items: [
+      {
+        label: "Strength & Conditioning",
+        href: "/strength-conditioning",
+        note: "Sports-science screening and bespoke plans",
+      },
+      {
+        label: "International Programme",
+        href: "/international",
+        note: "For players travelling to the UK",
+      },
+      {
+        label: "Consultancy & Overseas",
+        href: "/consultancy",
+        note: "For clubs, schools and academies",
+      },
+    ],
+  },
+  {
+    label: "Online & Organisations",
+    items: [
+      { label: "Online Batting Assessments", href: "/programmes/online-batting" },
+      { label: "Online Bowling Assessments", href: "/programmes/online-bowling" },
+      { label: "School Teacher Programmes", href: "/programmes/schools" },
+      { label: "Tours for Clubs & Members", href: "/programmes/tours" },
+      { label: "Corporate & Team Building", href: "/programmes/corporate" },
+    ],
+  },
+];
+
+/** Sits beside About in the bar's overflow, and in the mobile menu. */
+export const founderLink: NavLink = { label: "The Founder", href: "/founder" };
 
 /**
  * BAN-01: the red marquee under the hero. Only ever advertise programmes that

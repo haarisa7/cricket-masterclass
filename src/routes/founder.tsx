@@ -10,7 +10,7 @@ import { whatsappFor } from "@/data/site";
 
 const title = "Uzi Arif — Founder & Head Coach | Masterclass Cricket";
 const description =
-  "Uzi Arif, 'The Rocketman' — a decade of county cricket, 92.4mph, and the coaching method behind Masterclass Cricket in Chiswick, West London.";
+  "Uzi Arif, 'The Rocketman' — a decade of county cricket, 92.4mph, and the coaching method behind Masterclass Cricket in Chiswick.";
 
 export const Route = createFileRoute("/founder")({
   head: () => ({

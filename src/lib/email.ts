@@ -66,7 +66,7 @@ export interface EmailConfig {
  */
 /** Resend's shared test sender. Works without domain verification, but only
  *  delivers to the Resend account holder's own address. */
-export const RESEND_TEST_SENDER = "Masterclass Cricket <onboarding@resend.dev>";
+const RESEND_TEST_SENDER = "Masterclass Cricket <onboarding@resend.dev>";
 
 /**
  * Reads an env var, treating blank as unset.
@@ -83,7 +83,7 @@ function env(name: string): string | undefined {
   return trimmed === "" ? undefined : trimmed;
 }
 
-export function readEmailConfig(): EmailConfig | null {
+function readEmailConfig(): EmailConfig | null {
   const apiKey = env("RESEND_API_KEY");
   if (!apiKey) return null;
 

@@ -81,7 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Masterclass Cricket" },
-      { name: "description", content: "Professional cricket coaching in Chiswick, West London." },
+      { name: "description", content: "Professional cricket coaching in Chiswick and Richmond." },
       { name: "author", content: "Masterclass Cricket" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

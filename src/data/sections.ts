@@ -24,17 +24,12 @@
  * reordering a section here renumbers the page and nothing has to be edited in
  * the components — which is exactly the drift this file exists to prevent.
  *
- * "whats-on", "journey" and "indoor" were added by BAN-02, JRN-01 and IND-01.
+ * Coaching comes FIRST now. It absorbed the old "whats-on" section, which sold
+ * the same three programmes it did, and the two "indoor" sections, which are now
+ * one line inside its Group Sessions tab. "approach" (Uzi) moved below it, so a
+ * first-time visitor meets the offer before the philosophy.
  */
-const HOMEPAGE_ORDER = [
-  "whats-on",
-  "approach",
-  "coaching",
-  "method",
-  "journey",
-  "indoor",
-  "reels",
-] as const;
+const HOMEPAGE_ORDER = ["coaching", "approach", "method", "journey", "reels"] as const;
 
 export type HomepageSection = (typeof HOMEPAGE_ORDER)[number];
 

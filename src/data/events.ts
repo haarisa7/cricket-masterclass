@@ -18,12 +18,15 @@
  *   Nothing else needs touching. Past weeks disappear on their own — see the
  *   note on `endsOn`.
  *
+ * TO CHANGE WHETHER A PROGRAMME IS BOOKABLE:
+ *   Edit `availability` below. See the note there — a programme that is not
+ *   running needs BOTH `status: "soon"` and a `ctaLabel` that registers interest,
+ *   or the page shows a Book button for a place that does not exist.
+ *
  * TO EDIT ANYTHING ELSE:
  *   - Change the text inside the quote marks. Do not remove the quote marks,
  *     the commas, or the curly brackets.
  *   - `status` accepts only: "open", "limited", "closed", "soon".
- *   - To hide a card, set `show: false` rather than deleting it.
- *   - Leave `href` empty ("") and the card renders without a button.
  */
 
 export type EventStatus = "open" | "limited" | "closed" | "soon";
@@ -40,30 +43,89 @@ export interface CampWeek {
   endsOn: string;
 }
 
-export interface LiveEvent {
-  category: string;
-  title: string;
-  detail: string;
-  when: string;
+/**
+ * CURRENT AVAILABILITY, one entry per core programme.
+ *
+ * This replaced a separate "What's On" section that listed the same three
+ * programmes the coaching section already sold — two blocks competing to be
+ * where a parent decides. Availability now lives inside each programme's tab,
+ * so "what is running" and "what it is" are read together instead of a screen
+ * apart.
+ *
+ * TO EDIT: change `status` and `when`. `status` accepts only "open",
+ * "limited", "closed" or "soon".
+ *
+ * IF A PROGRAMME IS NOT CURRENTLY BOOKABLE, set `status: "soon"` AND set
+ * `ctaLabel` to something that registers interest. A "Book" button beside a
+ * "Coming soon" badge promises a place that does not exist — that mismatch is
+ * the thing to avoid, and it is why the override exists rather than the label
+ * being fixed per programme.
+ *
+ * Used in two places, both reading from here: the homepage coaching tabs and the
+ * individual programme pages, so a parent sees the same answer whichever route
+ * they arrive by.
+ */
+export interface Availability {
   status: EventStatus;
-  show: boolean;
+  /** Free text — dates, a season, or "enquire for current blocks". */
+  when: string;
+  /** Overrides the programme's normal CTA label. */
   ctaLabel?: string;
-  /**
-   * Where the button goes. Set exactly ONE of these three:
-   *   href          — an external link (a checkout, Instagram, anything off-site)
-   *   whatsappTopic — opens WhatsApp with "I'd like to enquire about <topic>."
-   *                   already typed. Easiest option, and the one to use unless
-   *                   there is a real booking page.
-   *   hash          — scrolls to a section on this page, e.g. "indoor-programme"
-   * Set none of them and the card renders without a button.
-   */
-  href?: string;
+  /** Overrides the WhatsApp topic, so the enquiry arrives with useful context. */
   whatsappTopic?: string;
-  hash?: string;
 }
 
-export const eventsIntro =
-  "Everything currently running at Masterclass Cricket, in one place. Dates and availability are updated as places are taken.";
+export const availability: Record<
+  "one-to-one" | "group-sessions" | "cricket-camps" | "strength-conditioning",
+  Availability
+> = {
+  "one-to-one": {
+    status: "open",
+    when: "Indoor October–April · Outdoor April–October",
+  },
+  "group-sessions": {
+    // NOTHING IS RUNNING RIGHT NOW. Group coaching next runs indoors from
+    // October, and those dates are not confirmed — so this registers interest
+    // rather than offering a booking.
+    status: "soon",
+    when: "No blocks running — next sessions indoors from October",
+    ctaLabel: "Register Your Interest",
+    whatsappTopic: "registering interest in Masterclass Group Sessions",
+  },
+  "cricket-camps": {
+    status: "open",
+    when: "School holidays, Monday to Thursday",
+  },
+  // Promoted to a core programme on 30 July (client decision) — it is now the
+  // fourth coaching tab rather than a separate page reached only from the nav.
+  "strength-conditioning": {
+    status: "open",
+    when: "Year-round · Assessment first, then a bespoke plan",
+    ctaLabel: "Book an S&C Assessment",
+    whatsappTopic: "a strength and conditioning assessment",
+  },
+};
+
+/**
+ * The winter indoor programme — the detail behind Group Sessions' "from October".
+ *
+ * It previously had TWO full homepage sections plus a card plus a ticker item,
+ * for a programme with no confirmed dates or prices. It is the same
+ * ability-based group coaching, moved indoors for the winter at a second venue,
+ * so it now reads as the explanation of when group coaching returns rather than
+ * a separate offer.
+ *
+ * NO CTA OF ITS OWN. It used to carry its own "Register Your Interest" button,
+ * which sat directly above the Group Sessions button doing the identical thing —
+ * two buttons, one action. The tab's single CTA covers both.
+ *
+ * IND-03 still holds: no dates, no prices, and nothing that reads as a booking.
+ */
+export const indoorNote = {
+  heading: "What's coming",
+  detail:
+    "Group coaching moves indoors to St Paul's School from October to April — ages 6–14, Saturday and Sunday sessions in ten-week blocks. Dates and prices are still being confirmed.",
+} as const;
 
 /**
  * The 2026 Summer Cricket Camp, taken from the client's poster.
@@ -83,12 +145,16 @@ export const summerCamp = {
   venue: "King's House Sports Ground, Chiswick",
 
   /**
-   * POSTER ARTWORK — FILE NOT YET IN THE REPO.
+   * Poster artwork, in the repo and serving. 1290x1819, 444KB.
    *
-   * The poster was supplied as an image in conversation, which cannot be written
-   * to disk from here. Save it as public/posters/summer-camp-2026.jpg and this
-   * starts rendering. Until the file exists the block shows the camp details as
-   * text and simply omits the image, so nothing breaks in the meantime.
+   * Shown on the homepage Cricket Camps tab and on /programmes/cricket-camps,
+   * both via the shared CampDetail component. Clicking it opens the full-size
+   * file, which matters because a poster is dense text and is not legible scaled
+   * into a column.
+   *
+   * If the file is ever missing, the image removes itself rather than leaving a
+   * broken-image icon, and the text details carry the section. Export the next
+   * one as WebP if you can — it would be roughly a third of the file size.
    */
   posterSrc: "/posters/summer-camp-2026.jpg",
   posterAlt:
@@ -143,63 +209,21 @@ export const summerCamp = {
   ] satisfies CampWeek[],
 } as const;
 
-export const liveEvents: LiveEvent[] = [
-  {
-    category: "Group Coaching",
-    title: "Masterclass Group Sessions",
-    detail: "Ability-based groups following a progressive coaching curriculum.",
-    when: "Places available — enquire for current blocks",
-    status: "limited",
-    whatsappTopic: "a place in a Masterclass Group Session",
-    ctaLabel: "Book a Place",
-    show: true,
-  },
-  {
-    category: "One-to-One",
-    title: "One-to-One Coaching Availability",
-    detail: "1 Hour, 90 Minutes, 2 Hour and 3 Hour sessions, ages 4 to adult.",
-    when: "Indoor October–April · Outdoor April–October",
-    status: "open",
-    whatsappTopic: "booking a one-to-one coaching session",
-    ctaLabel: "Book a Session",
-    show: true,
-  },
-  {
-    category: "Upcoming Events",
-    title: "Indoor Programme at St Paul's School",
-    detail: "Ages 6–14, Saturday and Sunday sessions across ten-week coaching blocks.",
-    when: "Dates, times and prices to be confirmed",
-    // IND-03: "soon", never "open" — this must not read as a confirmed booking
-    // until the client finalises dates, times and prices.
-    status: "soon",
-    /*
-     * DELIBERATELY NOT A BOOKING CTA, and it must stay that way.
-     *
-     * Every other card here books. This one registers interest, because IND-03
-     * is an explicit client constraint: the indoor programme must not be
-     * presented as a confirmed booking until dates, times and prices are
-     * finalised. "Book" wording plus a "Coming soon" badge would take a
-     * deposit-shaped promise on a programme that has no dates — exactly what
-     * that row exists to prevent.
-     *
-     * Change the label to "Book" ONLY once the client confirms the schedule and
-     * pricing, and flip `status` to "open" at the same time.
-     */
-    hash: "indoor-programme",
-    ctaLabel: "Register Your Interest",
-    show: true,
-  },
-  /*
-   * The "Latest Coaching Posters" card has been REMOVED, deliberately.
-   *
-   * BAN-02 lists "Coaching Posters" as one of the five categories this block
-   * should cover, and it is still covered — better than before. That card was
-   * only ever a link out to Instagram; the current poster is now displayed in
-   * full inside the camp block above, which is what a parent actually wanted
-   * from it. Sending them off-site to hunt for the same image was the weaker
-   * version.
-   *
-   * If a poster ever needs showing that is NOT the current camp, add it back
-   * here rather than stacking images into the camp block.
-   */
-];
+/*
+ * `liveEvents` HAS BEEN REMOVED — with the LiveEvent interface above it.
+ *
+ * It drove a separate "What's On" section listing Group Sessions, One-to-One and
+ * the indoor programme. The first two were the same products the coaching
+ * section sold immediately below it, and the indoor programme had two further
+ * sections of its own. Counted on the rendered page, that left "indoor"
+ * appearing 12 times, "Register Your Interest" 6 times and eleven WhatsApp
+ * buttons — when everything is a call to action, nothing is.
+ *
+ * Availability now lives in `availability` above, inside each programme's tab,
+ * and the indoor programme is one line in the Group Sessions tab
+ * (`indoorNote`). The camp keeps its full block because it is the only thing
+ * with real dates, prices and a checkout.
+ *
+ * The old cards' CTAs are preserved: each tab opens WhatsApp with the same
+ * pre-typed enquiry.
+ */

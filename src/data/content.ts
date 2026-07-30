@@ -118,27 +118,6 @@ export const methodSteps: MethodStep[] = [
 
 export const methodHeading = "Four Steps. One Clear Development Process.";
 
-/**
- * ELIT-02 — replaces the Elite Academy block that ELIT-01 removed.
- *
- * Reuses that section's 50/50 image-and-list layout unchanged, so this is a
- * content swap rather than a rebuild. The CTA points at the same interest form
- * as the indoor section (IND-02) — one form, two entry points.
- */
-export const indoorPromo = {
-  eyebrow: "Autumn & Winter 2026",
-  title: "Join the Masterclass Indoor Group Programme",
-  copy: "Structured indoor coaching at St Paul's School through the winter months, built around ability-based groups and a progressive ten-week curriculum.",
-  points: [
-    { label: "Ages", detail: "6 to 14" },
-    { label: "When", detail: "Saturday and Sunday sessions" },
-    { label: "Structure", detail: "Ten-week coaching blocks" },
-    { label: "Covering", detail: "Batting, bowling, fielding, match awareness" },
-    { label: "Groups", detail: "Ability-based, not age-based" },
-  ],
-  cta: { label: "Register Your Interest", href: "/#indoor-programme" },
-} as const;
-
 const INSTAGRAM = "https://www.instagram.com/masterclasscricket?igsh=MWJ4eDJqaHhkN2x3NQ%3D%3D";
 
 export const reels: Reel[] = [

@@ -1,12 +1,15 @@
 import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 
+import { CampDetail } from "@/components/sections/camp-detail";
 import { PageShell } from "@/components/sections/page-shell";
 import { ActionAnchor } from "@/components/ui/action";
 import { FieldDecor } from "@/components/ui/field-decor";
 import { Reveal, RevealHeading, RevealImage } from "@/components/ui/reveal";
+import { availability, type Availability, type EventStatus } from "@/data/events";
 import { programmes, programmesBySlug, type Programme } from "@/data/pages";
 import { coreServices } from "@/data/services";
 import { BOOKING, whatsappFor } from "@/data/site";
+import { cn } from "@/lib/utils";
 
 /**
  * PROG-01 / GRP-01 — permanent redirects for withdrawn and renamed programmes.
@@ -67,9 +70,42 @@ export const Route = createFileRoute("/programmes/$slug")({
   component: ProgrammePage,
 });
 
-/** Camps have a real checkout; every other programme opens WhatsApp. */
+const STATUS_LABEL: Record<EventStatus, string> = {
+  open: "Booking now",
+  limited: "Limited places",
+  closed: "Closed",
+  soon: "Coming soon",
+};
+
+const STATUS_CLASS: Record<EventStatus, string> = {
+  open: "border-red-500 text-red-400",
+  limited: "border-gold-400 text-gold-400",
+  closed: "border-line text-bone-600",
+  soon: "border-line-str text-bone-400",
+};
+
+/**
+ * Current availability for the three core programmes.
+ *
+ * Read from the same `availability` map the homepage tabs use, so a parent gets
+ * the same answer whichever route they arrive by — a page saying "Book a Place"
+ * while the homepage says "Coming soon" is the kind of contradiction that costs
+ * trust. Returns undefined for the five secondary programmes, which have no
+ * scheduled blocks to report.
+ */
+function availabilityFor(slug: string): Availability | undefined {
+  return (availability as Record<string, Availability | undefined>)[slug];
+}
+
+/**
+ * Camps have a real checkout; every other programme opens WhatsApp.
+ *
+ * The WhatsApp topic comes from `availability` where it sets one, so an enquiry
+ * about a programme that is not currently running arrives saying so.
+ */
 function bookingHref(programme: Programme): string {
-  return programme.booking === "camps" ? BOOKING.camps : whatsappFor(programme.name);
+  if (programme.booking === "camps") return BOOKING.camps;
+  return whatsappFor(availabilityFor(programme.slug)?.whatsappTopic ?? programme.name);
 }
 
 /** Reuse the homepage photography where a programme has a matching card. */
@@ -81,6 +117,7 @@ function ProgrammePage() {
   const { programme } = Route.useLoaderData();
   const hero = imageFor(programme.slug);
   const others = programmes.filter((p) => p.slug !== programme.slug).slice(0, 4);
+  const avail = availabilityFor(programme.slug);
 
   return (
     <PageShell>
@@ -89,9 +126,23 @@ function ProgrammePage() {
         <FieldDecor preset="quiet" />
 
         <div className="shell relative z-10 pb-24 pt-40 md:pt-48">
-          <p className="text-label text-bone-400">
-            <span className="text-red-400">{programme.tier}</span> / Programme
-          </p>
+          <div className="flex flex-wrap items-center gap-3">
+            <p className="text-label text-bone-400">
+              <span className="text-red-400">{programme.tier}</span> / Programme
+            </p>
+
+            {/* Current status, on the page as well as the homepage tab. A parent
+                arriving here from search never sees the homepage, so without
+                this they would read a full sales page for a programme that has
+                no sessions running. */}
+            {avail && (
+              <span
+                className={cn("text-label shrink-0 border px-2 py-1", STATUS_CLASS[avail.status])}
+              >
+                {STATUS_LABEL[avail.status]}
+              </span>
+            )}
+          </div>
 
           <RevealHeading
             as="h1"
@@ -112,10 +163,20 @@ function ProgrammePage() {
             ))}
           </div>
 
-          {/* The single filled CTA for this page. */}
+          {/* When it is actually on. Same source as the homepage tab. */}
+          {avail && (
+            <p className="text-label mt-8 max-w-[62ch] border-y border-line py-3 text-bone-100">
+              {avail.when}
+            </p>
+          )}
+
+          {/* The single filled CTA for this page. Its label comes from
+              `availability` where that overrides it, so a programme with no
+              sessions running says "Register Your Interest" rather than
+              "Join a Group on WhatsApp". */}
           <div className="mt-10 flex flex-wrap items-center gap-8">
             <ActionAnchor href={bookingHref(programme)} target="_blank" rel="noreferrer">
-              {programme.ctaLabel}
+              {avail?.ctaLabel ?? programme.ctaLabel}
             </ActionAnchor>
             <Link to="/contact" className="link-wipe text-sm">
               Ask a question first <span aria-hidden="true">→</span>
@@ -192,6 +253,23 @@ function ProgrammePage() {
         </div>
       </section>
 
+      {/* ---- camps only: dates, prices and the poster ----
+           Same component the homepage tab renders, so a parent arriving here
+           from search gets the identical dates and prices. Duplicating the
+           markup would guarantee the two drift the first time a price changes. */}
+      {programme.slug === "cricket-camps" && (
+        <section aria-labelledby="camp-detail-heading" className="section-y border-t border-line">
+          <div className="shell">
+            <h2 id="camp-detail-heading" className="text-label text-bone-400">
+              <span className="text-red-400">04</span> / Dates &amp; Prices
+            </h2>
+            <div className="mt-12 border-t border-line pt-12">
+              <CampDetail />
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ---- photography, when the programme has a homepage card ---- */}
       {hero && (
         <RevealImage
@@ -207,7 +285,8 @@ function ProgrammePage() {
       <section aria-labelledby="more-heading" className="section-y">
         <div className="shell">
           <h2 id="more-heading" className="text-label text-bone-400">
-            <span className="text-red-400">04</span> / Other Programmes
+            <span className="text-red-400">{programme.slug === "cricket-camps" ? "05" : "04"}</span>{" "}
+            / Other Programmes
           </h2>
 
           <ul className="mt-12 border-t border-line">

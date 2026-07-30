@@ -5,7 +5,23 @@ import { sendEnquiryEmail } from "@/lib/email";
 /**
  * IND-02 — handler for the indoor programme interest form.
  *
- * The form posts JSON here; this validates it and emails the club inbox.
+ * ────────────────────────────────────────────────────────────────────────────
+ * CURRENTLY HAS NO CALLER. KEPT ON PURPOSE — DO NOT DELETE AS DEAD CODE.
+ * ────────────────────────────────────────────────────────────────────────────
+ *
+ * The homepage restructure removed the indoor interest form: the indoor
+ * programme is now one line inside the Group Sessions tab with a WhatsApp CTA,
+ * because it was occupying two full sections plus a card for something with no
+ * confirmed dates or prices. WhatsApp still satisfies IND-03 — it registers
+ * interest rather than taking a booking.
+ *
+ * This route, and src/lib/email.ts with it, is retained because FOOT-03 still
+ * requires a general coaching enquiry form that the site does not yet have, and
+ * this is the tested handler it should use. Point a new form at it rather than
+ * writing a second one. The old form markup is recoverable with:
+ *   git show 06d7803:src/components/sections/indoor-programme.tsx
+ *
+ * A form posts JSON here; this validates it and emails the club inbox.
  *
  * Done as a first-party server route rather than a managed form service so it
  * is host-agnostic, covered by the typecheck, and testable locally. This app
