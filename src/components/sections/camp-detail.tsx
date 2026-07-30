@@ -124,7 +124,7 @@ export function CampDetail() {
               ranges, an address — and is not legible scaled into a column. */}
           <img
             src={summerCamp.posterSrc}
-            alt={summerCamp.posterAlt}
+            alt=""
             width={1290}
             height={1819}
             loading="lazy"

@@ -1,15 +1,13 @@
 import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 
-import { CampDetail } from "@/components/sections/camp-detail";
+import { ProgrammeEvents } from "@/components/sections/live-programmes";
+import { LiveCampDetails } from "@/components/sections/live-camp-details";
 import { PageShell } from "@/components/sections/page-shell";
 import { ActionAnchor } from "@/components/ui/action";
 import { FieldDecor } from "@/components/ui/field-decor";
 import { Reveal, RevealHeading, RevealImage } from "@/components/ui/reveal";
-import { availability, type Availability, type EventStatus } from "@/data/events";
-import { programmes, programmesBySlug, type Programme } from "@/data/pages";
+import { programmes, programmesBySlug } from "@/data/pages";
 import { coreServices } from "@/data/services";
-import { BOOKING, whatsappFor } from "@/data/site";
-import { cn } from "@/lib/utils";
 
 /**
  * PROG-01 / GRP-01 — permanent redirects for withdrawn and renamed programmes.
@@ -70,20 +68,6 @@ export const Route = createFileRoute("/programmes/$slug")({
   component: ProgrammePage,
 });
 
-const STATUS_LABEL: Record<EventStatus, string> = {
-  open: "Booking now",
-  limited: "Limited places",
-  closed: "Closed",
-  soon: "Coming soon",
-};
-
-const STATUS_CLASS: Record<EventStatus, string> = {
-  open: "border-red-500 text-red-400",
-  limited: "border-gold-400 text-gold-400",
-  closed: "border-line text-bone-600",
-  soon: "border-line-str text-bone-400",
-};
-
 /**
  * Current availability for the three core programmes.
  *
@@ -93,21 +77,12 @@ const STATUS_CLASS: Record<EventStatus, string> = {
  * trust. Returns undefined for the five secondary programmes, which have no
  * scheduled blocks to report.
  */
-function availabilityFor(slug: string): Availability | undefined {
-  return (availability as Record<string, Availability | undefined>)[slug];
-}
-
 /**
  * Camps have a real checkout; every other programme opens WhatsApp.
  *
  * The WhatsApp topic comes from `availability` where it sets one, so an enquiry
  * about a programme that is not currently running arrives saying so.
  */
-function bookingHref(programme: Programme): string {
-  if (programme.booking === "camps") return BOOKING.camps;
-  return whatsappFor(availabilityFor(programme.slug)?.whatsappTopic ?? programme.name);
-}
-
 /** Reuse the homepage photography where a programme has a matching card. */
 function imageFor(slug: string) {
   return coreServices.find((service) => service.detailsHref === `/programmes/${slug}`);
@@ -117,7 +92,14 @@ function ProgrammePage() {
   const { programme } = Route.useLoaderData();
   const hero = imageFor(programme.slug);
   const others = programmes.filter((p) => p.slug !== programme.slug).slice(0, 4);
-  const avail = availabilityFor(programme.slug);
+  const liveType =
+    programme.slug === "cricket-camps"
+      ? "camp"
+      : programme.slug === "group-sessions"
+        ? "group"
+        : programme.slug === "one-to-one"
+          ? "one_to_one"
+          : null;
 
   return (
     <PageShell>
@@ -135,13 +117,6 @@ function ProgrammePage() {
                 arriving here from search never sees the homepage, so without
                 this they would read a full sales page for a programme that has
                 no sessions running. */}
-            {avail && (
-              <span
-                className={cn("text-label shrink-0 border px-2 py-1", STATUS_CLASS[avail.status])}
-              >
-                {STATUS_LABEL[avail.status]}
-              </span>
-            )}
           </div>
 
           <RevealHeading
@@ -164,10 +139,8 @@ function ProgrammePage() {
           </div>
 
           {/* When it is actually on. Same source as the homepage tab. */}
-          {avail && (
-            <p className="text-label mt-8 max-w-[62ch] border-y border-line py-3 text-bone-100">
-              {avail.when}
-            </p>
+          {liveType === null && (
+            <p className="text-label mt-8 text-bone-400">Contact us to discuss your coaching.</p>
           )}
 
           {/* The single filled CTA for this page. Its label comes from
@@ -175,9 +148,7 @@ function ProgrammePage() {
               sessions running says "Register Your Interest" rather than
               "Join a Group on WhatsApp". */}
           <div className="mt-10 flex flex-wrap items-center gap-8">
-            <ActionAnchor href={bookingHref(programme)} target="_blank" rel="noreferrer">
-              {avail?.ctaLabel ?? programme.ctaLabel}
-            </ActionAnchor>
+            {liveType === null && <ActionAnchor href="/contact">Contact us</ActionAnchor>}
             <Link to="/contact" className="link-wipe text-sm">
               Ask a question first <span aria-hidden="true">→</span>
             </Link>
@@ -257,14 +228,17 @@ function ProgrammePage() {
            Same component the homepage tab renders, so a parent arriving here
            from search gets the identical dates and prices. Duplicating the
            markup would guarantee the two drift the first time a price changes. */}
-      {programme.slug === "cricket-camps" && (
-        <section aria-labelledby="camp-detail-heading" className="section-y border-t border-line">
+      {liveType && (
+        <section
+          aria-labelledby="current-events-heading"
+          className="section-y border-t border-line"
+        >
           <div className="shell">
-            <h2 id="camp-detail-heading" className="text-label text-bone-400">
-              <span className="text-red-400">04</span> / Dates &amp; Prices
+            <h2 id="current-events-heading" className="text-label text-bone-400">
+              <span className="text-red-400">04</span> / Current Events
             </h2>
             <div className="mt-12 border-t border-line pt-12">
-              <CampDetail />
+              {liveType === "camp" ? <LiveCampDetails /> : <ProgrammeEvents type={liveType} />}
             </div>
           </div>
         </section>
