@@ -5,13 +5,15 @@ import campsImage from "@/assets/service-camps.jpg";
 import groupImage from "@/assets/service-group.jpg";
 import scImage from "@/assets/elite-academy.jpg";
 import oneToOneImage from "@/assets/service-one-to-one.jpg";
-import { CampDetail } from "@/components/sections/camp-detail";
+import { HomepageProgrammeUpdates } from "@/components/sections/live-programmes";
+import { LiveCampDetails } from "@/components/sections/live-camp-details";
 import { ActionAnchor } from "@/components/ui/action";
 import { Reveal, RevealHeading, RevealImage } from "@/components/ui/reveal";
-import { availability, indoorNote, type EventStatus } from "@/data/events";
+import { availability, type EventStatus } from "@/data/events";
+import type { ProgrammeType } from "@/data/live-programmes";
 import { sectionNumber } from "@/data/sections";
 import { strength } from "@/data/strength";
-import { BOOKING, whatsappFor } from "@/data/site";
+import { whatsappFor } from "@/data/site";
 import { cn } from "@/lib/utils";
 
 const STATUS_LABEL: Record<EventStatus, string> = {
@@ -32,6 +34,7 @@ type Slug = keyof typeof availability;
 
 interface Tab {
   slug: Slug;
+  eventType?: ProgrammeType;
   /** Full name, shown from sm up. */
   label: string;
   /** Short name, so four tabs fit a 375px screen. */
@@ -73,6 +76,7 @@ const TABS: Tab[] = [
     image: oneToOneImage,
     imageAlt: "Young cricketer crouched with a bat inside a floodlit indoor net",
     detailsHref: "/programmes/one-to-one",
+    eventType: "one_to_one",
     defaultCta: "Book a Session",
   },
   {
@@ -91,6 +95,7 @@ const TABS: Tab[] = [
     image: groupImage,
     imageAlt: "Three teenage cricketers waiting to bat in a dark indoor net",
     detailsHref: "/programmes/group-sessions",
+    eventType: "group",
     defaultCta: "Join a Group",
   },
   {
@@ -109,6 +114,7 @@ const TABS: Tab[] = [
     image: campsImage,
     imageAlt: "Cricket ground under a single floodlight with players training at dusk",
     detailsHref: "/programmes/cricket-camps",
+    eventType: "camp",
     defaultCta: "Reserve a Place",
   },
   {
@@ -212,8 +218,7 @@ export function Coaching() {
           </Tabs.List>
 
           {TABS.map((tab) => {
-            const avail = availability[tab.slug];
-            const isCamps = tab.slug === "cricket-camps";
+            const avail = tab.eventType ? undefined : availability[tab.slug];
 
             return (
               <Tabs.Content
@@ -236,16 +241,18 @@ export function Coaching() {
                   <div>
                     <div className="flex flex-wrap items-center gap-3">
                       <p className="text-label text-red-400">{tab.tier}</p>
-                      <StatusBadge status={avail.status} />
+                      {avail && <StatusBadge status={avail.status} />}
                     </div>
 
                     <h3 className="text-display-md mt-5 text-bone-100">{tab.name}</h3>
                     <p className="text-body-lg mt-4 text-bone-400">{tab.promise}</p>
 
                     {/* Availability sits with the offer — the point of the merge. */}
-                    <p className="text-label mt-6 border-y border-line py-3 text-bone-100">
-                      {avail.when}
-                    </p>
+                    {avail && (
+                      <p className="text-label mt-6 border-y border-line py-3 text-bone-100">
+                        {avail.when}
+                      </p>
+                    )}
 
                     <ul className="mt-6">
                       {tab.bullets.map((bullet) => (
@@ -264,12 +271,9 @@ export function Coaching() {
                     {/* The winter indoor programme: the detail behind Group
                         Sessions' "from October", not a separate offer with its
                         own button. */}
-                    {tab.slug === "group-sessions" && (
-                      <div className="mt-8 border-l-2 border-red-500 pl-5">
-                        <p className="text-label text-red-400">{indoorNote.heading}</p>
-                        <p className="text-body mt-2 text-bone-400">{indoorNote.detail}</p>
-                      </div>
-                    )}
+                    {tab.eventType === "one_to_one" ? (
+                      <HomepageProgrammeUpdates type={tab.eventType} />
+                    ) : null}
 
                     <Reveal delay={0.05}>
                       <div className="mt-8 flex flex-wrap items-center gap-6">
@@ -277,15 +281,15 @@ export function Coaching() {
                             programme that is not currently bookable says
                             "Register Your Interest" rather than promising a
                             place that does not exist. */}
-                        <ActionAnchor
-                          href={
-                            isCamps ? BOOKING.camps : whatsappFor(avail.whatsappTopic ?? tab.name)
-                          }
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          {avail.ctaLabel ?? tab.defaultCta}
-                        </ActionAnchor>
+                        {(avail || tab.slug === "one-to-one") && (
+                          <ActionAnchor
+                            href={whatsappFor(avail?.whatsappTopic ?? tab.name)}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {avail?.ctaLabel ?? tab.defaultCta}
+                          </ActionAnchor>
+                        )}
                         <Link to={tab.detailsHref} className="link-wipe text-sm">
                           Full details <span aria-hidden="true">→</span>
                         </Link>
@@ -293,10 +297,14 @@ export function Coaching() {
                     </Reveal>
                   </div>
                 </div>
-
-                {isCamps && (
+                {tab.eventType === "camp" && (
                   <div className="mt-10 border-t border-line pt-10">
-                    <CampDetail />
+                    <LiveCampDetails />
+                  </div>
+                )}
+                {tab.eventType === "group" && (
+                  <div className="mt-10 border-t border-line pt-10">
+                    <HomepageProgrammeUpdates type="group" />
                   </div>
                 )}
               </Tabs.Content>

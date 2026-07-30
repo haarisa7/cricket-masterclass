@@ -157,7 +157,7 @@ export const summerCamp = {
    * one as WebP if you can — it would be roughly a third of the file size.
    */
   posterSrc: "/posters/summer-camp-2026.jpg",
-  posterAlt:
+  posterCopy:
     "Masterclass Cricket Academy Summer Cricket Camp 2026 poster — near Dukes Meadows, Chiswick, ages 6 to 13, 10am to 4pm",
 
   pricing: [
