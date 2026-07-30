@@ -264,7 +264,7 @@ export const about = {
  * removed, along with the only mention of Fahim Qureshi anywhere on the site.
  * The URL was indexed, so it is 301'd in public/_redirects rather than left to
  * 404. The slot it occupied on the homepage is now the indoor programme
- * promotion (ELIT-02, see indoorPromo in content.ts).
+ * promotion (ELIT-02), which is now a line inside the Group Sessions tab.
  */
 
 export interface Programme {

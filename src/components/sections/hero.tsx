@@ -38,19 +38,18 @@ export function Hero() {
       {/* pt clears the fixed header so the first line can never tuck under it. */}
       <div className="relative z-10 pb-20 pt-28 md:pb-24 md:pt-32">
         <div className="shell">
-          {/* HERO-01. All five areas plus the est. date is six items of
-              uppercase tracked type, which wraps to three lines at 375px and
-              pushes the H1 down. Below sm it shows the three London areas that
-              matter to a local parent; the full five-county list appears from
-              sm up, and lives in full in the footer regardless (FOOT-01). */}
-          <p className="text-label mb-6 text-bone-400">
-            <span className="sm:hidden">
-              {serviceAreas.slice(0, 3).join(" · ")} · Est. {site.founded}
-            </span>
-            <span className="hidden sm:inline">
-              {serviceAreas.join(" · ")} · Est. {site.founded}
-            </span>
-          </p>
+          <ul className="text-label mb-4 flex flex-wrap items-center gap-x-2 gap-y-1 tracking-[0.12em] text-bone-400 sm:mb-6 sm:gap-x-3 sm:tracking-[0.18em]">
+            {[...serviceAreas, `Est. ${site.founded}`].map((area, i) => (
+              <li key={area} className="flex items-center gap-x-2 sm:gap-x-3">
+                {i > 0 && (
+                  <span aria-hidden="true" className="text-bone-600">
+                    ·
+                  </span>
+                )}
+                {area}
+              </li>
+            ))}
+          </ul>
 
           <RevealHeading
             as="h1"

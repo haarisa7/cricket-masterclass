@@ -6,13 +6,19 @@ import { Logo } from "@/components/ui/wordmark";
 import { coreServices, secondaryServices } from "@/data/services";
 import { BOOKING, site, socials } from "@/data/site";
 
-/** FOOT-04: Programmes column — the three core programmes plus the two online
- *  assessments the brief calls out by name. Derived from the same arrays the
- *  rest of the site uses so it cannot drift out of step with PROG-01. */
+/**
+ * FOOT-04: Programmes column — the four core programmes (PROG-01) plus the
+ * International Cricket Coaching Programme, the one secondary service the
+ * brief calls out by name for the footer. Derived from the same arrays the
+ * rest of the site uses so it cannot drift out of step with PROG-01.
+ *
+ * Deliberately excludes Online Assessments, Consultancy and every other
+ * secondary service — those live in the Programmes dropdown, not here.
+ */
 const programmeLinks = [
   ...coreServices.map((s) => ({ name: s.name, href: s.detailsHref })),
   ...secondaryServices
-    .filter((s) => s.name.startsWith("Online"))
+    .filter((s) => s.name === "International Cricket Coaching Programme")
     .map((s) => ({ name: s.name, href: s.href })),
 ];
 
@@ -73,20 +79,6 @@ export function Footer() {
               {site.email}
             </a>
           </address>
-
-          <a
-            href={BOOKING.whatsapp}
-            target="_blank"
-            rel="noreferrer"
-            className="link-wipe inline-flex items-center gap-2 text-sm"
-          >
-            <WhatsAppIcon className="size-4 shrink-0" />
-            WhatsApp
-          </a>
-          <Link to="/contact" className="link-wipe text-sm">
-            Enquiry form
-          </Link>
-          <p className="text-label mt-1 text-bone-600">{site.hours}</p>
         </div>
 
         <div className="flex flex-col gap-3">

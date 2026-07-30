@@ -11,7 +11,7 @@ const title = "Meet the Coaches — Masterclass Cricket";
 // TEAM-05: Patrick Littlemore removed from the description as well as the
 // page. He was in the search snippet, so this only takes effect on redeploy.
 const description =
-  "The coaching team at Masterclass Cricket: Uzi Arif, Anirudh Reddy and Oliver Sheen. Coaching across Chiswick, Richmond, West London, Berkshire and Buckinghamshire.";
+  "The coaching team at Masterclass Cricket: Uzi Arif, Anirudh Reddy and Oliver Sheen. Coaching across Chiswick, Richmond, Berkshire and Buckinghamshire.";
 
 export const Route = createFileRoute("/coaches")({
   head: () => ({

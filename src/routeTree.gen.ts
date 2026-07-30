@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as CoachesRouteImport } from './routes/coaches'
+import { Route as ConsultancyRouteImport } from './routes/consultancy'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as EliteAcademyRouteImport } from './routes/elite-academy'
 import { Route as FounderRouteImport } from './routes/founder'
@@ -35,6 +36,11 @@ const AboutRoute = AboutRouteImport.update({
 const CoachesRoute = CoachesRouteImport.update({
   id: '/coaches',
   path: '/coaches',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConsultancyRoute = ConsultancyRouteImport.update({
+  id: '/consultancy',
+  path: '/consultancy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/coaches': typeof CoachesRoute
+  '/consultancy': typeof ConsultancyRoute
   '/contact': typeof ContactRoute
   '/elite-academy': typeof EliteAcademyRoute
   '/founder': typeof FounderRoute
@@ -101,6 +108,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/coaches': typeof CoachesRoute
+  '/consultancy': typeof ConsultancyRoute
   '/contact': typeof ContactRoute
   '/elite-academy': typeof EliteAcademyRoute
   '/founder': typeof FounderRoute
@@ -116,6 +124,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/coaches': typeof CoachesRoute
+  '/consultancy': typeof ConsultancyRoute
   '/contact': typeof ContactRoute
   '/elite-academy': typeof EliteAcademyRoute
   '/founder': typeof FounderRoute
@@ -132,6 +141,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/coaches'
+    | '/consultancy'
     | '/contact'
     | '/elite-academy'
     | '/founder'
@@ -146,6 +156,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/coaches'
+    | '/consultancy'
     | '/contact'
     | '/elite-academy'
     | '/founder'
@@ -160,6 +171,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/coaches'
+    | '/consultancy'
     | '/contact'
     | '/elite-academy'
     | '/founder'
@@ -175,6 +187,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   CoachesRoute: typeof CoachesRoute
+  ConsultancyRoute: typeof ConsultancyRoute
   ContactRoute: typeof ContactRoute
   EliteAcademyRoute: typeof EliteAcademyRoute
   FounderRoute: typeof FounderRoute
@@ -207,6 +220,13 @@ declare module '@tanstack/react-router' {
       path: '/coaches'
       fullPath: '/coaches'
       preLoaderRoute: typeof CoachesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/consultancy': {
+      id: '/consultancy'
+      path: '/consultancy'
+      fullPath: '/consultancy'
+      preLoaderRoute: typeof ConsultancyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -279,6 +299,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   CoachesRoute: CoachesRoute,
+  ConsultancyRoute: ConsultancyRoute,
   ContactRoute: ContactRoute,
   EliteAcademyRoute: EliteAcademyRoute,
   FounderRoute: FounderRoute,
