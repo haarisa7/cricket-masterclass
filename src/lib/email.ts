@@ -2,10 +2,9 @@
  * Transactional email via Resend.
  *
  * WHY RESEND, AND WHY NO SDK
- * This app runs on Cloudflare Workers, which is not Node — most email
- * libraries (nodemailer and anything using `net`/`tls`) simply cannot run
- * there. Resend is a single authenticated POST to an HTTPS endpoint, so a
- * bare `fetch` works, adds no dependency and nothing to keep updated.
+ * Resend is called with a single authenticated HTTPS request. Using `fetch`
+ * keeps the mail path portable across serverless hosts and avoids an SDK
+ * dependency.
  *
  * ────────────────────────────────────────────────────────────────────────────
  * CURRENT SETUP: RESEND'S SHARED TEST SENDER. READ THE CONSTRAINT.
@@ -24,7 +23,7 @@
  * Setup as it stands:
  *   1. Create an API key in Resend with "Sending access" only.
  *   2. Locally: copy .env.example to .env and fill in RESEND_API_KEY.
- *      In production: `wrangler secret put RESEND_API_KEY`.
+ *      In production: add RESEND_API_KEY in Netlify environment variables.
  *      Never commit the key — a key in git is a leaked key.
  *   3. Set ENQUIRY_TO_EMAIL to your Resend account email.
  *

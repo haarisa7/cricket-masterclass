@@ -19,7 +19,7 @@ Current routes:
 ## Server / SSR
 
 - `src/start.ts` — configures `createStart` middleware: a CSRF middleware for server functions, and an error middleware that catches server function throws and renders a fallback error page instead of leaking a raw 500.
-- `src/server.ts` — the app's `fetch`-style SSR entry point (wired via `vite.config.ts`'s `tanstackStart.server.entry: "server"`, built on Nitro under the hood). Wraps the generated SSR handler to also catch the case where h3 (Nitro's HTTP layer) swallows an in-handler throw into an opaque JSON 500 — see the file's comments for the exact failure mode this works around. Note: the file's own comment describes this as a "Worker" entry, a holdover from a prior Cloudflare Workers setup — the site is currently deployed on Vercel (see [docs/DEVELOPMENT.md](DEVELOPMENT.md)).
+- `src/server.ts` — the app's `fetch`-style SSR entry point (wired via `vite.config.ts`'s `tanstackStart.server.entry: "server"` and packaged by Netlify's TanStack Start adapter). Wraps the generated SSR handler to normalize opaque JSON 500 responses into the site's HTML error page.
 - `src/lib/error-page.ts` / `src/lib/error-capture.ts` / `src/lib/lovable-error-reporting.ts` — supporting error-handling/reporting utilities used by the above and by `__root.tsx`'s error boundary.
 - `src/router.tsx` — client router factory (`createRouter`), sets up the React Query client passed into route context.
 

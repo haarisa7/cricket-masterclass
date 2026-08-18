@@ -24,9 +24,9 @@ import { sendEnquiryEmail } from "@/lib/email";
  * A form posts JSON here; this validates it and emails the club inbox.
  *
  * Done as a first-party server route rather than a managed form service so it
- * is host-agnostic, covered by the typecheck, and testable locally. This app
- * deploys to Cloudflare Workers, so the handler stays on the platform's own
- * runtime with no third-party form product in the path.
+ * is host-agnostic, covered by the typecheck, and testable locally. On Netlify,
+ * the TanStack Start adapter packages this handler into the app's serverless
+ * function.
  *
  * WHATSAPP NOTIFICATION — NOT BUILT. The brief asks for one "if possible". It
  * needs the Meta WhatsApp Cloud API or Twilio: a business verification, an
@@ -125,7 +125,7 @@ export const Route = createFileRoute("/api/indoor-interest")({
             replyTo: email,
           });
         } catch (error) {
-          // Logged so a misconfigured key shows up in Worker logs rather than
+          // Logged so a misconfigured key shows up in function logs rather than
           // vanishing. The visitor gets the WhatsApp fallback, not a dead end.
           console.error("Indoor interest email failed:", error);
           return json(

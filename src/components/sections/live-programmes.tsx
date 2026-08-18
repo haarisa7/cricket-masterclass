@@ -5,6 +5,7 @@ import { ActionAnchor } from "@/components/ui/action";
 import { whatsappFor } from "@/data/site";
 import {
   type LiveProgramme,
+  type Price,
   type ProgrammeType,
   dateLabel,
   genderLabel,
@@ -102,11 +103,9 @@ function GroupSummary({ event }: { event: LiveProgramme }) {
         `${slot.day}: ${slot.start_time}–${slot.end_time}${slot.note ? ` · ${slot.note}` : ""}`,
     )
     .join(" / ");
-  const details = [
-    dates && `Coaching block: ${dates}`,
-    schedule,
-    event.group_age_ability,
-  ].filter(Boolean);
+  const details = [dates && `Coaching block: ${dates}`, schedule, event.group_age_ability].filter(
+    Boolean,
+  );
   const needsConfirmation =
     !event.starts_on && !event.ends_on && !event.time_slots.length && !event.group_schedule.length;
   if (!details.length)

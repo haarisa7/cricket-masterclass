@@ -25,7 +25,7 @@ function formatTime(value: string) {
 }
 
 function minutes(value: string) {
-  const [hour, minute = "0"] = value.split(":").map(Number);
+  const [hour, minute = 0] = value.split(":").map(Number);
   return hour * 60 + minute;
 }
 
