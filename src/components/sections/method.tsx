@@ -53,12 +53,28 @@ function Chapter({ step, active }: { step: (typeof methodSteps)[number]; active:
     <motion.div
       className="absolute inset-0"
       initial={false}
-      animate={{ opacity: active ? 1 : 0, y: active ? 0 : 18 }}
-      transition={{ duration: 0.5, ease: EASE }}
+      animate={{ opacity: active ? 1 : 0, y: active ? 0 : 28, filter: active ? "blur(0px)" : "blur(6px)" }}
+      transition={{ duration: 0.6, ease: EASE }}
       aria-hidden={!active}
     >
-      <h3 className="text-display-md text-bone-100">{step.name}</h3>
-      <p className="text-body mt-5 max-w-[46ch] text-bone-400">{step.detail}</p>
+      <div className="overflow-hidden">
+        <motion.h3
+          className="text-display-md text-bone-100"
+          initial={false}
+          animate={{ y: active ? "0%" : "110%" }}
+          transition={{ duration: 0.7, ease: EASE }}
+        >
+          {step.name}
+        </motion.h3>
+      </div>
+      <motion.p
+        className="text-body mt-5 max-w-[46ch] text-bone-400"
+        initial={false}
+        animate={{ opacity: active ? 1 : 0, y: active ? 0 : 16 }}
+        transition={{ duration: 0.6, delay: active ? 0.12 : 0, ease: EASE }}
+      >
+        {step.detail}
+      </motion.p>
     </motion.div>
   );
 }
@@ -67,7 +83,22 @@ function PinnedMethod() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   const [step, setStep] = useState(0);
-  const railScale = useTransform(scrollYProgress, [0, 1], [0.04, 1]);
+
+  /** Spring-smoothed progress: the rail and the stage glide instead of jittering
+   *  frame-by-frame with the wheel. */
+  const smooth = useSpring(scrollYProgress, { stiffness: 90, damping: 24, mass: 0.4 });
+  const railScale = useTransform(smooth, [0, 1], [0.04, 1]);
+
+  /** Stage motion: slow counter-drift plus a breathing scale so the pinned frame
+   *  never feels static, and a clip wipe that opens as the section takes over. */
+  const stageY = useTransform(smooth, [0, 1], ["3%", "-3%"]);
+  const stageScale = useTransform(smooth, [0, 0.5, 1], [1.06, 1.01, 1.05]);
+  const stageRotate = useTransform(smooth, [0, 1], [-0.6, 0.6]);
+
+  /** Oversized ghost numeral drifting behind the copy column. */
+  const ghostY = useTransform(smooth, [0, 1], ["12%", "-12%"]);
+  const percent = useTransform(smooth, (p) => Math.round(p * 100));
+  const dash = useMotionTemplate`${percent}`;
 
   useMotionValueEvent(scrollYProgress, "change", (p) => {
     const next = Math.min(methodSteps.length - 1, Math.max(0, Math.floor(p * methodSteps.length)));
@@ -75,13 +106,27 @@ function PinnedMethod() {
   });
 
   return (
-    <div ref={ref} className="relative h-[400vh]">
+    <div ref={ref} className="relative h-[420vh]">
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        <div className="shell grid w-full grid-cols-12 items-center gap-x-6">
+        {/* drifting ghost numeral — pure decoration, never read out */}
+        <motion.span
+          aria-hidden="true"
+          className="pointer-events-none absolute -left-6 top-1/2 -translate-y-1/2 select-none font-display text-[38vw] leading-none text-bone-100/[0.03] tnum"
+          style={{ y: ghostY }}
+        >
+          {methodSteps[step]?.index}
+        </motion.span>
+
+        <div className="shell relative grid w-full grid-cols-12 items-center gap-x-6">
           <div className="col-span-5 flex flex-col">
-            <p className="text-label text-bone-600">
-              <span className="text-red-400">{sectionNumber("method")}</span> / The Method
-            </p>
+            <div className="flex items-baseline justify-between">
+              <p className="text-label text-bone-600">
+                <span className="text-red-400">{sectionNumber("method")}</span> / The Method
+              </p>
+              <p className="text-label text-bone-600 tnum">
+                <motion.span>{dash}</motion.span>%
+              </p>
+            </div>
             <h2 id="method-heading" className="text-display-md mt-5 max-w-[20ch] text-bone-100">
               {methodHeading}
             </h2>
@@ -98,14 +143,24 @@ function PinnedMethod() {
               <ol className="flex flex-col gap-4">
                 {methodSteps.map((item, i) => (
                   <li key={item.index}>
-                    <span
+                    <motion.span
                       className={cn(
-                        "text-label tnum transition-colors duration-300 ease-brand",
+                        "text-label tnum flex items-center gap-3 transition-colors duration-300 ease-brand",
                         i === step ? "text-red-400" : "text-bone-600",
                       )}
+                      initial={false}
+                      animate={{ x: i === step ? 6 : 0 }}
+                      transition={{ duration: 0.4, ease: EASE }}
                     >
+                      <motion.span
+                        aria-hidden="true"
+                        className={cn("h-px", i === step ? "bg-red-500" : "bg-bone-600/50")}
+                        initial={false}
+                        animate={{ width: i === step ? 24 : 8 }}
+                        transition={{ duration: 0.4, ease: EASE }}
+                      />
                       {item.index} — {item.name}
-                    </span>
+                    </motion.span>
                   </li>
                 ))}
               </ol>
@@ -118,15 +173,18 @@ function PinnedMethod() {
             </div>
           </div>
 
-          <StageVisual
-            step={step}
-            className="col-span-7 aspect-[4/3] max-h-[78vh] w-full self-center"
-          />
+          <motion.div
+            className="col-span-7 self-center"
+            style={{ y: stageY, scale: stageScale, rotate: stageRotate }}
+          >
+            <StageVisual step={step} className="aspect-[4/3] max-h-[78vh] w-full" />
+          </motion.div>
         </div>
       </div>
     </div>
   );
 }
+
 
 function StackedMethod() {
   return (
