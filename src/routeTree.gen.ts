@@ -9,63 +9,23 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as AboutRouteImport } from './routes/about'
-import { Route as CoachesRouteImport } from './routes/coaches'
-import { Route as ConsultancyRouteImport } from './routes/consultancy'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as EliteAcademyRouteImport } from './routes/elite-academy'
-import { Route as FounderRouteImport } from './routes/founder'
-import { Route as InternationalRouteImport } from './routes/international'
-import { Route as SafeguardingRouteImport } from './routes/safeguarding'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as StrengthConditioningRouteImport } from './routes/strength-conditioning'
-import { Route as ApiIndoorInterestRouteImport } from './routes/api/indoor-interest'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SafeguardingRouteImport } from './routes/safeguarding'
+import { Route as InternationalRouteImport } from './routes/international'
+import { Route as FounderRouteImport } from './routes/founder'
+import { Route as EliteAcademyRouteImport } from './routes/elite-academy'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ConsultancyRouteImport } from './routes/consultancy'
+import { Route as CoachesRouteImport } from './routes/coaches'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProgrammesSlugRouteImport } from './routes/programmes/$slug'
+import { Route as ApiIndoorInterestRouteImport } from './routes/api/indoor-interest'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CoachesRoute = CoachesRouteImport.update({
-  id: '/coaches',
-  path: '/coaches',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ConsultancyRoute = ConsultancyRouteImport.update({
-  id: '/consultancy',
-  path: '/consultancy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EliteAcademyRoute = EliteAcademyRouteImport.update({
-  id: '/elite-academy',
-  path: '/elite-academy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FounderRoute = FounderRouteImport.update({
-  id: '/founder',
-  path: '/founder',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InternationalRoute = InternationalRouteImport.update({
-  id: '/international',
-  path: '/international',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SafeguardingRoute = SafeguardingRouteImport.update({
-  id: '/safeguarding',
-  path: '/safeguarding',
+const StrengthConditioningRoute = StrengthConditioningRouteImport.update({
+  id: '/strength-conditioning',
+  path: '/strength-conditioning',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -73,19 +33,59 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
-const StrengthConditioningRoute = StrengthConditioningRouteImport.update({
-  id: '/strength-conditioning',
-  path: '/strength-conditioning',
+const SafeguardingRoute = SafeguardingRouteImport.update({
+  id: '/safeguarding',
+  path: '/safeguarding',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiIndoorInterestRoute = ApiIndoorInterestRouteImport.update({
-  id: '/api/indoor-interest',
-  path: '/api/indoor-interest',
+const InternationalRoute = InternationalRouteImport.update({
+  id: '/international',
+  path: '/international',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FounderRoute = FounderRouteImport.update({
+  id: '/founder',
+  path: '/founder',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EliteAcademyRoute = EliteAcademyRouteImport.update({
+  id: '/elite-academy',
+  path: '/elite-academy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConsultancyRoute = ConsultancyRouteImport.update({
+  id: '/consultancy',
+  path: '/consultancy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CoachesRoute = CoachesRouteImport.update({
+  id: '/coaches',
+  path: '/coaches',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProgrammesSlugRoute = ProgrammesSlugRouteImport.update({
   id: '/programmes/$slug',
   path: '/programmes/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiIndoorInterestRoute = ApiIndoorInterestRouteImport.update({
+  id: '/api/indoor-interest',
+  path: '/api/indoor-interest',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -201,67 +201,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/coaches': {
-      id: '/coaches'
-      path: '/coaches'
-      fullPath: '/coaches'
-      preLoaderRoute: typeof CoachesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/consultancy': {
-      id: '/consultancy'
-      path: '/consultancy'
-      fullPath: '/consultancy'
-      preLoaderRoute: typeof ConsultancyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/elite-academy': {
-      id: '/elite-academy'
-      path: '/elite-academy'
-      fullPath: '/elite-academy'
-      preLoaderRoute: typeof EliteAcademyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/founder': {
-      id: '/founder'
-      path: '/founder'
-      fullPath: '/founder'
-      preLoaderRoute: typeof FounderRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/international': {
-      id: '/international'
-      path: '/international'
-      fullPath: '/international'
-      preLoaderRoute: typeof InternationalRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/safeguarding': {
-      id: '/safeguarding'
-      path: '/safeguarding'
-      fullPath: '/safeguarding'
-      preLoaderRoute: typeof SafeguardingRouteImport
+    '/strength-conditioning': {
+      id: '/strength-conditioning'
+      path: '/strength-conditioning'
+      fullPath: '/strength-conditioning'
+      preLoaderRoute: typeof StrengthConditioningRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -271,18 +215,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/strength-conditioning': {
-      id: '/strength-conditioning'
-      path: '/strength-conditioning'
-      fullPath: '/strength-conditioning'
-      preLoaderRoute: typeof StrengthConditioningRouteImport
+    '/safeguarding': {
+      id: '/safeguarding'
+      path: '/safeguarding'
+      fullPath: '/safeguarding'
+      preLoaderRoute: typeof SafeguardingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/indoor-interest': {
-      id: '/api/indoor-interest'
-      path: '/api/indoor-interest'
-      fullPath: '/api/indoor-interest'
-      preLoaderRoute: typeof ApiIndoorInterestRouteImport
+    '/international': {
+      id: '/international'
+      path: '/international'
+      fullPath: '/international'
+      preLoaderRoute: typeof InternationalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/founder': {
+      id: '/founder'
+      path: '/founder'
+      fullPath: '/founder'
+      preLoaderRoute: typeof FounderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/elite-academy': {
+      id: '/elite-academy'
+      path: '/elite-academy'
+      fullPath: '/elite-academy'
+      preLoaderRoute: typeof EliteAcademyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/consultancy': {
+      id: '/consultancy'
+      path: '/consultancy'
+      fullPath: '/consultancy'
+      preLoaderRoute: typeof ConsultancyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/coaches': {
+      id: '/coaches'
+      path: '/coaches'
+      fullPath: '/coaches'
+      preLoaderRoute: typeof CoachesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/programmes/$slug': {
@@ -290,6 +283,13 @@ declare module '@tanstack/react-router' {
       path: '/programmes/$slug'
       fullPath: '/programmes/$slug'
       preLoaderRoute: typeof ProgrammesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/indoor-interest': {
+      id: '/api/indoor-interest'
+      path: '/api/indoor-interest'
+      fullPath: '/api/indoor-interest'
+      preLoaderRoute: typeof ApiIndoorInterestRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
