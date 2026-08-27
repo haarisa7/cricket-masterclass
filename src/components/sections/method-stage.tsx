@@ -213,10 +213,13 @@ function Correction({ visible }: { visible: boolean }) {
             </motion.span>
           ))}
         </div>
-        <div className="mt-3 flex gap-6 font-mono text-[11px] uppercase tracking-[0.14em]">
+        {/* Stacked on a phone: side by side these two captions overlapped the
+            drill rail at 390px. */}
+        <div className="mt-3 flex flex-col gap-1 font-mono text-[10px] uppercase leading-tight tracking-[0.12em] sm:flex-row sm:gap-6 sm:text-[11px] sm:tracking-[0.14em]">
           <span className="text-bone-100/60">Before — across the line</span>
           <span className="text-red-400">After — straight through</span>
         </div>
+
       </div>
     </motion.div>
   );
