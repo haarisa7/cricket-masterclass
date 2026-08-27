@@ -378,3 +378,20 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ---------- opening curtain ----------
+ * CSS-only so it can never get stuck covering the page. Ends fully clipped.
+ */
+@keyframes curtain-lift {
+  from {
+    clip-path: inset(0 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+
+@utility curtain-lift {
+  background-color: var(--color-ink-950);
+  animation: curtain-lift 900ms var(--ease-brand) forwards;
+}

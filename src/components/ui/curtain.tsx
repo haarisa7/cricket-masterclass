@@ -10,5 +10,7 @@
  * instantly via the global reduced-motion rule.
  */
 export function Curtain() {
-  return <div aria-hidden="true" className="curtain-lift pointer-events-none fixed inset-0 z-[60]" />;
+  return (
+    <div aria-hidden="true" className="curtain-lift pointer-events-none fixed inset-0 z-[60]" />
+  );
 }
