@@ -1,44 +1,81 @@
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
+
 import heroImage from "@/assets/hero-nets-batsman.jpg";
 import { ActionAnchor, ActionLink } from "@/components/ui/action";
+import { Curtain } from "@/components/ui/curtain";
 import { RevealHeading } from "@/components/ui/reveal";
 import { serviceAreas, site, tickerItems, whatsappFor } from "@/data/site";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
+
+const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function Hero() {
+  const reduced = usePrefersReducedMotion();
+  const ref = useRef<HTMLElement>(null);
+
+  // A very restrained camera push on the first screen of scroll: the frame
+  // eases in a little and drifts down slightly, so the hero reads as a held
+  // shot rather than a static JPEG. Transform-only, so it costs no layout.
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "8%"]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "-12%"]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.15]);
+
   // min-h, not h: with a fixed height plus justify-end, any content taller than
   // the viewport overflows upward and overflow-hidden clips the first heading
   // line. min-h lets the section grow instead.
   return (
-    <section className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden">
+    <section
+      ref={ref}
+      className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden"
+    >
+      <Curtain />
+
       <div className="absolute inset-0">
-        <video
-          className="size-full object-cover"
-          poster={heroImage}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="none"
-          aria-hidden="true"
+        <motion.div
+          className="absolute inset-0"
+          style={reduced ? undefined : { scale: imageScale, y: imageY }}
         >
-          {/* Drop the supplied coaching loop at /media/hero-coaching-loop.mp4
-              and add it back as a <source>. The poster below is the fallback. */}
-        </video>
-        <img
-          src={heroImage}
-          alt="Cricketer facing a red ball in a dark indoor net"
-          width={1920}
-          height={1280}
-          fetchPriority="high"
-          className="absolute inset-0 -z-10 size-full object-cover"
-        />
+          <video
+            className="size-full object-cover"
+            poster={heroImage}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="none"
+            aria-hidden="true"
+          >
+            {/* Drop the supplied coaching loop at /media/hero-coaching-loop.mp4
+                and add it back as a <source>. The poster below is the fallback. */}
+          </video>
+          <img
+            src={heroImage}
+            alt="Cricketer facing a red ball in a dark indoor net"
+            width={1920}
+            height={1280}
+            fetchPriority="high"
+            className="absolute inset-0 -z-10 size-full object-cover"
+          />
+        </motion.div>
         <div className="absolute inset-0 bg-ink-950/55" />
         <div className="scrim absolute inset-x-0 bottom-0 h-2/3" />
       </div>
 
       {/* pt clears the fixed header so the first line can never tuck under it. */}
-      <div className="relative z-10 pb-20 pt-28 md:pb-24 md:pt-32">
+      <motion.div
+        className="relative z-10 pb-20 pt-28 md:pb-24 md:pt-32"
+        style={reduced ? undefined : { y: contentY, opacity: contentOpacity }}
+      >
         <div className="shell">
-          <ul className="text-label mb-4 flex flex-wrap items-center gap-x-2 gap-y-1 tracking-[0.12em] text-bone-400 sm:mb-6 sm:gap-x-3 sm:tracking-[0.18em]">
+          <motion.ul
+            className="text-label mb-4 flex flex-wrap items-center gap-x-2 gap-y-1 tracking-[0.12em] text-bone-400 sm:mb-6 sm:gap-x-3 sm:tracking-[0.18em]"
+            initial={reduced ? undefined : { opacity: 0, y: 10 }}
+            animate={reduced ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.75, ease: EASE }}
+          >
             {[...serviceAreas, `Est. ${site.founded}`].map((area, i) => (
               <li key={area} className="flex items-center gap-x-2 sm:gap-x-3">
                 {i > 0 && (
@@ -49,11 +86,14 @@ export function Hero() {
                 {area}
               </li>
             ))}
-          </ul>
+          </motion.ul>
 
+          {/* Lines reveal independently under their own clip masks, so the red
+              "Ability" lands last and the eye finishes on the promise. */}
           <RevealHeading
             as="h1"
             className="text-display-xl text-bone-100"
+            delay={0.85}
             lines={[
               "Professional Cricket",
               "Coaching for Players",
@@ -78,7 +118,12 @@ export function Hero() {
 
               Wider than the default 62ch measure: this is fixed copy, and at
               62ch it ran long on desktop too. */}
-          <div className="text-body-lg mt-6 max-w-[88ch] text-bone-400">
+          <motion.div
+            className="text-body-lg mt-6 max-w-[88ch] text-bone-400"
+            initial={reduced ? undefined : { opacity: 0, y: 12 }}
+            animate={reduced ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 1.25, ease: EASE }}
+          >
             <p>
               Masterclass Cricket is a professional cricket coaching academy helping players of all
               abilities, from complete beginners to international performers. Every player receives
@@ -100,18 +145,23 @@ export function Hero() {
               We combine elite playing experience with biomechanics, technical coaching and tactical
               understanding to help players improve faster.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+          <motion.div
+            className="mt-8 flex flex-wrap items-center gap-4"
+            initial={reduced ? undefined : { opacity: 0, y: 12 }}
+            animate={reduced ? undefined : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.4, ease: EASE }}
+          >
             <ActionAnchor href={whatsappFor("cricket coaching")} target="_blank" rel="noreferrer">
               Book a Session
             </ActionAnchor>
             <ActionLink to="/programmes/one-to-one" variant="secondary">
               Explore Coaching
             </ActionLink>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       <div className="absolute bottom-28 right-[var(--gutter)] z-10 hidden flex-col items-center gap-4 md:flex">
         <span className="text-label [writing-mode:vertical-rl] text-bone-400">Scroll</span>
