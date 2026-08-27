@@ -47,8 +47,7 @@ export const journeyStops: JourneyStop[] = [
     period: "Partnership",
     status: "Partner",
     relationship: "Partner club",
-    detail:
-      "We work in partnership with Chiswick CC across its junior age groups and adult teams.",
+    detail: "We work in partnership with Chiswick CC across its junior age groups and adult teams.",
   },
   {
     name: "Sheen Cricket Club",

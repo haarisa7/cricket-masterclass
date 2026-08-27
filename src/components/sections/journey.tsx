@@ -103,10 +103,7 @@ export function Journey() {
                       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                         <h3 className="text-display-md text-bone-100">{stop.name}</h3>
                         <span
-                          className={cn(
-                            "text-label border px-2 py-1",
-                            statusStyle[stop.status],
-                          )}
+                          className={cn("text-label border px-2 py-1", statusStyle[stop.status])}
                         >
                           {stop.status}
                         </span>

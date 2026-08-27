@@ -233,7 +233,8 @@ const report = [
   },
   {
     label: "Coach feedback",
-    value: "Balance at contact is much better. Bat path is straighter through the line of the ball.",
+    value:
+      "Balance at contact is much better. Bat path is straighter through the line of the ball.",
   },
   { label: "Homework", value: "3 × 15 shadow drives, twice this week. Film one set side-on." },
   { label: "Next area of focus", value: "Back-foot punch against the shorter length." },

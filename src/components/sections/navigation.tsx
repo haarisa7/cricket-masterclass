@@ -113,7 +113,6 @@ export function Navigation() {
   const [open, setOpen] = useState(false);
   const { scrollYProgress: pageProgress } = useScroll();
 
-
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
     onScroll();
