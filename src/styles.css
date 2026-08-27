@@ -12,7 +12,16 @@
  *  - red-500 is 4.0:1 on ink-950 -> text only at 24px+/bold, rules, numerals
  *  - red-400 is the ONLY red allowed under 24px
  *  - red-600 is the primary button fill (label always bone-50)
- *  - bone-600 is decorative only, never for text that must be read
+ *  - bone-600 is the quietest text allowed (labels/metadata only, never body)
+ *
+ * Motion language (one system, used everywhere):
+ *  - hover feedback        180–250ms
+ *  - small UI transitions  250–400ms
+ *  - typography reveals    500–800ms
+ *  - section transitions   700–1100ms
+ *  - stagger               40–90ms
+ *  - easing                --ease-brand
+
  */
 
 @theme {
