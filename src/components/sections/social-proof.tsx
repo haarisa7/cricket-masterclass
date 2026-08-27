@@ -1,5 +1,6 @@
 import { FieldDecor } from "@/components/ui/field-decor";
 import { ReelCard } from "@/components/ui/reel-card";
+import { Reveal } from "@/components/ui/reveal";
 import { reels } from "@/data/content";
 import { sectionNumber } from "@/data/sections";
 import { socialMetrics, socials } from "@/data/site";
@@ -38,10 +39,15 @@ export function SocialProof() {
           player transformations and practical drills viewed by cricketers around the world.
         </p>
 
-        <ul className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4">
+        {/* Mobile: one row that snaps, so a card is never half-cropped.
+            Desktop: a four-up grid. Cards enter with a 70ms stagger. */}
+        <ul className="-mx-[var(--gutter)] mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[var(--gutter)] pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:px-0 lg:grid-cols-4">
           {reels.map((reel, i) => (
-            <li key={reel.caption}>
-              <ReelCard reel={reel} index={i} />
+            <li key={reel.caption} className="w-[70%] shrink-0 snap-start sm:w-auto">
+              <Reveal delay={i * 0.07}>
+                <p className="text-label mb-3 text-red-400">{reel.category}</p>
+                <ReelCard reel={reel} index={i} />
+              </Reveal>
             </li>
           ))}
         </ul>
