@@ -22,13 +22,16 @@
   --color-ink-800: #16191c;
   --color-ink-700: #22262a;
 
-  --color-line: rgba(242, 239, 233, 0.1);
-  --color-line-str: rgba(242, 239, 233, 0.2);
+  --color-line: #292a2c;
+  --color-line-str: #3a3c3f;
 
+  /* Text hierarchy, brightest to quietest. Nothing below bone-600 is text. */
   --color-bone-50: #fbfaf7;
-  --color-bone-100: #f2efe9;
-  --color-bone-400: #9a968e;
-  --color-bone-600: #5c594f;
+  --color-bone-100: #f2efe9; /* headings */
+  --color-bone-400: #c9c5bc; /* body copy */
+  --color-bone-500: #a5a198; /* secondary descriptions */
+  --color-bone-600: #8c8880; /* small labels, metadata */
+
 
   --color-red-400: #f04e62;
   --color-red-500: #d7263d;
