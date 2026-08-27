@@ -1,6 +1,6 @@
 import * as NavMenu from "@radix-ui/react-navigation-menu";
 import { Link } from "@tanstack/react-router";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, useScroll } from "motion/react";
 import { useEffect, useState } from "react";
 
 import { ActionAnchor } from "@/components/ui/action";
@@ -111,6 +111,7 @@ function ProgrammesMenu() {
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { scrollYProgress: pageProgress } = useScroll();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -135,11 +136,24 @@ export function Navigation() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-400 ease-brand",
         scrolled && !open
-          ? "border-b border-line bg-ink-950/80 backdrop-blur-xl"
+          ? "border-b border-line bg-ink-950/85 backdrop-blur-xl"
           : "border-b border-transparent bg-transparent",
       )}
     >
-      <div className="shell relative z-50 grid grid-cols-[auto_1fr_auto] items-center gap-6 py-4">
+      {/* Page-progress hairline. Purely indicative, so it sits under the
+          header content and never intercepts a pointer. */}
+      <motion.div
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 z-50 h-px origin-left bg-red-500"
+        style={{ scaleX: pageProgress }}
+      />
+
+      <div
+        className={cn(
+          "shell relative z-50 grid grid-cols-[auto_1fr_auto] items-center gap-6 transition-[padding] duration-400 ease-brand",
+          scrolled && !open ? "py-2.5" : "py-4",
+        )}
+      >
         <Link to="/" aria-label="Masterclass Cricket — home" className="text-bone-100">
           <Logo className="text-[15px]" />
         </Link>

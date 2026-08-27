@@ -1,9 +1,12 @@
 import { Link } from "@tanstack/react-router";
+import { motion, useScroll, useTransform } from "motion/react";
+import { useRef } from "react";
 
 import portrait from "@/assets/coach-uzi.jpg";
 import { Reveal, RevealHeading, RevealImage } from "@/components/ui/reveal";
 import { philosophy } from "@/data/content";
 import { sectionNumber } from "@/data/sections";
+import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 
 /**
  * PHIL-01 — the coaching philosophy.
@@ -15,8 +18,16 @@ import { sectionNumber } from "@/data/sections";
  * is invented and nothing is dropped.
  */
 export function Manifesto() {
+  const reduced = usePrefersReducedMotion();
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  // Restrained portrait parallax plus a red technical rule that completes as
+  // the statement passes through — the biomechanical annotation, not decoration.
+  const portraitY = useTransform(scrollYProgress, [0, 1], ["-4%", "4%"]);
+  const ruleScale = useTransform(scrollYProgress, [0.2, 0.6], [0, 1]);
+
   return (
-    <section id="approach" aria-labelledby="approach-heading" className="section-y">
+    <section ref={ref} id="approach" aria-labelledby="approach-heading" className="section-y">
       {/* items-start so the portrait and the quote share row 2 and both hang
           from the same top edge. DOM order is quote-then-portrait, which is the
           right reading order stacked on mobile; the explicit column/row
@@ -40,9 +51,16 @@ export function Manifesto() {
             ]}
           />
 
-          <Reveal delay={0.1}>
-            <p className="text-label mt-8 text-bone-400">— {philosophy.attribution}</p>
-          </Reveal>
+          <div className="mt-8 flex items-center gap-4">
+            <motion.span
+              aria-hidden="true"
+              className="h-px w-24 origin-left bg-red-500"
+              style={reduced ? { transform: "scaleX(1)" } : { scaleX: ruleScale }}
+            />
+            <Reveal delay={0.1}>
+              <p className="text-label text-bone-500">— {philosophy.attribution}</p>
+            </Reveal>
+          </div>
 
           {/* Single column, not two: the second paragraph is nearly three times
               the length of the first, so side by side one column ended level
@@ -64,14 +82,19 @@ export function Manifesto() {
 
         {/* 2/3 on lg is the portrait's native 768x1180 ratio, so it fills more
             of the column beside the quote and crops essentially nothing. */}
-        <RevealImage
-          src={portrait}
-          alt="Head coach Uzi Arif in Masterclass Cricket coaching jacket"
-          width={768}
-          height={1180}
-          className="col-span-12 aspect-[4/5] sm:col-span-8 lg:col-span-4 lg:col-start-1 lg:row-start-2 lg:aspect-[2/3]"
-          imgClassName="object-top"
-        />
+        <motion.div
+          className="col-span-12 sm:col-span-8 lg:col-span-4 lg:col-start-1 lg:row-start-2"
+          style={reduced ? undefined : { y: portraitY }}
+        >
+          <RevealImage
+            src={portrait}
+            alt="Head coach Uzi Arif in Masterclass Cricket coaching jacket"
+            width={768}
+            height={1180}
+            className="aspect-[4/5] lg:aspect-[2/3]"
+            imgClassName="object-top"
+          />
+        </motion.div>
       </div>
     </section>
   );

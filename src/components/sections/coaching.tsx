@@ -1,5 +1,7 @@
 import * as Tabs from "@radix-ui/react-tabs";
 import { Link } from "@tanstack/react-router";
+import { motion } from "motion/react";
+import { useState } from "react";
 
 import campsImage from "@/assets/service-camps.jpg";
 import groupImage from "@/assets/service-group.jpg";
@@ -8,13 +10,15 @@ import oneToOneImage from "@/assets/service-one-to-one.jpg";
 import { HomepageProgrammeUpdates } from "@/components/sections/live-programmes";
 import { LiveCampDetails } from "@/components/sections/live-camp-details";
 import { ActionAnchor } from "@/components/ui/action";
-import { Reveal, RevealHeading, RevealImage } from "@/components/ui/reveal";
+import { Reveal, RevealHeading } from "@/components/ui/reveal";
 import { availability, type EventStatus } from "@/data/events";
 import type { ProgrammeType } from "@/data/live-programmes";
 import { sectionNumber } from "@/data/sections";
 import { strength } from "@/data/strength";
 import { whatsappFor } from "@/data/site";
 import { cn } from "@/lib/utils";
+
+const EASE = [0.22, 1, 0.36, 1] as const;
 
 const STATUS_LABEL: Record<EventStatus, string> = {
   open: "Booking now",
@@ -171,6 +175,11 @@ function StatusBadge({ status }: { status: EventStatus }) {
  * from in-page find. They are all in the DOM, hidden with CSS.
  */
 export function Coaching() {
+  // Controlled so a programme change can drive motion: the incoming image
+  // wipes in directionally and the benefit rows stagger. 40-60ms apart, per
+  // the site's motion system.
+  const [active, setActive] = useState<Slug>("one-to-one");
+
   return (
     <section
       id="coaching"
@@ -193,7 +202,7 @@ export function Coaching() {
           Four ways to train with us. Pick the one that matches what you need.
         </p>
 
-        <Tabs.Root defaultValue="one-to-one" className="mt-12">
+        <Tabs.Root value={active} onValueChange={(v) => setActive(v as Slug)} className="mt-12">
           {/* Scrollable, not wrapped. Four tabs are tight at 375px even with the
               short labels, and a wrapped tab row reads as two rows of unrelated
               buttons. Horizontal scroll with snap keeps it one row. */}
@@ -207,7 +216,8 @@ export function Coaching() {
                 value={tab.slug}
                 className={cn(
                   "text-label -mb-px shrink-0 snap-start border-b-2 px-3 py-3 outline-none transition-colors duration-200 ease-brand sm:px-4",
-                  "border-transparent text-bone-400 hover:text-bone-100",
+                  "border-transparent text-bone-500 hover:text-bone-100",
+                  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-400",
                   "data-[state=active]:border-red-500 data-[state=active]:text-bone-100",
                 )}
               >
@@ -219,6 +229,7 @@ export function Coaching() {
 
           {TABS.map((tab) => {
             const avail = tab.eventType ? undefined : availability[tab.slug];
+            const isActive = active === tab.slug;
 
             return (
               <Tabs.Content
@@ -228,13 +239,33 @@ export function Coaching() {
                 className="data-[state=inactive]:hidden focus-visible:outline-none"
               >
                 <div className="grid items-start gap-8 pt-10 lg:grid-cols-2 lg:gap-16">
-                  <figure className="relative aspect-[4/3] overflow-hidden lg:aspect-[4/5]">
-                    <RevealImage
-                      src={tab.image}
-                      alt={tab.imageAlt}
-                      width={1280}
-                      height={1600}
+                  <figure className="relative aspect-[4/3] overflow-hidden bg-ink-900 lg:aspect-[4/5]">
+                    <motion.div
                       className="size-full"
+                      initial={false}
+                      animate={{
+                        clipPath: isActive ? "inset(0 0% 0 0)" : "inset(0 100% 0 0)",
+                        scale: isActive ? 1 : 1.06,
+                      }}
+                      transition={{ duration: 0.8, ease: EASE }}
+                    >
+                      <img
+                        src={tab.image}
+                        alt={tab.imageAlt}
+                        width={1280}
+                        height={1600}
+                        loading="lazy"
+                        decoding="async"
+                        className="size-full object-cover"
+                      />
+                    </motion.div>
+                    {/* A restrained lift in accent light on the active panel. */}
+                    <motion.div
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0 bg-gradient-to-t from-red-600/20 to-transparent"
+                      initial={false}
+                      animate={{ opacity: isActive ? 1 : 0 }}
+                      transition={{ duration: 0.9, ease: EASE }}
                     />
                   </figure>
 
@@ -256,15 +287,22 @@ export function Coaching() {
 
                     <ul className="mt-6">
                       {tab.bullets.map((bullet) => (
-                        <li
+                        <motion.li
                           key={bullet}
                           className="text-body flex items-baseline gap-3 border-b border-line py-3 text-bone-100"
+                          initial={false}
+                          animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 10 }}
+                          transition={{
+                            duration: 0.4,
+                            delay: isActive ? 0.15 + tab.bullets.indexOf(bullet) * 0.05 : 0,
+                            ease: EASE,
+                          }}
                         >
                           <span aria-hidden="true" className="shrink-0 text-red-400">
                             —
                           </span>
                           {bullet}
-                        </li>
+                        </motion.li>
                       ))}
                     </ul>
 

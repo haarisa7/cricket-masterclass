@@ -1,5 +1,4 @@
-import { Link } from "@tanstack/react-router";
-
+import { ActionLink } from "@/components/ui/action";
 import { Reveal } from "@/components/ui/reveal";
 import { partners, partnersIntro } from "@/data/site";
 
@@ -34,19 +33,26 @@ export function Partners() {
         </div>
 
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {partners.map((partner) => {
+          {partners.map((partner, i) => {
             const inner = (
               <div className="flex h-full flex-col gap-6 border border-line bg-ink-900 p-6 transition-colors duration-200 ease-brand group-hover:border-red-500">
-                <div className="flex h-32 items-center justify-center bg-bone-100 px-6">
+                {/* One tile geometry for every partner: same aspect, same
+                    padding, same optical cap on logo height, so no mark reads
+                    as larger than another. Marks start desaturated and take
+                    their brand colour on hover/focus. */}
+                <div className="flex aspect-[3/2] items-center justify-center bg-bone-100 px-6 py-5">
                   {partner.logo ? (
                     <img
                       src={partner.logo}
                       alt={`${partner.name} logo`}
                       loading="lazy"
-                      className="max-h-20 w-auto max-w-full object-contain"
+                      decoding="async"
+                      className="max-h-16 w-auto max-w-[80%] object-contain grayscale transition-[filter,transform] duration-200 ease-brand group-hover:scale-[1.03] group-hover:grayscale-0 group-focus-visible:grayscale-0"
                     />
                   ) : (
-                    <span className="text-center font-display text-lg leading-tight text-ink-950">
+                    /* The open slot is intentional, and dressed as an
+                       invitation rather than a hole in the grid. */
+                    <span className="text-center font-display text-base leading-tight text-ink-950/70">
                       {partner.name}
                     </span>
                   )}
@@ -62,7 +68,7 @@ export function Partners() {
                   <p
                     className={
                       partner.tier === "Silver Partner"
-                        ? "text-label mt-3 text-bone-400"
+                        ? "text-label mt-3 text-bone-500"
                         : "text-label mt-3 text-gold-400"
                     }
                   >
@@ -74,7 +80,7 @@ export function Partners() {
 
             return (
               <li key={partner.name}>
-                <Reveal>
+                <Reveal delay={i * 0.06}>
                   {partner.href ? (
                     <a
                       href={partner.href}
@@ -94,12 +100,12 @@ export function Partners() {
         </ul>
 
         <div className="flex flex-wrap items-center justify-between gap-4 border-t border-line pt-8">
-          <p className="text-body text-bone-400">
+          <p className="text-body-lg max-w-[42ch] text-bone-100">
             Want to be part of the journey? We&rsquo;d love to hear from you.
           </p>
-          <Link to="/contact" className="link-wipe text-sm">
-            Partner with us <span aria-hidden="true">→</span>
-          </Link>
+          <ActionLink to="/contact" variant="secondary">
+            Partner with us
+          </ActionLink>
         </div>
       </div>
     </section>

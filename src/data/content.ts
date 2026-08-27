@@ -22,6 +22,8 @@ export interface Philosophy {
 
 export interface Reel {
   views: string;
+  /** Content category shown on the card: Batting, Bowling, Drills, Camps. */
+  category: string;
   caption: string;
   href: string;
   /** Served from /public — never bundled, so the JS payload stays flat. */
@@ -124,6 +126,7 @@ export const reels: Reel[] = [
   {
     views: "1M",
     caption: "Front-foot drive, slowed",
+    category: "Batting",
     href: INSTAGRAM,
     src: "/reels/reel-1.mp4",
     poster: "/reels/reel-1.jpg",
@@ -131,6 +134,7 @@ export const reels: Reel[] = [
   {
     views: "717K",
     caption: "Seam position drill",
+    category: "Bowling",
     href: INSTAGRAM,
     src: "/reels/reel-2.mp4",
     poster: "/reels/reel-2.jpg",
@@ -138,6 +142,7 @@ export const reels: Reel[] = [
   {
     views: "1M",
     caption: "Trigger movement fix",
+    category: "Drills",
     href: INSTAGRAM,
     src: "/reels/reel-3.mp4",
     poster: "/reels/reel-3.jpg",
@@ -145,6 +150,7 @@ export const reels: Reel[] = [
   {
     views: "92.7K",
     caption: "Junior camp highlights",
+    category: "Camps",
     href: INSTAGRAM,
     src: "/reels/reel-4.mp4",
     poster: "/reels/reel-4.jpg",
