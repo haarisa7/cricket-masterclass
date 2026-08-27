@@ -111,6 +111,8 @@ function ProgrammesMenu() {
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { scrollYProgress: pageProgress } = useScroll();
+
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
