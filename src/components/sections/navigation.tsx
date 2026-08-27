@@ -1,6 +1,6 @@
 import * as NavMenu from "@radix-ui/react-navigation-menu";
 import { Link } from "@tanstack/react-router";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, useScroll } from "motion/react";
 import { useEffect, useState } from "react";
 
 import { ActionAnchor } from "@/components/ui/action";
@@ -149,7 +149,7 @@ export function Navigation() {
         style={{ scaleX: pageProgress }}
       />
 
-      <div className="shell relative z-50 grid grid-cols-[auto_1fr_auto] items-center gap-6 py-4">
+      <div className="shell relative z-50 grid grid-cols-[auto_1fr_auto] items-center gap-6 transition-[padding] duration-400 ease-brand " + (scrolled && !open ? "py-2.5" : "py-4") + "">
         <Link to="/" aria-label="Masterclass Cricket — home" className="text-bone-100">
           <Logo className="text-[15px]" />
         </Link>
