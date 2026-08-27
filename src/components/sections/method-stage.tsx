@@ -219,7 +219,6 @@ function Correction({ visible }: { visible: boolean }) {
           <span className="text-bone-100/60">Before — across the line</span>
           <span className="text-red-400">After — straight through</span>
         </div>
-
       </div>
     </motion.div>
   );
