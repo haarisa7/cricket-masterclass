@@ -135,10 +135,18 @@ export function Navigation() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-400 ease-brand",
         scrolled && !open
-          ? "border-b border-line bg-ink-950/80 backdrop-blur-xl"
+          ? "border-b border-line bg-ink-950/85 backdrop-blur-xl"
           : "border-b border-transparent bg-transparent",
       )}
     >
+      {/* Page-progress hairline. Purely indicative, so it sits under the
+          header content and never intercepts a pointer. */}
+      <motion.div
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 z-50 h-px origin-left bg-red-500"
+        style={{ scaleX: pageProgress }}
+      />
+
       <div className="shell relative z-50 grid grid-cols-[auto_1fr_auto] items-center gap-6 py-4">
         <Link to="/" aria-label="Masterclass Cricket — home" className="text-bone-100">
           <Logo className="text-[15px]" />
